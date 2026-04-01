@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GP·KPI Masterclass — Connexion</title>
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="core/theme/theme.js" defer></script>
+  <script src="env.js" defer></script>
+  <script src="core/utils/messages.js" defer></script>
+  <script src="core/services/storageService.js" defer></script>
+  <script src="core/services/authService.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (authService.isAuthenticated()) window.location.href = 'dashboard.html';
+    });
+  </script>
+</head>
+<body class="login-page">
+  <main class="login-container">
+    <div class="login-card animate-scale-in">
+      <div class="login-card-strip"></div>
+      <div class="login-card-body">
+
+        <div class="login-header">
+          <div class="login-logo-wrap">
+            <i data-lucide="bar-chart-3"></i>
+          </div>
+          <h1>GP·KPI Masterclass</h1>
+          <span class="subtitle">Gestionnaires de Paie · Indicateurs de Performance</span>
+        </div>
+
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <label for="email">Email professionnel</label>
+            <input type="email" id="email" name="email" required placeholder="prenom.nom@entreprise.fr" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" required placeholder="••••••••" autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top:var(--space-2);">
+            <i data-lucide="log-in"></i> Accéder à la formation
+          </button>
+        </form>
+
+        <div class="login-divider">Accès démo</div>
+
+        <div style="text-align:center;">
+          <button class="demo-pill" id="demoFill" title="Cliquer pour pré-remplir les identifiants démo">
+            <i data-lucide="zap" style="width:12px;height:12px;"></i>
+            demo@rdcompta.fr &nbsp;/&nbsp; demo
+          </button>
+        </div>
+
+        <div class="login-features">
+          <div class="login-feature"><i data-lucide="shield-check"></i> Données sécurisées</div>
+          <div class="login-feature"><i data-lucide="book-open"></i> 5 modules complets</div>
+          <div class="login-feature"><i data-lucide="bar-chart-2"></i> KPIs interactifs</div>
+          <div class="login-feature"><i data-lucide="award"></i> Benchmarks secteur</div>
+        </div>
+
+        <div class="login-footer">
+          <span>RD Formation · 2026</span>
+          <button id="themeToggle" class="theme-toggle-icon" aria-label="Basculer thème clair/sombre">
+            <i data-lucide="moon"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    document.getElementById('demoFill').addEventListener('click', () => {
+      document.getElementById('email').value = 'demo@rdcompta.fr';
+      document.getElementById('password').value = 'demo';
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      if (email === 'demo@rdcompta.fr' && password === 'demo') {
+        authService.login({ email, name: 'Gestionnaire Démo' });
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Identifiants invalides. Utilisez demo@rdcompta.fr / demo');
+      }
+    });
+  </script>
+</body>
+</html>

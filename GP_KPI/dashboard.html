@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GP·KPI · Tableau de bord</title>
+  <link rel="icon" href="assets/icons/icon.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="core/theme/theme.js" defer></script>
+  <script src="core/utils/messages.js" defer></script>
+  <script src="core/services/storageService.js" defer></script>
+  <script src="core/services/authService.js" defer></script>
+  <script src="env.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!authService.isAuthenticated()) window.location.href = 'index.html';
+      lucide.createIcons();
+
+      // Populate KPI cards with animation
+      const kpis = [
+        { name: 'Taux de production dans les délais', value: '99,8 %', trend: '+0,2%', dir: 'up', type: 'success', icon: 'clock', sub: 'Objectif ≥ 99,5 %' },
+        { name: 'Coût complet par bulletin', value: '24,50 €', trend: '-1,80 €', dir: 'up', type: 'info', icon: 'calculator', sub: 'Benchmark : 20–35 €' },
+        { name: 'Satisfaction collaborateurs', value: '8,7 / 10', trend: '+0,4 pts', dir: 'up', type: 'success', icon: 'smile', sub: 'Enquête trimestrielle' },
+        { name: 'Redressements URSSAF évités', value: '15 200 €', trend: 'Nouveau', dir: 'flat', type: 'accent', icon: 'shield-check', sub: 'Contrôle N–1' },
+      ];
+
+      const container = document.getElementById('kpi-summary');
+      kpis.forEach((k, i) => {
+        const card = document.createElement('div');
+        card.className = `kpi-card ${k.type} animate-slide-up stagger-${i + 1}`;
+        card.innerHTML = `
+          <div class="kpi-card-icon"><i data-lucide="${k.icon}"></i></div>
+          <h3>${k.name}</h3>
+          <div class="kpi-value">${k.value}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+            <div class="kpi-trend ${k.dir}">
+              <i data-lucide="${k.dir === 'up' ? 'trending-up' : k.dir === 'down' ? 'trending-down' : 'minus'}"></i>
+              ${k.trend}
+            </div>
+            <span class="badge ${k.type === 'accent' ? 'info' : k.type}">${k.sub}</span>
+          </div>`;
+        container.appendChild(card);
+      });
+
+      lucide.createIcons();
+
+      const user = authService.getCurrentUser();
+      if (user) {
+        const name = user.name || 'Utilisateur';
+        document.getElementById('welcomeName').innerText = name;
+        document.getElementById('userName').innerText = user.email;
+        // Avatar initials
+        const initials = name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+        document.querySelectorAll('.user-avatar').forEach(el => el.innerText = initials);
+      }
+
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        authService.logout();
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-area">
+      <img src="assets/images/logo.svg" alt="RD Formation" class="logo">
+      <span class="topbar-brand-badge"><i data-lucide="bar-chart-3" style="width:11px;height:11px;"></i> GP·KPI Masterclass</span>
+    </div>
+    <div class="topbar-actions">
+      <div class="topbar-progress">
+        <span class="topbar-progress-label">Progression</span>
+        <div class="topbar-progress-bar">
+          <div class="topbar-progress-fill" style="width:20%"></div>
+        </div>
+        <span class="topbar-progress-label" style="font-weight:600;color:var(--action-primary);">20 %</span>
+      </div>
+      <button id="themeToggle" class="theme-toggle-icon" aria-label="Thème">
+        <i data-lucide="moon"></i>
+      </button>
+      <div class="user-menu">
+        <div class="user-avatar">GP</div>
+        <span id="userName"></span>
+        <button id="logoutBtn" class="btn-icon" aria-label="Déconnexion" title="Se déconnecter">
+          <i data-lucide="log-out"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-section-label">Navigation</div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item active">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Tableau de bord</span>
+        </a>
+        <a href="cours.html" class="nav-item">
+          <i data-lucide="book-open"></i>
+          <span>Modules de cours</span>
+          <span class="nav-module-pill">5 modules</span>
+        </a>
+        <a href="tableau-bord.html" class="nav-item">
+          <i data-lucide="bar-chart-3"></i>
+          <span>KPIs détaillés</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-section-label">Modules</div>
+      <nav class="sidebar-nav">
+        <a href="module-efficience.html" class="nav-item">
+          <i data-lucide="gauge"></i>
+          <span>Efficience opérationnelle</span>
+          <span class="nav-module-pill">M1</span>
+        </a>
+        <a href="module-qualite.html" class="nav-item">
+          <i data-lucide="check-circle"></i>
+          <span>Qualité & conformité</span>
+          <span class="nav-module-pill">M2</span>
+        </a>
+        <a href="module-experience.html" class="nav-item">
+          <i data-lucide="users"></i>
+          <span>Expérience collaborateur</span>
+          <span class="nav-module-pill">M3</span>
+        </a>
+        <a href="module-strategique.html" class="nav-item">
+          <i data-lucide="trending-up"></i>
+          <span>Performance stratégique</span>
+          <span class="nav-module-pill">M4</span>
+        </a>
+        <a href="module-conformite.html" class="nav-item">
+          <i data-lucide="shield-check"></i>
+          <span>Conformité réglementaire</span>
+          <span class="nav-module-pill">M5</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-label">KPIs couverts</span>
+          <span class="sidebar-stat-value accent">18</span>
+        </div>
+        <div class="sidebar-stat">
+          <span class="sidebar-stat-label">Modules</span>
+          <span class="sidebar-stat-value">5 / 5</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+
+      <!-- Welcome banner -->
+      <div class="welcome-banner animate-fade">
+        <div class="welcome-banner-text">
+          <h2>Bienvenue, <span id="welcomeName">Gestionnaire</span> 👋</h2>
+          <p>Maîtrisez les 18 KPIs essentiels du service paie et pilotez la performance de votre équipe.</p>
+        </div>
+        <div class="welcome-banner-stats">
+          <div class="welcome-stat">
+            <div class="welcome-stat-value">18</div>
+            <div class="welcome-stat-label">KPIs</div>
+          </div>
+          <div class="welcome-stat" style="border-left:1px solid rgba(255,255,255,0.15);padding-left:var(--space-6);">
+            <div class="welcome-stat-value">5</div>
+            <div class="welcome-stat-label">Modules</div>
+          </div>
+          <div class="welcome-stat" style="border-left:1px solid rgba(255,255,255,0.15);padding-left:var(--space-6);">
+            <div class="welcome-stat-value">4h</div>
+            <div class="welcome-stat-label">Formation</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI summary -->
+      <div class="section-header">
+        <h2>KPIs de référence</h2>
+        <span class="section-header-meta">Valeurs de démonstration · Mai 2026</span>
+      </div>
+      <section class="kpi-summary" id="kpi-summary"></section>
+
+      <!-- Course cards -->
+      <div class="section-header" style="margin-top:var(--space-4);">
+        <h2>Continuer la formation</h2>
+        <span class="section-header-meta">5 modules · 18 KPIs</span>
+      </div>
+
+      <div class="course-grid">
+        <a href="module-efficience.html" class="course-card animate-slide-up stagger-1" data-module="efficience">
+          <div class="course-icon-wrap"><i data-lucide="gauge"></i></div>
+          <h3>Efficience opérationnelle</h3>
+          <p>Coût par bulletin, taux d'automatisation, ratio gestionnaires/bulletins. Optimiser la productivité du service.</p>
+          <div class="course-card-footer">
+            <span class="course-card-kpis">3 KPIs · Module 1</span>
+            <div class="course-card-arrow"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </a>
+
+        <a href="module-qualite.html" class="course-card animate-slide-up stagger-2" data-module="qualite">
+          <div class="course-icon-wrap" style="background:var(--semantic-success-bg);color:var(--semantic-success);"><i data-lucide="check-circle"></i></div>
+          <h3>Qualité & fiabilité</h3>
+          <p>Taux d'erreur, délai de régularisation, conformité DSN, respect des procédures internes.</p>
+          <div class="course-card-footer">
+            <span class="course-card-kpis">4 KPIs · Module 2</span>
+            <div class="course-card-arrow"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </a>
+
+        <a href="module-experience.html" class="course-card animate-slide-up stagger-3" data-module="experience">
+          <div class="course-icon-wrap" style="background:var(--action-cta-ultra-soft);color:var(--action-cta);"><i data-lucide="users"></i></div>
+          <h3>Expérience collaborateur</h3>
+          <p>Satisfaction, délai de réponse, taux d'adoption self-service, clarté des bulletins.</p>
+          <div class="course-card-footer">
+            <span class="course-card-kpis">4 KPIs · Module 3</span>
+            <div class="course-card-arrow"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </a>
+
+        <a href="module-strategique.html" class="course-card animate-slide-up stagger-4" data-module="strategique">
+          <div class="course-icon-wrap"><i data-lucide="trending-up"></i></div>
+          <h3>Performance stratégique</h3>
+          <p>Maîtrise de la masse salariale, redressements évités, fiabilité du reporting multi-directions.</p>
+          <div class="course-card-footer">
+            <span class="course-card-kpis">4 KPIs · Module 4</span>
+            <div class="course-card-arrow"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </a>
+
+        <a href="module-conformite.html" class="course-card animate-slide-up stagger-5" data-module="conformite">
+          <div class="course-icon-wrap" style="background:var(--semantic-success-bg);color:var(--color-emerald-600);"><i data-lucide="shield-check"></i></div>
+          <h3>Conformité réglementaire</h3>
+          <p>Veille juridique, mises à jour des taux, conformité PAS/DGFiP, RGPD et sécurité des données.</p>
+          <div class="course-card-footer">
+            <span class="course-card-kpis">4 KPIs · Module 5</span>
+            <div class="course-card-arrow"><i data-lucide="arrow-right"></i></div>
+          </div>
+        </a>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

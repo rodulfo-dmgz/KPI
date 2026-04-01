@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GP·KPI · M3 — Expérience collaborateur</title>
+  <link rel="icon" href="assets/icons/icon.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="core/theme/theme.js" defer></script>
+  <script src="core/services/authService.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-area"><img src="assets/images/logo.svg" alt="RD Formation" class="logo"><span class="topbar-brand-badge"><i data-lucide="bar-chart-3" style="width:11px;height:11px;"></i> GP·KPI Masterclass</span></div>
+    <div class="topbar-actions">
+      <button id="themeToggle" class="theme-toggle-icon"><i data-lucide="moon"></i></button>
+      <div class="user-menu"><div class="user-avatar">GP</div><button id="logoutBtn" class="btn-icon"><i data-lucide="log-out"></i></button></div>
+    </div>
+  </header>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-section-label">Navigation</div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>Tableau de bord</span></a>
+        <a href="cours.html" class="nav-item"><i data-lucide="book-open"></i><span>Modules de cours</span></a>
+        <a href="tableau-bord.html" class="nav-item"><i data-lucide="bar-chart-3"></i><span>KPIs détaillés</span></a>
+      </nav>
+      <div class="sidebar-section-label">Modules</div>
+      <nav class="sidebar-nav">
+        <a href="module-efficience.html" class="nav-item"><i data-lucide="gauge"></i><span>Efficience opérationnelle</span><span class="nav-module-pill">M1</span></a>
+        <a href="module-qualite.html" class="nav-item"><i data-lucide="check-circle"></i><span>Qualité &amp; conformité</span><span class="nav-module-pill">M2</span></a>
+        <a href="module-experience.html" class="nav-item active"><i data-lucide="users"></i><span>Expérience collaborateur</span><span class="nav-module-pill">M3</span></a>
+        <a href="module-strategique.html" class="nav-item"><i data-lucide="trending-up"></i><span>Performance stratégique</span><span class="nav-module-pill">M4</span></a>
+        <a href="module-conformite.html" class="nav-item"><i data-lucide="shield-check"></i><span>Conformité réglementaire</span><span class="nav-module-pill">M5</span></a>
+      </nav>
+      <div class="sidebar-footer"><div class="sidebar-stat"><span class="sidebar-stat-label">Module</span><span class="sidebar-stat-value accent">3 / 5</span></div><div class="sidebar-stat"><span class="sidebar-stat-label">KPIs</span><span class="sidebar-stat-value">4</span></div></div>
+    </aside>
+    <main class="main-content">
+      <div class="module-header animate-fade"><a href="cours.html" class="back-link"><i data-lucide="arrow-left"></i> Retour aux modules</a></div>
+
+      <div class="module-hero animate-slide-up" style="--module-accent:var(--color-accent-400);">
+        <div class="module-hero-icon" style="background:var(--action-cta-ultra-soft);color:var(--action-cta);"><i data-lucide="users"></i></div>
+        <div class="module-hero-content">
+          <div class="module-number" style="color:var(--action-cta);">Module 3 · Expérience</div>
+          <h1>Expérience collaborateur</h1>
+          <p class="module-description">Comment les salariés perçoivent-ils le service paie ? Satisfaction, réactivité, clarté et autonomie digitale.</p>
+          <div class="module-hero-meta">
+            <span class="module-meta-item"><i data-lucide="layers"></i> 4 KPIs</span>
+            <span class="module-meta-item"><i data-lucide="clock"></i> ~50 min</span>
+            <span class="module-meta-item"><i data-lucide="target"></i> Niveau : Opérationnel + RH</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-objectives animate-slide-up stagger-1" style="background:var(--action-cta-ultra-soft);border-color:var(--action-cta-border-soft);">
+        <div class="module-objectives-icon" style="background:var(--action-cta);"><i data-lucide="target"></i></div>
+        <div>
+          <h3 style="color:var(--action-cta);">Objectifs pédagogiques</h3>
+          <ul>
+            <li>Concevoir et analyser une enquête de satisfaction paie auprès des collaborateurs</li>
+            <li>Mettre en place un tableau de suivi des délais de réponse aux demandes</li>
+            <li>Piloter le déploiement et l'adoption des outils self-service RH</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module-content">
+
+        <div class="kpi-section open animate-slide-up stagger-2">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--action-cta-ultra-soft);color:var(--action-cta);"><i data-lucide="smile"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Taux de satisfaction des collaborateurs</h2>
+              <span class="kpi-section-subtitle">KPI 3.1 · Qualité perçue du service</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="heart"></i></div>
+              <p>Pourcentage de salariés se déclarant satisfaits ou très satisfaits du service paie, mesuré lors d'enquêtes trimestrielles ou annuelles. L'indicateur couvre plusieurs dimensions : clarté et lisibilité du bulletin, réactivité aux demandes, qualité des explications fournies, et fiabilité générale perçue.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>(Nb réponses "Satisfait" ou "Très satisfait" ÷ Nb total de réponses à l'enquête) × 100</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>40 réponses positives sur 45 salariés ayant répondu = <strong class="highlight">88,9 %</strong></div>
+            </div>
+            <div class="benchmark-bar-wrap">
+              <div class="benchmark-label"><span>Benchmark services paie internes (France)</span><span style="color:var(--action-cta);">Cible : ≥ 85 %</span></div>
+              <div class="benchmark-track"><div class="benchmark-fill" style="width:85%;background:linear-gradient(90deg,var(--action-cta),var(--color-accent-300));"></div></div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Cible de performance :</strong> ≥ 85 % de réponses positives. Analysez les verbatims des insatisfaits pour cibler les axes d'amélioration prioritaires.</span></div>
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Méthode recommandée :</strong> enquête anonyme via formulaire digital, 5 questions max (échelle de Likert), envoyée dans les 5 jours suivant l'émission des bulletins. Taux de réponse minimum : 30 %.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-section open animate-slide-up stagger-3">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon"><i data-lucide="mail-check"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Délai de réponse aux demandes collaborateurs</h2>
+              <span class="kpi-section-subtitle">KPI 3.2 · Réactivité du service</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="reply"></i></div>
+              <p>Délai moyen entre la réception d'une sollicitation collaborateur (question sur bulletin, demande d'attestation de salaire, signalement d'anomalie, demande d'acompte) et l'apport d'une réponse ou solution effective. Mesure la qualité de service perçue au quotidien.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>Moyenne(Date réponse − Date demande) sur l'ensemble des sollicitations du mois</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>54 jours cumulés ÷ 30 demandes traitées = <strong class="highlight">1,8 jour ouvré</strong> · Objectif : &lt; 2 jours</div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>SLA recommandé :</strong> accusé de réception sous 4h, réponse complète sous 2 jours ouvrés pour les demandes courantes. 48h maximum pour les urgences (manquement sur salaire).</span></div>
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Outil :</strong> ticketing interne (JIRA, Freshdesk, ou simplement un onglet Google Sheets partagé) pour tracer chaque demande et calculer automatiquement le délai moyen.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-section open animate-slide-up stagger-4">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon"><i data-lucide="smartphone"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Taux d'utilisation des outils self-service</h2>
+              <span class="kpi-section-subtitle">KPI 3.3 · Maturité digitale RH</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="monitor-smartphone"></i></div>
+              <p>Pourcentage de collaborateurs utilisant activement le portail RH ou l'application mobile pour consulter leurs bulletins, télécharger des attestations, mettre à jour leurs informations personnelles ou soumettre leurs demandes (congés, acomptes). Un taux élevé réduit les sollicitations directes et libère du temps gestionnaire.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>(Nb de collaborateurs s'étant connectés au moins 1 fois dans le mois ÷ Effectif total) × 100</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>350 connexions uniques pour 500 collaborateurs = <strong class="highlight">70 %</strong> d'adoption</div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Étapes de maturité :</strong> &lt; 40 % = démarrage · 40–70 % = croissance · &gt; 70 % = maturité. Visez 80 % à 18 mois post-déploiement.</span></div>
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Leviers d'adoption :</strong> tutoriels vidéo, démo collective en réunion d'équipe, rappel mensuel par email avec lien direct, gamification (badge "premier accès").</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-section open animate-slide-up stagger-5">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon"><i data-lucide="file-text"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Note de clarté du bulletin de paie</h2>
+              <span class="kpi-section-subtitle">KPI 3.4 · Lisibilité & pédagogie</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="eye"></i></div>
+              <p>Note moyenne attribuée par les salariés à la lisibilité et à la compréhension de leur bulletin de paie. Depuis la réforme Rebsamen (jan. 2017), le bulletin simplifié est obligatoire. La note de clarté mesure si la simplification est réellement perçue comme telle par les bénéficiaires.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>Moyenne des notes attribuées (sur 10) lors des enquêtes de satisfaction paie</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>Moyenne : <strong class="highlight">8,5 / 10</strong> · Objectif : ≥ 8/10</div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Action si note &lt; 7/10 :</strong> organiser des ateliers "Décryptage bulletin" en présentiel ou en webinaire, créer une FAQ paie accessible via l'intranet, proposer un lexique des lignes du bulletin.</span></div>
+            </div>
+            <div class="kpi-recall"><div class="kpi-recall-title"><i data-lucide="bookmark"></i> À retenir</div><p>Un bulletin clair réduit de 30 à 50 % les sollicitations directes au service paie selon les retours d'expérience terrain. C'est l'un des leviers les plus rentables pour libérer du temps gestionnaire.</p></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="module-navigation">
+        <a href="module-qualite.html" class="btn btn-outline"><i data-lucide="arrow-left"></i> Module 2 · Qualité</a>
+        <div class="module-nav-info">Module 3 / 5</div>
+        <a href="module-strategique.html" class="btn btn-primary">Module 4 · Stratégique <i data-lucide="arrow-right"></i></a>
+      </div>
+    </main>
+  </div>
+  <script>
+    lucide.createIcons();
+    function toggleSection(h){ h.closest('.kpi-section').classList.toggle('open'); }
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      if(typeof authService!=='undefined') authService.logout();
+      window.location.href='index.html';
+    });
+  </script>
+</body>
+</html>

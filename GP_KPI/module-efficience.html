@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GP·KPI · M1 — Efficience opérationnelle</title>
+  <link rel="icon" href="assets/icons/icon.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="core/theme/theme.js" defer></script>
+  <script src="core/services/authService.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-area">
+      <img src="assets/images/logo.svg" alt="RD Formation" class="logo">
+      <span class="topbar-brand-badge"><i data-lucide="bar-chart-3" style="width:11px;height:11px;"></i> GP·KPI Masterclass</span>
+    </div>
+    <div class="topbar-actions">
+      <button id="themeToggle" class="theme-toggle-icon"><i data-lucide="moon"></i></button>
+      <div class="user-menu">
+        <div class="user-avatar">GP</div>
+        <button id="logoutBtn" class="btn-icon" title="Déconnexion"><i data-lucide="log-out"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-section-label">Navigation</div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>Tableau de bord</span></a>
+        <a href="cours.html" class="nav-item"><i data-lucide="book-open"></i><span>Modules de cours</span></a>
+        <a href="tableau-bord.html" class="nav-item"><i data-lucide="bar-chart-3"></i><span>KPIs détaillés</span></a>
+      </nav>
+      <div class="sidebar-section-label">Modules</div>
+      <nav class="sidebar-nav">
+        <a href="module-efficience.html" class="nav-item active"><i data-lucide="gauge"></i><span>Efficience opérationnelle</span><span class="nav-module-pill">M1</span></a>
+        <a href="module-qualite.html"    class="nav-item"><i data-lucide="check-circle"></i><span>Qualité & conformité</span><span class="nav-module-pill">M2</span></a>
+        <a href="module-experience.html" class="nav-item"><i data-lucide="users"></i><span>Expérience collaborateur</span><span class="nav-module-pill">M3</span></a>
+        <a href="module-strategique.html" class="nav-item"><i data-lucide="trending-up"></i><span>Performance stratégique</span><span class="nav-module-pill">M4</span></a>
+        <a href="module-conformite.html"  class="nav-item"><i data-lucide="shield-check"></i><span>Conformité réglementaire</span><span class="nav-module-pill">M5</span></a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Module</span><span class="sidebar-stat-value accent">1 / 5</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">KPIs</span><span class="sidebar-stat-value">3</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="module-header animate-fade">
+        <a href="cours.html" class="back-link"><i data-lucide="arrow-left"></i> Retour aux modules</a>
+      </div>
+
+      <!-- Module hero -->
+      <div class="module-hero animate-slide-up">
+        <div class="module-hero-icon"><i data-lucide="gauge"></i></div>
+        <div class="module-hero-content">
+          <div class="module-number">Module 1 · Efficience</div>
+          <h1>Efficience opérationnelle</h1>
+          <p class="module-description">Comment mesurer la productivité du service paie et identifier les leviers d'optimisation durablement.</p>
+          <div class="module-hero-meta">
+            <span class="module-meta-item"><i data-lucide="layers"></i> 3 KPIs</span>
+            <span class="module-meta-item"><i data-lucide="clock"></i> ~45 min</span>
+            <span class="module-meta-item"><i data-lucide="target"></i> Niveau : Opérationnel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Objectives -->
+      <div class="module-objectives animate-slide-up stagger-1">
+        <div class="module-objectives-icon"><i data-lucide="target"></i></div>
+        <div>
+          <h3>Objectifs pédagogiques</h3>
+          <ul>
+            <li>Calculer et interpréter le coût complet d'un bulletin de paie</li>
+            <li>Évaluer le niveau d'automatisation du service et cibler les gains possibles</li>
+            <li>Analyser le ratio gestionnaires/bulletins pour dimensionner les équipes</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- KPI sections -->
+      <div class="module-content">
+
+        <!-- KPI 1 -->
+        <div class="kpi-section open animate-slide-up stagger-2">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon"><i data-lucide="calculator"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Coût complet par bulletin de paie</h2>
+              <span class="kpi-section-subtitle">KPI 1.1 · Efficience financière</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="euro"></i></div>
+              <p>Le coût complet par bulletin de paie est l'indicateur central de la rentabilité du service. Il englobe la totalité des charges directes et indirectes liées à la production mensuelle : masse salariale et charges sociales patronales de l'équipe, coût des licences logiciels (SIRH, outil de paie), formation continue, externalisation éventuelle, et quote-part des frais généraux de structure. C'est le thermomètre économique incontournable de tout service paie moderne.</p>
+            </div>
+
+            <div class="kpi-boxes">
+              <div class="formula-box">
+                <span class="box-label">Formule de calcul</span>
+                (Masse salariale + Charges sociales + Coût logiciels + Frais divers) ÷ Nombre de bulletins produits
+              </div>
+              <div class="example-box">
+                <span class="box-label">Exemple chiffré</span>
+                12 500 € de charges totales ÷ 500 bulletins = <strong class="highlight">25 € / bulletin</strong>
+              </div>
+            </div>
+
+            <div class="benchmark-bar-wrap">
+              <div class="benchmark-label">
+                <span>Benchmark secteur (externalisation incluse)</span>
+                <span>15 € — 45 €</span>
+              </div>
+              <div class="benchmark-track">
+                <div class="benchmark-fill" style="width:55%;"></div>
+              </div>
+            </div>
+
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok">
+                <div class="kpi-keypoint-icon"><i data-lucide="check"></i></div>
+                <span><strong>Cible de performance :</strong> entre 20 € et 35 € selon la taille de l'organisation et la complexité des paies (multi-conventions, intérimaires, expatriés).</span>
+              </div>
+              <div class="kpi-keypoint tip">
+                <div class="kpi-keypoint-icon"><i data-lucide="info"></i></div>
+                <span><strong>Leviers d'optimisation :</strong> automatisation de la collecte des variables, réduction des saisies manuelles, déploiement d'un portail self-service RH.</span>
+              </div>
+              <div class="kpi-keypoint warn">
+                <div class="kpi-keypoint-icon"><i data-lucide="alert-triangle"></i></div>
+                <span><strong>Attention :</strong> un coût trop bas peut masquer une sous-qualité (taux d'erreur élevé, conformité fragile). Croiser toujours avec le taux d'erreur bulletin.</span>
+              </div>
+            </div>
+
+            <div class="kpi-recall">
+              <div class="kpi-recall-title"><i data-lucide="bookmark"></i> À retenir</div>
+              <p>Le coût par bulletin est un KPI de pilotage interne, pas un indicateur à communiquer brut à la direction sans contexte. Présentez-le toujours avec une comparaison N-1 et un benchmark sectoriel pour lui donner du sens.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI 2 -->
+        <div class="kpi-section open animate-slide-up stagger-3">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--action-cta-ultra-soft);color:var(--action-cta);"><i data-lucide="bot"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Taux d'automatisation des processus</h2>
+              <span class="kpi-section-subtitle">KPI 1.2 · Maturité digitale</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="cpu"></i></div>
+              <p>Mesure la proportion de tâches de production de paie réalisées sans intervention manuelle : collecte automatique des variables (absences, heures sup, primes via interfaces), calculs automatisés, génération et envoi dématérialisé des bulletins, transmission directe des déclarations (DSN). Un levier majeur de productivité et de fiabilité simultanément.</p>
+            </div>
+
+            <div class="kpi-boxes">
+              <div class="formula-box">
+                <span class="box-label">Formule de calcul</span>
+                (Nombre de tâches automatisées ÷ Nombre total de tâches du processus) × 100
+              </div>
+              <div class="example-box">
+                <span class="box-label">Exemple chiffré</span>
+                16 tâches automatisées sur 20 au total = <strong class="highlight">80 % d'automatisation</strong>
+              </div>
+            </div>
+
+            <div class="benchmark-bar-wrap">
+              <div class="benchmark-label">
+                <span>Taux de maturité des organisations</span>
+                <span>Benchmark : ≥ 80 %</span>
+              </div>
+              <div class="benchmark-track">
+                <div class="benchmark-fill" style="width:80%;background:linear-gradient(90deg,var(--action-cta),var(--color-accent-300));"></div>
+              </div>
+            </div>
+
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok">
+                <div class="kpi-keypoint-icon"><i data-lucide="check"></i></div>
+                <span><strong>Organisations matures :</strong> ≥ 80 % d'automatisation. Les tâches résiduelles manuelles sont des contrôles à valeur ajoutée (validation, exception management).</span>
+              </div>
+              <div class="kpi-keypoint tip">
+                <div class="kpi-keypoint-icon"><i data-lucide="info"></i></div>
+                <span><strong>Domaines à automatiser en priorité :</strong> import des données de présence, calcul des éléments variables, envoi des bulletins dématérialisés, génération de la DSN.</span>
+              </div>
+              <div class="kpi-keypoint warn">
+                <div class="kpi-keypoint-icon"><i data-lucide="alert-triangle"></i></div>
+                <span><strong>Vigilance :</strong> l'automatisation ne doit pas réduire la supervision. Chaque interface automatisée doit faire l'objet d'un contrôle de cohérence avant validation finale.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI 3 -->
+        <div class="kpi-section open animate-slide-up stagger-4">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--semantic-success-bg);color:var(--semantic-success);"><i data-lucide="users-round"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Ratio gestionnaires / bulletins (ETP)</h2>
+              <span class="kpi-section-subtitle">KPI 1.3 · Dimensionnement des équipes</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="users"></i></div>
+              <p>Nombre de bulletins de paie produits chaque mois par équivalent temps plein (ETP) de gestionnaire paie. Cet indicateur permet de dimensionner les effectifs du service, de comparer la charge de travail entre gestionnaires, d'anticiper les recrutements en cas de croissance de l'effectif géré, et de benchmarker avec les pratiques sectorielles.</p>
+            </div>
+
+            <div class="kpi-boxes">
+              <div class="formula-box">
+                <span class="box-label">Formule de calcul</span>
+                Nombre total de bulletins produits ÷ Nombre d'ETP gestionnaires de paie
+              </div>
+              <div class="example-box">
+                <span class="box-label">Exemple chiffré</span>
+                1 500 bulletins ÷ 4 ETP = <strong class="highlight">375 bulletins / gestionnaire</strong>
+              </div>
+            </div>
+
+            <div class="benchmark-bar-wrap">
+              <div class="benchmark-label">
+                <span>Plage habituelle (hors paies très complexes)</span>
+                <span>300 — 500 bulletins / ETP</span>
+              </div>
+              <div class="benchmark-track">
+                <div class="benchmark-fill" style="width:65%;background:linear-gradient(90deg,var(--semantic-success),var(--color-emerald-400));"></div>
+              </div>
+            </div>
+
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok">
+                <div class="kpi-keypoint-icon"><i data-lucide="check"></i></div>
+                <span><strong>Valeurs de référence :</strong> 300–400 pour les paies complexes (multi-conventions, expatriés, temps partiels nombreux) · 400–500 pour les paies standardisées avec fort taux d'automatisation.</span>
+              </div>
+              <div class="kpi-keypoint tip">
+                <div class="kpi-keypoint-icon"><i data-lucide="info"></i></div>
+                <span><strong>Facteurs modulateurs :</strong> la complexité conventionnelle, la proportion de CDD/intérimaires, le nombre de sites de paie, le degré d'interfaçage SIRH.</span>
+              </div>
+              <div class="kpi-keypoint danger">
+                <div class="kpi-keypoint-icon"><i data-lucide="alert-circle"></i></div>
+                <span><strong>Signal d'alerte :</strong> un ratio > 550 sans automatisation poussée expose le service à un risque élevé d'erreurs et d'épuisement professionnel des gestionnaires.</span>
+              </div>
+            </div>
+
+            <div class="kpi-recall">
+              <div class="kpi-recall-title"><i data-lucide="bookmark"></i> À retenir</div>
+              <p>Ce ratio est un outil de dialogue avec la direction pour justifier les ressources du service. Documentez-le chaque mois et présentez son évolution lors des entretiens de budget.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation -->
+      <div class="module-navigation">
+        <a href="cours.html" class="btn btn-outline"><i data-lucide="arrow-left"></i> Retour aux modules</a>
+        <div class="module-nav-info">Module 1 / 5</div>
+        <a href="module-qualite.html" class="btn btn-primary">Module suivant <i data-lucide="arrow-right"></i></a>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    function toggleSection(header) {
+      const section = header.closest('.kpi-section');
+      section.classList.toggle('open');
+    }
+
+    // Animate benchmark bars on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.dataset.width || entry.target.style.width;
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.benchmark-fill').forEach(el => observer.observe(el));
+
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      if (typeof authService !== 'undefined') authService.logout();
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

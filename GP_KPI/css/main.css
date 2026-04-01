@@ -1,0 +1,15 @@
+/**
+ * RD COURS COMPTA — Main CSS v2
+ */
+@import url('./base/variables.css');
+@import url('./base/reset.css');
+@import url('./base/typography.css');
+@import url('./layout/layout.css');
+@import url('./components/buttons.css');
+@import url('./components/forms.css');
+@import url('./components/cards.css');
+@import url('./animations/animations.css');
+@import url('./modules/login.css');
+@import url('./modules/dashboard.css');
+@import url('./modules/course.css');
+@import url('./modules/admin.css'); /* facultatif, si besoin */

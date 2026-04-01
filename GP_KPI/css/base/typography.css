@@ -1,0 +1,64 @@
+/**
+ * GP·KPI MASTERCLASS — Typography Base Premium
+ */
+
+@layer base {
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--font-body1-size);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--font-body1-line);
+    color: var(--text-primary);
+    background-color: var(--surface-app);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color var(--transition-base), color var(--transition-base);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  h1 { font-size: var(--font-h1-size); font-weight: var(--font-h1-weight); line-height: var(--font-h1-line); letter-spacing: var(--font-h1-spacing); }
+  h2 { font-size: var(--font-h2-size); font-weight: var(--font-h2-weight); line-height: var(--font-h2-line); letter-spacing: var(--font-h2-spacing); }
+  h3 { font-size: var(--font-h3-size); font-weight: var(--font-h3-weight); line-height: var(--font-h3-line); letter-spacing: var(--font-h3-spacing); }
+  h4 { font-size: var(--font-h4-size); font-weight: var(--font-h4-weight); line-height: var(--font-h4-line); letter-spacing: var(--font-h4-spacing); }
+  h5 { font-size: var(--font-h5-size); font-weight: var(--font-h5-weight); line-height: var(--font-h5-line); }
+  h6 { font-size: var(--font-h6-size); font-weight: var(--font-h6-weight); line-height: var(--font-h6-line); }
+
+  p { margin-bottom: var(--space-4); }
+  p:last-child { margin-bottom: 0; }
+
+  a { color: var(--text-link); transition: color var(--transition-fast); text-decoration: none; }
+  a:hover { color: var(--text-link-hover); }
+
+  strong, b { font-weight: var(--font-weight-semibold); }
+
+  code, kbd, pre, samp { font-family: var(--font-mono); font-size: 0.875em; }
+
+  code {
+    padding: 0.15rem 0.3rem;
+    background: var(--surface-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+  }
+
+  pre {
+    padding: var(--space-5);
+    background: var(--surface-subtle);
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+    border: 1px solid var(--border-light);
+  }
+
+  pre code { padding: 0; background: transparent; border: none; }
+
+  @media (max-width: 640px) { html { font-size: 14px; } }
+  @media (min-width: 641px) and (max-width: 1024px) { html { font-size: 15px; } }
+}

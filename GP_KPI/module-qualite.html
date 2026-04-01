@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GP·KPI · M2 — Qualité & fiabilité</title>
+  <link rel="icon" href="assets/icons/icon.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="core/theme/theme.js" defer></script>
+  <script src="core/services/authService.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-area"><img src="assets/images/logo.svg" alt="RD Formation" class="logo"><span class="topbar-brand-badge"><i data-lucide="bar-chart-3" style="width:11px;height:11px;"></i> GP·KPI Masterclass</span></div>
+    <div class="topbar-actions">
+      <button id="themeToggle" class="theme-toggle-icon"><i data-lucide="moon"></i></button>
+      <div class="user-menu"><div class="user-avatar">GP</div><button id="logoutBtn" class="btn-icon"><i data-lucide="log-out"></i></button></div>
+    </div>
+  </header>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-section-label">Navigation</div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>Tableau de bord</span></a>
+        <a href="cours.html" class="nav-item"><i data-lucide="book-open"></i><span>Modules de cours</span></a>
+        <a href="tableau-bord.html" class="nav-item"><i data-lucide="bar-chart-3"></i><span>KPIs détaillés</span></a>
+      </nav>
+      <div class="sidebar-section-label">Modules</div>
+      <nav class="sidebar-nav">
+        <a href="module-efficience.html" class="nav-item"><i data-lucide="gauge"></i><span>Efficience opérationnelle</span><span class="nav-module-pill">M1</span></a>
+        <a href="module-qualite.html" class="nav-item active"><i data-lucide="check-circle"></i><span>Qualité &amp; conformité</span><span class="nav-module-pill">M2</span></a>
+        <a href="module-experience.html" class="nav-item"><i data-lucide="users"></i><span>Expérience collaborateur</span><span class="nav-module-pill">M3</span></a>
+        <a href="module-strategique.html" class="nav-item"><i data-lucide="trending-up"></i><span>Performance stratégique</span><span class="nav-module-pill">M4</span></a>
+        <a href="module-conformite.html" class="nav-item"><i data-lucide="shield-check"></i><span>Conformité réglementaire</span><span class="nav-module-pill">M5</span></a>
+      </nav>
+      <div class="sidebar-footer"><div class="sidebar-stat"><span class="sidebar-stat-label">Module</span><span class="sidebar-stat-value accent">2 / 5</span></div><div class="sidebar-stat"><span class="sidebar-stat-label">KPIs</span><span class="sidebar-stat-value">4</span></div></div>
+    </aside>
+    <main class="main-content">
+      <div class="module-header animate-fade"><a href="cours.html" class="back-link"><i data-lucide="arrow-left"></i> Retour aux modules</a></div>
+
+      <div class="module-hero animate-slide-up" style="--module-accent:var(--semantic-success);">
+        <div class="module-hero-icon" style="background:var(--semantic-success-bg);color:var(--semantic-success);"><i data-lucide="check-circle"></i></div>
+        <div class="module-hero-content">
+          <div class="module-number" style="color:var(--semantic-success);">Module 2 · Qualité</div>
+          <h1>Qualité & fiabilité de la paie</h1>
+          <p class="module-description">Mesurer la fiabilité des bulletins, la réactivité du service et la robustesse du processus de production.</p>
+          <div class="module-hero-meta">
+            <span class="module-meta-item"><i data-lucide="layers"></i> 4 KPIs</span>
+            <span class="module-meta-item"><i data-lucide="clock"></i> ~50 min</span>
+            <span class="module-meta-item"><i data-lucide="target"></i> Niveau : Opérationnel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-objectives animate-slide-up stagger-1" style="background:var(--semantic-success-bg);border-color:var(--semantic-success-border);">
+        <div class="module-objectives-icon" style="background:var(--semantic-success);"><i data-lucide="target"></i></div>
+        <div>
+          <h3 style="color:var(--semantic-success);">Objectifs pédagogiques</h3>
+          <ul>
+            <li>Calculer et analyser le taux d'erreur par type (calcul, paramétrage, saisie, timing)</li>
+            <li>Mesurer et réduire les délais de régularisation des anomalies détectées</li>
+            <li>Atteindre 100 % de conformité DSN et de respect des procédures internes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module-content">
+
+        <div class="kpi-section open animate-slide-up stagger-2">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--semantic-danger-bg);color:var(--semantic-danger);"><i data-lucide="alert-triangle"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Taux d'erreur global et par typologie</h2>
+              <span class="kpi-section-subtitle">KPI 2.1 · Fiabilité des bulletins</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="file-warning"></i></div>
+              <p>Pourcentage de bulletins de paie contenant au moins une anomalie, ventilé par nature : erreur de calcul (mauvais taux, base erronée), erreur de saisie manuelle (variable non remontée), erreur de paramétrage logiciel (taux de cotisation obsolète) ou erreur de timing (bulletin émis hors délai). La ventilation par type est indispensable pour cibler les actions correctives.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>(Nombre de bulletins comportant au moins 1 erreur ÷ Nombre total de bulletins produits) × 100</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>2 bulletins erronés sur 500 produits = <strong class="highlight">0,4 %</strong> · Objectif : &lt; 0,5 %</div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Seuil d'excellence :</strong> &lt; 0,5 % toutes typologies confondues. Au-delà, engager immédiatement une analyse causes-racines.</span></div>
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Matrice de priorisation :</strong> classez les erreurs selon leur impact financier (erreur à 0,30 € vs erreur à 300 €) et leur fréquence. Traitez d'abord les erreurs récurrentes à fort impact.</span></div>
+              <div class="kpi-keypoint danger"><div class="kpi-keypoint-icon"><i data-lucide="alert-circle"></i></div><span><strong>Risque légal :</strong> toute erreur de calcul non corrigée avant le virement constitue un manquement aux obligations de l'employeur (Art. L.3243-1 Code du travail).</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-section open animate-slide-up stagger-3">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--semantic-warning-bg);color:var(--semantic-warning);"><i data-lucide="clock"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Délai de traitement des régularisations</h2>
+              <span class="kpi-section-subtitle">KPI 2.2 · Réactivité du service</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="timer"></i></div>
+              <p>Délai moyen entre le signalement d'une anomalie (par le collaborateur, le responsable RH ou le service comptable) et sa correction effective avec émission du bulletin rectificatif ou virement complémentaire. Mesure la capacité du service à traiter rapidement les situations post-clôture.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>Moyenne(Date correction − Date signalement) sur l'ensemble des régularisations du mois</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>Somme des délais : 32 jours ÷ 10 régularisations = <strong class="highlight">3,2 jours</strong> · Objectif : &lt; 5 jours</div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Standard de service :</strong> &lt; 5 jours ouvrés pour les régularisations courantes. &lt; 48h pour les erreurs impactant significativement le net à payer.</span></div>
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Bonnes pratiques :</strong> tenir un registre des anomalies (ticket SIRH ou tableur suivi), prioriser par impact financier, confirmer la correction par email au collaborateur.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-section open animate-slide-up stagger-4">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--semantic-success-bg);color:var(--semantic-success);"><i data-lucide="file-check"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Taux de conformité des DSN</h2>
+              <span class="kpi-section-subtitle">KPI 2.3 · Déclaration Sociale Nominative</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="send"></i></div>
+              <p>Pourcentage de DSN (mensuelle ou événementielle) transmises au réseau DSN-Info sans rejet technique ou réglementaire, et dans le délai légal (5 du mois M+1 pour la DSN mensuelle). Un rejet DSN non traité peut bloquer les droits aux prestations sociales des salariés concernés.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>(Nombre de DSN acceptées sans anomalie bloquante ÷ Nombre total de DSN déposées) × 100</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>12 DSN mensuelles déposées, 12 acceptées = <strong class="highlight">100 %</strong> · Objectif absolu</div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Objectif :</strong> 100 %. Toute anomalie bloquante doit être corrigée et renvoyée dans les 48h. Les anomalies non-bloquantes (niveau warning) doivent être réduites à zéro à horizon 3 mois.</span></div>
+              <div class="kpi-keypoint danger"><div class="kpi-keypoint-icon"><i data-lucide="alert-circle"></i></div><span><strong>Sanction :</strong> la non-transmission de la DSN dans les délais est passible d'une pénalité de 7,50 € par salarié par mois (plafonné à 750 € par mois).</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-section open animate-slide-up stagger-5">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon"><i data-lucide="clipboard-list"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Taux de respect des procédures internes</h2>
+              <span class="kpi-section-subtitle">KPI 2.4 · Maturité organisationnelle</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="list-checks"></i></div>
+              <p>Pourcentage de dossiers de paie traités en respectant intégralement le mode opératoire défini (double contrôle, validation N+1, checklist avant envoi, archivage conforme). Indicateur de maturité organisationnelle et de culture qualité au sein de l'équipe.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>(Nombre de bulletins traités selon procédure complète ÷ Nombre total de bulletins) × 100</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>197 bulletins conformes sur 200 = <strong class="highlight">98,5 %</strong></div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Mise en œuvre :</strong> formalisez une checklist de clôture mensuelle signée par le gestionnaire et son responsable. Auditez-la trimestriellement.</span></div>
+            </div>
+            <div class="kpi-recall"><div class="kpi-recall-title"><i data-lucide="bookmark"></i> À retenir</div><p>Les procédures internes sont votre première ligne de défense contre les erreurs systématiques. Un taux &lt; 95 % indique que les procédures sont soit inadaptées, soit insuffisamment connues de l'équipe.</p></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="module-navigation">
+        <a href="module-efficience.html" class="btn btn-outline"><i data-lucide="arrow-left"></i> Module 1 · Efficience</a>
+        <div class="module-nav-info">Module 2 / 5</div>
+        <a href="module-experience.html" class="btn btn-primary">Module 3 · Expérience <i data-lucide="arrow-right"></i></a>
+      </div>
+    </main>
+  </div>
+  <script>
+    lucide.createIcons();
+    function toggleSection(h){ h.closest('.kpi-section').classList.toggle('open'); }
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      if(typeof authService!=='undefined') authService.logout();
+      window.location.href='index.html';
+    });
+  </script>
+</body>
+</html>

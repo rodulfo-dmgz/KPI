@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GP·KPI · M5 — Conformité réglementaire</title>
+  <link rel="icon" href="assets/icons/icon.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="core/theme/theme.js" defer></script>
+  <script src="core/services/authService.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-area"><img src="assets/images/logo.svg" alt="RD Formation" class="logo"><span class="topbar-brand-badge"><i data-lucide="bar-chart-3" style="width:11px;height:11px;"></i> GP·KPI Masterclass</span></div>
+    <div class="topbar-actions">
+      <button id="themeToggle" class="theme-toggle-icon"><i data-lucide="moon"></i></button>
+      <div class="user-menu"><div class="user-avatar">GP</div><button id="logoutBtn" class="btn-icon"><i data-lucide="log-out"></i></button></div>
+    </div>
+  </header>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-section-label">Navigation</div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>Tableau de bord</span></a>
+        <a href="cours.html" class="nav-item"><i data-lucide="book-open"></i><span>Modules de cours</span></a>
+        <a href="tableau-bord.html" class="nav-item"><i data-lucide="bar-chart-3"></i><span>KPIs détaillés</span></a>
+      </nav>
+      <div class="sidebar-section-label">Modules</div>
+      <nav class="sidebar-nav">
+        <a href="module-efficience.html" class="nav-item"><i data-lucide="gauge"></i><span>Efficience opérationnelle</span><span class="nav-module-pill">M1</span></a>
+        <a href="module-qualite.html" class="nav-item"><i data-lucide="check-circle"></i><span>Qualité &amp; conformité</span><span class="nav-module-pill">M2</span></a>
+        <a href="module-experience.html" class="nav-item"><i data-lucide="users"></i><span>Expérience collaborateur</span><span class="nav-module-pill">M3</span></a>
+        <a href="module-strategique.html" class="nav-item"><i data-lucide="trending-up"></i><span>Performance stratégique</span><span class="nav-module-pill">M4</span></a>
+        <a href="module-conformite.html" class="nav-item active"><i data-lucide="shield-check"></i><span>Conformité réglementaire</span><span class="nav-module-pill">M5</span></a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-stat"><span class="sidebar-stat-label">Module</span><span class="sidebar-stat-value accent">5 / 5</span></div>
+        <div class="sidebar-stat"><span class="sidebar-stat-label">KPIs</span><span class="sidebar-stat-value">4</span></div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <div class="module-header animate-fade"><a href="cours.html" class="back-link"><i data-lucide="arrow-left"></i> Retour aux modules</a></div>
+
+      <div class="module-hero animate-slide-up" style="--module-accent:var(--color-emerald-500);">
+        <div class="module-hero-icon" style="background:var(--semantic-success-bg);color:var(--semantic-success);"><i data-lucide="shield-check"></i></div>
+        <div class="module-hero-content">
+          <div class="module-number" style="color:var(--semantic-success);">Module 5 · Conformité</div>
+          <h1>Conformité réglementaire</h1>
+          <p class="module-description">Veille juridique, mises à jour des taux et plafonds, conformité DSN/DGFiP, sécurité des données paie selon le RGPD.</p>
+          <div class="module-hero-meta">
+            <span class="module-meta-item"><i data-lucide="layers"></i> 4 KPIs</span>
+            <span class="module-meta-item"><i data-lucide="clock"></i> ~45 min</span>
+            <span class="module-meta-item"><i data-lucide="target"></i> Niveau : Opérationnel + Réglementaire</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-objectives animate-slide-up stagger-1" style="background:var(--semantic-success-bg);border-color:var(--semantic-success-border);">
+        <div class="module-objectives-icon" style="background:var(--semantic-success);"><i data-lucide="target"></i></div>
+        <div>
+          <h3 style="color:var(--semantic-success);">Objectifs pédagogiques</h3>
+          <ul>
+            <li>Mettre en place un processus de veille juridique structuré et mesurable</li>
+            <li>Garantir la mise à jour des taux (URSSAF, retraite, prévoyance) avant chaque paie mensuelle</li>
+            <li>Assurer la conformité totale aux obligations PAS, DGFiP et RGPD concernant les données paie</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module-content">
+
+        <!-- KPI 5.1 -->
+        <div class="kpi-section open animate-slide-up stagger-2">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--semantic-success-bg);color:var(--semantic-success);"><i data-lucide="newspaper"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Taux de couverture de la veille juridique</h2>
+              <span class="kpi-section-subtitle">KPI 5.1 · Réactivité réglementaire</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="book-open-check"></i></div>
+              <p>Pourcentage de nouvelles dispositions légales, réglementaires ou conventionnelles impactant la paie (lois, décrets, accords de branche, circulaires URSSAF/DGFiP) identifiées, analysées et intégrées dans le processus de production avant leur date d'entrée en vigueur. Une veille insuffisante est la première source de non-conformité systémique.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>(Nb de dispositions intégrées avant date d'entrée en vigueur ÷ Nb total de dispositions nouvelles identifiées) × 100</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>8 nouvelles dispositions identifiées, 8 intégrées à temps = <strong class="highlight">100 %</strong> · Objectif absolu</div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Sources de veille incontournables :</strong> URSSAF.fr (circulaires cotisations), LegiFrance.gouv.fr (textes officiels), Net-entreprises.fr (DSN), circulaires AGIRC-ARRCO, bulletins officiels du Code du travail.</span></div>
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Organisation recommandée :</strong> revue hebdomadaire des alertes (abonnement aux newsletters officielles), réunion mensuelle d'équipe dédiée à l'intégration des changements, registre de veille tenu à jour.</span></div>
+              <div class="kpi-keypoint warn"><div class="kpi-keypoint-icon"><i data-lucide="alert-triangle"></i></div><span><strong>Vigilance en fin d'année :</strong> les LFSS (Lois de Financement de la Sécurité Sociale) et LFI (Lois de Finances) publiées en décembre modifient souvent des paramètres applicables au 1er janvier suivant — délai très court pour intégration.</span></div>
+            </div>
+            <div class="kpi-recall"><div class="kpi-recall-title"><i data-lucide="bookmark"></i> À retenir</div><p>La veille juridique n'est pas optionnelle : c'est une obligation professionnelle du gestionnaire de paie. Un taux de couverture de 100 % est le seul objectif acceptable pour cet indicateur.</p></div>
+          </div>
+        </div>
+
+        <!-- KPI 5.2 -->
+        <div class="kpi-section open animate-slide-up stagger-3">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--semantic-warning-bg);color:var(--semantic-warning);"><i data-lucide="percent"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Taux de mise à jour des plafonds et cotisations</h2>
+              <span class="kpi-section-subtitle">KPI 5.2 · Paramétrage logiciel</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="settings"></i></div>
+              <p>Pourcentage de paramètres de calcul (taux de cotisations, plafonds de la Sécurité Sociale, PMSS, SMIC, valeurs de point de retraite AGIRC-ARRCO, tranches AT/MP) correctement mis à jour dans le logiciel de paie avant le premier traitement de l'exercice ou du trimestre concerné. Un paramètre obsolète génère mécaniquement des erreurs en cascade sur tous les bulletins.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>(Nb de paramètres à jour avant J-2 de la première paie ÷ Nb total de paramètres à vérifier) × 100</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>PMSS 2026 : 3 925 € / mois · Mise à jour effectuée le 30/12/2025 = <strong class="highlight">100 %</strong> conforme</div>
+            </div>
+            <div class="benchmark-bar-wrap">
+              <div class="benchmark-label"><span>Paramètres révisés annuellement (liste non exhaustive)</span><span style="color:var(--semantic-success);">Cible : 100 %</span></div>
+              <div class="benchmark-track"><div class="benchmark-fill" style="width:100%;background:linear-gradient(90deg,var(--semantic-success),var(--color-emerald-400));"></div></div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Checklist annuelle :</strong> PMSS · SMIC horaire et mensuel · Taux AT/MP · Valeur du point AGIRC-ARRCO · Taux de versement mobilité · Cotisations prévoyance/mutuelle conventionnelles · Tranches A, B, C.</span></div>
+              <div class="kpi-keypoint danger"><div class="kpi-keypoint-icon"><i data-lucide="alert-circle"></i></div><span><strong>Conséquence d'un oubli :</strong> un taux de cotisation URSSAF erroné sur 500 bulletins génère un redressement potentiel proportionnel à l'écart × la masse salariale, majoré de pénalités.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI 5.3 -->
+        <div class="kpi-section open animate-slide-up stagger-4">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--semantic-info-bg);color:var(--semantic-info);"><i data-lucide="landmark"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Conformité au Prélèvement à la Source (PAS)</h2>
+              <span class="kpi-section-subtitle">KPI 5.3 · Obligations DGFiP</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="receipt"></i></div>
+              <p>Taux d'application correcte du Prélèvement à la Source sur les bulletins : récupération du taux de prélèvement personnalisé depuis le PASRAU (Prélèvement À la Source sur les Revenus Autres), application du taux neutre en cas d'absence de taux personnalisé, versement mensuel exact à la DGFiP via la DSN. Toute erreur d'application constitue un manquement fiscal.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>(Bulletins avec taux PAS correct × versement DGFiP exact ÷ Total bulletins) × 100</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>500 bulletins produits, 500 avec taux PAS conforme, versement DGFiP exact = <strong class="highlight">100 %</strong></div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Processus mensuel :</strong> (1) Récupérer les taux PAS depuis le tableau de bord PASRAU avant la clôture · (2) Appliquer le taux neutre par défaut si taux absent · (3) Vérifier l'exactitude du versement DGFiP après clôture · (4) Contrôler le CRM DSN.</span></div>
+              <div class="kpi-keypoint warn"><div class="kpi-keypoint-icon"><i data-lucide="alert-triangle"></i></div><span><strong>Cas particulier :</strong> les changements de taux en cours de mois (mariage, divorce, naissance) transmis par la DGFiP doivent être appliqués dès la paie du mois suivant la notification, sans délai supplémentaire.</span></div>
+              <div class="kpi-keypoint danger"><div class="kpi-keypoint-icon"><i data-lucide="alert-circle"></i></div><span><strong>Sanction :</strong> un versement PAS inexact ou tardif à la DGFiP entraîne une majoration de 5 % des sommes dues, plus intérêts de retard de 0,20 % par mois de retard.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI 5.4 -->
+        <div class="kpi-section open animate-slide-up stagger-5">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--semantic-success-bg);color:var(--semantic-success);"><i data-lucide="lock"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Incidents de sécurité des données paie (RGPD)</h2>
+              <span class="kpi-section-subtitle">KPI 5.4 · Protection des données personnelles</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="shield"></i></div>
+              <p>Nombre d'incidents de sécurité impliquant des données personnelles de paie (accès non autorisé, fuite de données, envoi de bulletin au mauvais destinataire, perte de fichiers non chiffrés) sur la période. Le RGPD impose une notification à la CNIL dans les 72h pour tout incident susceptible d'engendrer un risque pour les personnes concernées.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Indicateur de comptage</span>Nombre d'incidents de sécurité RGPD enregistrés dans le registre des violations sur la période</div>
+              <div class="example-box"><span class="box-label">Objectif</span>Nombre d'incidents = <strong class="highlight">0</strong> · Zéro incident non signalé en cas de survenance</div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Mesures préventives essentielles :</strong> accès aux données paie limité aux personnes habilitées (principe du moindre privilège) · Bulletins PDF chiffrés ou transmis via portail sécurisé · Aucun envoi de données paie par email non sécurisé · Archivage conforme (5 ans minimum pour les bulletins).</span></div>
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Registre RGPD :</strong> le service paie doit tenir un registre des traitements de données à caractère personnel (Art. 30 du RGPD). Ce registre est contrôlé en priorité lors d'un audit CNIL.</span></div>
+              <div class="kpi-keypoint danger"><div class="kpi-keypoint-icon"><i data-lucide="alert-circle"></i></div><span><strong>Sanction CNIL :</strong> une violation non notifiée dans les 72h peut entraîner une sanction administrative allant jusqu'à 4 % du CA mondial ou 20 M€ (plafond le plus élevé retenu).</span></div>
+            </div>
+            <div class="kpi-recall"><div class="kpi-recall-title"><i data-lucide="bookmark"></i> À retenir</div><p>Les données de paie (salaire, situation familiale, RIB, taux d'imposition) sont des données personnelles sensibles. Leur protection n'est pas qu'une contrainte légale — c'est un engagement éthique envers chaque salarié. Un KPI à 0 incident est la seule cible acceptable.</p></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="module-navigation">
+        <a href="module-strategique.html" class="btn btn-outline"><i data-lucide="arrow-left"></i> Module 4 · Stratégique</a>
+        <div class="module-nav-info">Module 5 / 5 — Dernier module</div>
+        <a href="tableau-bord.html" class="btn btn-primary" style="background:linear-gradient(135deg,var(--color-emerald-600),var(--color-emerald-700));box-shadow:0 4px 20px rgba(5,150,105,0.28);">Voir le tableau de bord KPIs <i data-lucide="bar-chart-3"></i></a>
+      </div>
+    </main>
+  </div>
+  <script>
+    lucide.createIcons();
+    function toggleSection(h){ h.closest('.kpi-section').classList.toggle('open'); }
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      if(typeof authService!=='undefined') authService.logout();
+      window.location.href='index.html';
+    });
+  </script>
+</body>
+</html>

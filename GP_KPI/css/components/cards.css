@@ -1,0 +1,34 @@
+/** GP·KPI — Cards Premium */
+
+@layer components {
+  .card {
+    background: var(--surface-base);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-light);
+    padding: var(--space-6);
+    transition: box-shadow var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-default);
+    transform: translateY(-2px);
+  }
+
+  .card-header {
+    margin-bottom: var(--space-5);
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+
+  .card-footer {
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GP·KPI · M4 — Performance stratégique</title>
+  <link rel="icon" href="assets/icons/icon.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="core/theme/theme.js" defer></script>
+  <script src="core/services/authService.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-area"><img src="assets/images/logo.svg" alt="RD Formation" class="logo"><span class="topbar-brand-badge"><i data-lucide="bar-chart-3" style="width:11px;height:11px;"></i> GP·KPI Masterclass</span></div>
+    <div class="topbar-actions">
+      <button id="themeToggle" class="theme-toggle-icon"><i data-lucide="moon"></i></button>
+      <div class="user-menu"><div class="user-avatar">GP</div><button id="logoutBtn" class="btn-icon"><i data-lucide="log-out"></i></button></div>
+    </div>
+  </header>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-section-label">Navigation</div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>Tableau de bord</span></a>
+        <a href="cours.html" class="nav-item"><i data-lucide="book-open"></i><span>Modules de cours</span></a>
+        <a href="tableau-bord.html" class="nav-item"><i data-lucide="bar-chart-3"></i><span>KPIs détaillés</span></a>
+      </nav>
+      <div class="sidebar-section-label">Modules</div>
+      <nav class="sidebar-nav">
+        <a href="module-efficience.html" class="nav-item"><i data-lucide="gauge"></i><span>Efficience opérationnelle</span><span class="nav-module-pill">M1</span></a>
+        <a href="module-qualite.html" class="nav-item"><i data-lucide="check-circle"></i><span>Qualité &amp; conformité</span><span class="nav-module-pill">M2</span></a>
+        <a href="module-experience.html" class="nav-item"><i data-lucide="users"></i><span>Expérience collaborateur</span><span class="nav-module-pill">M3</span></a>
+        <a href="module-strategique.html" class="nav-item active"><i data-lucide="trending-up"></i><span>Performance stratégique</span><span class="nav-module-pill">M4</span></a>
+        <a href="module-conformite.html" class="nav-item"><i data-lucide="shield-check"></i><span>Conformité réglementaire</span><span class="nav-module-pill">M5</span></a>
+      </nav>
+      <div class="sidebar-footer"><div class="sidebar-stat"><span class="sidebar-stat-label">Module</span><span class="sidebar-stat-value accent">4 / 5</span></div><div class="sidebar-stat"><span class="sidebar-stat-label">KPIs</span><span class="sidebar-stat-value">4</span></div></div>
+    </aside>
+    <main class="main-content">
+      <div class="module-header animate-fade"><a href="cours.html" class="back-link"><i data-lucide="arrow-left"></i> Retour aux modules</a></div>
+
+      <div class="module-hero animate-slide-up">
+        <div class="module-hero-icon"><i data-lucide="trending-up"></i></div>
+        <div class="module-hero-content">
+          <div class="module-number">Module 4 · Stratégique</div>
+          <h1>Performance stratégique</h1>
+          <p class="module-description">Démontrer la valeur ajoutée du service paie au niveau direction : maîtrise des coûts salariaux, prévention des risques, fiabilité du reporting.</p>
+          <div class="module-hero-meta">
+            <span class="module-meta-item"><i data-lucide="layers"></i> 4 KPIs</span>
+            <span class="module-meta-item"><i data-lucide="clock"></i> ~50 min</span>
+            <span class="module-meta-item"><i data-lucide="target"></i> Niveau : Management + Direction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-objectives animate-slide-up stagger-1">
+        <div class="module-objectives-icon"><i data-lucide="target"></i></div>
+        <div>
+          <h3>Objectifs pédagogiques</h3>
+          <ul>
+            <li>Produire des analyses à valeur ajoutée sur l'évolution de la masse salariale</li>
+            <li>Quantifier les économies réalisées grâce à la prévention des non-conformités</li>
+            <li>Garantir la disponibilité et la fiabilité des données paie pour le reporting multi-directions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module-content">
+
+        <div class="kpi-section open animate-slide-up stagger-2">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon"><i data-lucide="line-chart"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Contribution à la maîtrise de la masse salariale</h2>
+              <span class="kpi-section-subtitle">KPI 4.1 · Partenaire business</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="euro"></i></div>
+              <p>Capacité du service paie à fournir proactivement à la direction des analyses pertinentes sur l'évolution de la masse salariale : décomposition charges/net, impact des augmentations collectives ou individuelles, coût des heures supplémentaires, projections budgétaires, alertes sur les dérives. Ce KPI mesure le degré de maturité du service en tant que partenaire stratégique RH.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Indicateur composite</span>Nb d'analyses/tableaux de bord produits dans l'année + Note de satisfaction direction (sur 5)</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>4 analyses produites spontanément dans l'année, note direction : <strong class="highlight">4,5 / 5</strong></div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Livrables recommandés :</strong> tableau de bord mensuel masse salariale (évolution M/M-1 et M/M-12), note d'alerte si dérive &gt; 3 %, simulation d'impact avant NAO.</span></div>
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Outil :</strong> Looker Studio, Power BI ou même Excel avec graphiques dynamiques. L'essentiel est la régularité et la pertinence de l'analyse, pas la sophistication de l'outil.</span></div>
+            </div>
+            <div class="kpi-recall"><div class="kpi-recall-title"><i data-lucide="bookmark"></i> À retenir</div><p>Positionner le service paie comme source d'information fiable pour les décisions budgétaires RH est un levier de valorisation professionnelle majeur pour le gestionnaire de paie.</p></div>
+          </div>
+        </div>
+
+        <div class="kpi-section open animate-slide-up stagger-3">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon" style="background:var(--semantic-success-bg);color:var(--semantic-success);"><i data-lucide="shield-off"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Coût des non-conformités évitées</h2>
+              <span class="kpi-section-subtitle">KPI 4.2 · ROI de la prévention</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="piggy-bank"></i></div>
+              <p>Montant total des redressements, pénalités et majorations évitées grâce à la veille réglementaire proactive, aux contrôles internes rigoureux et à la correction anticipée des anomalies détectées. Ce KPI traduit directement la valeur économique de la rigueur du service paie.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>Σ (Montants de redressements URSSAF/fiscaux évités + Pénalités de retard non encourues)</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>Contrôle URSSAF : anomalie détectée et corrigée avant inspection → <strong class="highlight">15 200 € évités</strong></div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Comment documenter :</strong> tenir un journal des risques détectés et traités en interne. Pour chaque anomalie corrigée, estimer le montant du redressement potentiel selon la grille URSSAF.</span></div>
+              <div class="kpi-keypoint tip"><div class="kpi-keypoint-icon"><i data-lucide="info"></i></div><span><strong>Valeur de communication :</strong> ce KPI est très parlant pour la direction : "notre service a évité 15 000 € de redressements l'an dernier" justifie clairement les ressources investies dans la qualité paie.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-section open animate-slide-up stagger-4">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon"><i data-lucide="database"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Taux de disponibilité des données pour le reporting</h2>
+              <span class="kpi-section-subtitle">KPI 4.3 · Fiabilité du service data</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="server"></i></div>
+              <p>Pourcentage de demandes de données paie formulées par les autres directions (comptabilité, contrôle de gestion, RH, direction générale) traitées dans les délais convenus et sans nécessiter de correction ultérieure. Mesure la fiabilité du service paie comme fournisseur interne de données.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>(Nb de demandes traitées dans le délai & sans correction ultérieure ÷ Nb total de demandes reçues) × 100</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>19 demandes conformes sur 20 reçues = <strong class="highlight">95 %</strong></div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Cible :</strong> ≥ 95 %. En dessous, formaliser des SLA (Service Level Agreement) internes avec chaque direction cliente pour clarifier les délais et formats attendus.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-section open animate-slide-up stagger-5">
+          <div class="kpi-section-header" onclick="toggleSection(this)">
+            <div class="kpi-section-icon"><i data-lucide="bar-chart-2"></i></div>
+            <div class="kpi-section-header-text">
+              <h2>Taux de fiabilité de la masse salariale</h2>
+              <span class="kpi-section-subtitle">KPI 4.4 · Réconciliation paie/comptabilité</span>
+            </div>
+            <div class="kpi-section-toggle"><i data-lucide="chevron-down"></i></div>
+          </div>
+          <div class="kpi-section-body">
+            <div class="kpi-definition">
+              <div class="kpi-definition-icon"><i data-lucide="scale"></i></div>
+              <p>Écart relatif entre la masse salariale totale calculée en production de paie et celle comptabilisée dans les comptes (compte 641). Un écart non nul indique soit une erreur de provision, soit un problème d'interface entre le logiciel de paie et le système comptable.</p>
+            </div>
+            <div class="kpi-boxes">
+              <div class="formula-box"><span class="box-label">Formule de calcul</span>(|Masse salariale paie − Masse salariale comptabilité| ÷ Masse salariale paie) × 100</div>
+              <div class="example-box"><span class="box-label">Exemple chiffré</span>Écart de 150 € sur une masse de 300 000 € = <strong class="highlight">0,05 %</strong> · Objectif : &lt; 0,1 %</div>
+            </div>
+            <div class="kpi-keypoints">
+              <div class="kpi-keypoint ok"><div class="kpi-keypoint-icon"><i data-lucide="check"></i></div><span><strong>Fréquence :</strong> contrôle mensuel systématique avant validation de la clôture comptable. Tout écart &gt; 0,1 % doit faire l'objet d'une investigation immédiate.</span></div>
+              <div class="kpi-keypoint danger"><div class="kpi-keypoint-icon"><i data-lucide="alert-circle"></i></div><span><strong>Enjeu réglementaire :</strong> un écart significatif non justifié peut remettre en cause la fiabilité des comptes annuels et attirer l'attention des commissaires aux comptes.</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="module-navigation">
+        <a href="module-experience.html" class="btn btn-outline"><i data-lucide="arrow-left"></i> Module 3 · Expérience</a>
+        <div class="module-nav-info">Module 4 / 5</div>
+        <a href="module-conformite.html" class="btn btn-primary">Module 5 · Conformité <i data-lucide="arrow-right"></i></a>
+      </div>
+    </main>
+  </div>
+  <script>
+    lucide.createIcons();
+    function toggleSection(h){ h.closest('.kpi-section').classList.toggle('open'); }
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      if(typeof authService!=='undefined') authService.logout();
+      window.location.href='index.html';
+    });
+  </script>
+</body>
+</html>
