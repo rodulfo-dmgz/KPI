@@ -1,0 +1,50 @@
+/**
+ * DASHBOA_RD — Toasts
+ */
+@layer components {
+  .toast-container {
+    position: fixed;
+    bottom: var(--space-6);
+    right: var(--space-6);
+    z-index: var(--z-notification);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    pointer-events: none;
+  }
+
+  .toast {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface-overlay);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    font-size: var(--font-body2-size);
+    color: var(--text-primary);
+    min-width: 260px;
+    max-width: 400px;
+    pointer-events: all;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all var(--transition-base);
+  }
+
+  .toast--visible { opacity: 1; transform: translateX(0); }
+
+  .toast svg, .toast i { width: 18px; height: 18px; flex-shrink: 0; }
+
+  .toast--success { border-left: 3px solid var(--semantic-success); }
+  .toast--success svg, .toast--success i { color: var(--semantic-success); }
+
+  .toast--error { border-left: 3px solid var(--semantic-danger); }
+  .toast--error svg, .toast--error i { color: var(--semantic-danger); }
+
+  .toast--warning { border-left: 3px solid var(--semantic-warning); }
+  .toast--warning svg, .toast--warning i { color: var(--semantic-warning); }
+
+  .toast--info { border-left: 3px solid var(--semantic-info); }
+  .toast--info svg, .toast--info i { color: var(--semantic-info); }
+}

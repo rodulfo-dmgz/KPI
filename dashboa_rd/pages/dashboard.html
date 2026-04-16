@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord — DASHBOA_RD</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/icon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <div class="app-shell">
+
+        <!-- ── Sidebar ── -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar__header">
+                <img src="../assets/images/logo.svg" alt="" class="sidebar__logo" />
+                <div class="sidebar__brand">
+                    DASHBOA_RD
+                    <small>RD FORMATION</small>
+                </div>
+            </div>
+
+            <nav class="sidebar__nav">
+                <span class="sidebar__section-label">Navigation</span>
+                <a href="dashboard.html" class="nav-item nav-item--active">
+                    <i data-lucide="layout-dashboard"></i><span>Tableau de bord</span>
+                </a>
+
+                <span class="sidebar__section-label" id="modulesLabel">Ma formation</span>
+                <!-- ARH -->
+                <a href="../modules/arh/index.html" class="nav-item" id="navModuleArh" style="display:none;">
+                    <i data-lucide="users"></i><span>KPI RH — ARH</span>
+                </a>
+                <!-- Les autres cohortes seront affichées selon profil -->
+
+                <span class="sidebar__section-label">Mon parcours</span>
+                <a href="progression.html" class="nav-item">
+                    <i data-lucide="trending-up"></i><span>Ma progression</span>
+                </a>
+
+                <span class="sidebar__section-label" id="adminSectionLabel" style="display:none;">Administration</span>
+                <a href="admin.html" class="nav-item" id="adminNavItem" style="display:none;">
+                    <i data-lucide="shield-check"></i><span>Gestion stagiaires</span>
+                </a>
+            </nav>
+
+            <div class="sidebar__footer">
+                <div class="sidebar__user">
+                    <div class="sidebar__avatar" id="userAvatar">?</div>
+                    <div class="sidebar__user-info">
+                        <div class="sidebar__user-name" id="userName">Chargement…</div>
+                        <div class="sidebar__user-role" id="userRole">—</div>
+                    </div>
+                    <button class="btn-icon btn-ghost" id="logoutBtn" aria-label="Déconnexion">
+                        <i data-lucide="log-out"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ── Topbar ── -->
+        <header class="topbar">
+            <div class="topbar__left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <i data-lucide="menu"></i>
+                </button>
+                <nav class="topbar__breadcrumb">
+                    <span class="topbar__breadcrumb-current">Tableau de bord</span>
+                </nav>
+            </div>
+            <div class="topbar__right">
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <i data-lucide="sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- ── Content ── -->
+        <main class="content">
+
+            <!-- Bannière bienvenue -->
+            <div class="welcome-banner animate-fade-up">
+                <div class="welcome-banner__content">
+                    <p class="welcome-banner__greeting">Bonjour,</p>
+                    <h2 class="welcome-banner__message" id="welcomeGreeting">…</h2>
+                    <p class="welcome-banner__sub" id="welcomeMessage">Chargement de votre espace…</p>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card animate-fade-up delay-1">
+                    <span class="stat-card__label">Modules complétés</span>
+                    <span class="stat-card__value" id="statCompleted">— / 7</span>
+                </div>
+                <div class="stat-card animate-fade-up delay-2">
+                    <span class="stat-card__label">Progression globale</span>
+                    <span class="stat-card__value" id="statProgress">—%</span>
+                </div>
+                <div class="stat-card animate-fade-up delay-3">
+                    <span class="stat-card__label">Score moyen</span>
+                    <span class="stat-card__value" id="statScore">—</span>
+                </div>
+                <div class="stat-card animate-fade-up delay-4">
+                    <span class="stat-card__label">Badges obtenus</span>
+                    <span class="stat-card__value" id="statBadges">—</span>
+                </div>
+            </div>
+
+            <!-- Modules -->
+            <div class="section-header">
+                <h3 class="section-header__title">Ma formation</h3>
+                <span class="section-header__label" id="cohorteName">—</span>
+            </div>
+
+            <div class="modules-grid" id="modulesGrid">
+                <!-- Généré par dashboard.page.js -->
+                <div class="stat-card" style="grid-column:1/-1;text-align:center;padding:var(--space-10);color:var(--text-muted);">
+                    Chargement des modules…
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../env.js"></script>
+    <script src="../core/theme/theme.js"></script>
+    <script type="module" src="../features/dashboard/dashboard.page.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

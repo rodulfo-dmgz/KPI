@@ -1,0 +1,46 @@
+/**
+ * DASHBOA_RD — Progress bars
+ */
+@layer components {
+  .progress-bar {
+    height: 6px;
+    background: var(--surface-subtle);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .progress-bar__fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--color-primary-600), var(--color-secondary-600));
+    transition: width 0.6s var(--ease-out);
+  }
+
+  .progress-bar__fill--cta {
+    background: linear-gradient(90deg, var(--action-cta), var(--color-accent-400));
+  }
+
+  .progress-bar__fill--success {
+    background: var(--semantic-success);
+  }
+
+  /* Circular progress */
+  .progress-ring {
+    transform: rotate(-90deg);
+  }
+
+  .progress-ring__track {
+    fill: none;
+    stroke: var(--surface-subtle);
+    stroke-width: 4;
+  }
+
+  .progress-ring__fill {
+    fill: none;
+    stroke: var(--action-cta);
+    stroke-width: 4;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.6s var(--ease-out);
+  }
+}

@@ -1,0 +1,44 @@
+/**
+ * DASHBOA_RD — Main CSS v1.0
+ * Fichier importateur principal — ordre de cascade respecté
+ *
+ * Architecture :
+ *   tokens/     → Design tokens (variables CSS)
+ *   base/       → Reset + Typographie
+ *   layouts/    → Shell app (sidebar, topbar, content)
+ *   components/ → Boutons, formulaires, cartes, badges, toasts, modales
+ *   animations/ → Keyframes globaux
+ *   pages/      → Styles spécifiques à chaque page
+ */
+
+/* ── 1. TOKENS ── */
+@import url('./tokens/variables.css');
+
+/* ── 2. BASE ── */
+@import url('./base/reset.css');
+@import url('./base/typography.css');
+
+/* ── 3. LAYOUT ── */
+@import url('./layouts/layout.css');
+
+/* ── 4. COMPOSANTS ── */
+@import url('./components/buttons.css');
+@import url('./components/forms.css');
+@import url('./components/cards.css');
+@import url('./components/badges.css');
+@import url('./components/toasts.css');
+@import url('./components/modals.css');
+@import url('./components/progress.css');
+/* sidebar + topbar sont dans layouts/layout.css */
+@import url('./components/tables.css');
+
+/* ── 5. ANIMATIONS ── */
+@import url('./animations/animations.css');
+
+/* ── 6. PAGES ── */
+@import url('./pages/login.css');
+@import url('./pages/dashboard.css');
+@import url('./pages/course.css');
+@import url('./pages/admin.css');
+@import url('./pages/diagnostic.css');
+@import url('./pages/module-arh.css');

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic initial — Formation ARH | DASHBOA_RD</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/icons/icon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../../styles/main.css">
+</head>
+<body>
+    <div class="app-shell">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar__header">
+                <img src="../../assets/images/logo.svg" alt="" class="sidebar__logo" />
+                <div class="sidebar__brand">DASHBOA_RD<small>RD FORMATION</small></div>
+            </div>
+            <nav class="sidebar__nav">
+                <span class="sidebar__section-label">Navigation</span>
+                <a href="../../pages/dashboard.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i><span>Tableau de bord</span>
+                </a>
+                <a href="index.html" class="nav-item">
+                    <i data-lucide="users"></i><span>Formation ARH</span>
+                </a>
+                <span class="sidebar__section-label">Étape préalable</span>
+                <a href="diagnostic.html" class="nav-item nav-item--active">
+                    <i data-lucide="clipboard-check"></i><span>Diagnostic initial</span>
+                </a>
+            </nav>
+            <div class="sidebar__footer">
+                <div class="sidebar__user">
+                    <div class="sidebar__avatar" id="userAvatar">?</div>
+                    <div class="sidebar__user-info">
+                        <div class="sidebar__user-name" id="userName">…</div>
+                        <div class="sidebar__user-role" id="userRole">ARH</div>
+                    </div>
+                    <button class="btn-icon btn-ghost" id="logoutBtn" aria-label="Déconnexion">
+                        <i data-lucide="log-out"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <header class="topbar">
+            <div class="topbar__left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <i data-lucide="menu"></i>
+                </button>
+                <nav class="topbar__breadcrumb">
+                    <a href="../../pages/dashboard.html">Accueil</a>
+                    <span class="topbar__breadcrumb-sep"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+                    <a href="index.html">Formation ARH</a>
+                    <span class="topbar__breadcrumb-sep"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+                    <span class="topbar__breadcrumb-current">Diagnostic initial</span>
+                </nav>
+            </div>
+            <div class="topbar__right">
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <i data-lucide="sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="diagnostic-wrapper">
+
+                <!-- Intro -->
+                <div id="diagnosticIntro">
+                    <div class="diagnostic-intro animate-fade-up">
+                        <div class="diagnostic-intro__icon">🎯</div>
+                        <h1 class="diagnostic-intro__title">Diagnostic initial</h1>
+                        <p class="diagnostic-intro__text">
+                            Ce test de 10 questions permet de positionner votre niveau et d'adapter
+                            votre parcours de formation. Il dure environ 30 minutes.
+                            Répondez honnêtement — il n'y a pas de mauvaise réponse !
+                        </p>
+                        <div class="diagnostic-intro__meta">
+                            <div class="diagnostic-intro__meta-item">
+                                <span class="diagnostic-intro__meta-value">10</span>
+                                Questions
+                            </div>
+                            <div class="diagnostic-intro__meta-item">
+                                <span class="diagnostic-intro__meta-value">30</span>
+                                Minutes
+                            </div>
+                            <div class="diagnostic-intro__meta-item">
+                                <span class="diagnostic-intro__meta-value">3</span>
+                                Niveaux
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align:center;margin-top:var(--space-6);">
+                        <button class="btn btn-cta btn-lg" onclick="window.diagController.startDiagnostic()">
+                            <i data-lucide="play"></i> Commencer le diagnostic
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz diagnostic -->
+                <div id="diagnosticQuiz" style="display:none;">
+                    <div class="diagnostic-progress-bar">
+                        <span class="diagnostic-progress-bar__label">Progression</span>
+                        <div class="progress-bar" style="flex:1;">
+                            <div class="progress-bar__fill" id="diagProgressFill" style="width:10%;"></div>
+                        </div>
+                        <span class="diagnostic-progress-bar__count" id="diagProgressCount">1 / 10</span>
+                    </div>
+
+                    <div id="diagQuestionContainer">
+                        <!-- Généré par diagnostic.page.js -->
+                    </div>
+
+                    <div style="display:flex;justify-content:flex-end;margin-top:var(--space-5);">
+                        <button class="btn btn-cta" id="diagNextBtn" onclick="window.diagController.nextQuestion()" disabled>
+                            Question suivante <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Résultat -->
+                <div id="diagnosticResult" style="display:none;"></div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../env.js"></script>
+    <script src="../../core/theme/theme.js"></script>
+    <script type="module" src="diagnostic.page.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

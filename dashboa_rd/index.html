@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion — DASHBOA_RD</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icons/icon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <a href="#loginForm" class="skip-link">Aller au formulaire de connexion</a>
+
+    <div class="login-page-wrapper">
+        <main class="login-layout">
+
+            <!-- ── Brand ── -->
+            <section class="login-brand-card" aria-label="Logo DASHBOA_RD">
+                <div class="login-brand-content">
+                    <img src="assets/images/logo.svg" alt="DASHBOA_RD" class="login-brand__logo" />
+                    <h1 class="login-brand__name">DASHBOA_RD</h1>
+                    <p class="login-brand__slogan">Pilotez vos KPI, décidez par la donnée</p>
+                </div>
+            </section>
+
+            <!-- ── Form Card ── -->
+            <section class="login-form-card" aria-labelledby="formTitle">
+
+                <button type="button" class="theme-toggle" id="themeToggle"
+                    aria-label="Changer de thème" aria-pressed="false">
+                    <i data-lucide="sun"></i>
+                </button>
+
+                <!-- ═══ FORMULAIRE CONNEXION ═══ -->
+                <form id="loginForm" class="login-form" novalidate>
+                    <h2 id="formTitle" class="login-form__title">Connexion</h2>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label form-label--required">Email</label>
+                        <input type="email" id="email" name="email" class="form-input"
+                            placeholder="prenom.nom@rd-formation.fr"
+                            autocomplete="email" inputmode="email"
+                            required aria-required="true" aria-describedby="email-error" />
+                        <span id="email-error" class="form-error" style="display:none;" role="alert"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label form-label--required">Mot de passe</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" class="form-input"
+                                placeholder="••••••••"
+                                autocomplete="current-password"
+                                required aria-required="true" aria-describedby="password-error" />
+                            <button type="button" class="password-toggle" id="passwordToggle"
+                                aria-label="Afficher le mot de passe" aria-pressed="false">
+                                <i data-lucide="eye"></i>
+                            </button>
+                        </div>
+                        <span id="password-error" class="form-error" style="display:none;" role="alert"></span>
+                    </div>
+
+                    <div id="globalError" class="form-error" style="display:none;" role="alert" aria-live="polite"></div>
+
+                    <button type="submit" class="btn btn-cta login-submit" id="submitBtn">
+                        Accéder à mes cours
+                    </button>
+
+                    <p style="text-align:center;font-size:var(--font-body2-size);color:var(--text-tertiary);margin-top:var(--space-2);">
+                        Première connexion ?
+                        <a href="#" id="showActivateLink"
+                            style="color:var(--action-cta);font-weight:var(--font-weight-semibold);">
+                            Activer mon compte
+                        </a>
+                    </p>
+
+                    <a href="#" class="forgot-password-link" id="forgotPasswordLink">
+                        Mot de passe oublié ?
+                    </a>
+                </form>
+
+                <!-- ═══ FORMULAIRE ACTIVATION ═══ -->
+                <form id="activateForm" class="login-form" style="display:none;" novalidate>
+                    <h2 class="login-form__title">Activer mon compte</h2>
+                    <p style="font-size:var(--font-body2-size);color:var(--text-secondary);margin-bottom:var(--space-2);">
+                        Votre formateur a créé votre profil. Choisissez votre mot de passe pour activer votre accès.
+                    </p>
+
+                    <div class="form-group">
+                        <label for="activateEmail" class="form-label form-label--required">
+                            Email (fourni par le formateur)
+                        </label>
+                        <input type="email" id="activateEmail" class="form-input"
+                            placeholder="prenom.nom@rd-formation.fr" required />
+                        <span id="activate-email-error" class="form-error" style="display:none;" role="alert"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="activatePassword" class="form-label form-label--required">
+                            Choisir un mot de passe
+                        </label>
+                        <div class="password-wrapper">
+                            <input type="password" id="activatePassword" class="form-input"
+                                placeholder="Minimum 6 caractères" required />
+                            <button type="button" class="password-toggle" id="activatePasswordToggle"
+                                aria-label="Afficher">
+                                <i data-lucide="eye"></i>
+                            </button>
+                        </div>
+                        <span id="activate-pwd-error" class="form-error" style="display:none;" role="alert"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="activatePasswordConfirm" class="form-label form-label--required">
+                            Confirmer le mot de passe
+                        </label>
+                        <input type="password" id="activatePasswordConfirm" class="form-input"
+                            placeholder="Confirmer" required />
+                        <span id="activate-confirm-error" class="form-error" style="display:none;" role="alert"></span>
+                    </div>
+
+                    <div id="activateGlobalError" class="form-error" style="display:none;" role="alert"></div>
+                    <div id="activateSuccess"
+                        style="display:none;padding:var(--space-3) var(--space-4);background:var(--semantic-success-bg);border:1px solid var(--semantic-success-border);border-radius:var(--radius-lg);font-size:var(--font-body2-size);color:var(--text-success);text-align:center;">
+                    </div>
+
+                    <button type="submit" class="btn btn-cta login-submit" id="activateSubmitBtn">
+                        Activer mon compte
+                    </button>
+
+                    <p style="text-align:center;font-size:var(--font-body2-size);color:var(--text-tertiary);margin-top:var(--space-2);">
+                        Déjà activé ?
+                        <a href="#" id="showLoginLink"
+                            style="color:var(--action-cta);font-weight:var(--font-weight-semibold);">
+                            Se connecter
+                        </a>
+                    </p>
+                </form>
+
+                <!-- ═══ MODALE MOT DE PASSE OUBLIÉ ═══ -->
+                <div id="forgotPasswordModal" style="display:none;position:fixed;inset:0;z-index:9999;">
+                    <div style="position:fixed;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);"
+                        id="forgotModalBackdrop"></div>
+                    <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--surface-base);border-radius:var(--radius-2xl);padding:var(--space-8);max-width:420px;width:90%;box-shadow:var(--shadow-2xl);z-index:1;text-align:center;border:1px solid var(--border-light);">
+                        <div style="width:48px;height:48px;border-radius:var(--radius-xl);background:var(--action-cta-ultra-soft);border:1px solid var(--action-cta-border-soft);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);color:var(--action-cta);">
+                            <i data-lucide="key-round"></i>
+                        </div>
+                        <h3 style="font-family:var(--font-heading);font-size:var(--font-h4-size);font-weight:var(--font-weight-bold);color:var(--text-primary);margin-bottom:var(--space-3);">
+                            Mot de passe oublié ?
+                        </h3>
+                        <p style="font-size:var(--font-body2-size);color:var(--text-secondary);line-height:1.6;margin-bottom:var(--space-6);">
+                            Contactez votre <strong>formateur</strong> ou l'<strong>administrateur</strong>.
+                            Il pourra supprimer votre compte et vous réinscrire pour que vous puissiez
+                            choisir un nouveau mot de passe.
+                        </p>
+                        <button class="btn btn-cta" id="forgotModalCloseBtn" style="width:100%;">
+                            Compris, merci !
+                        </button>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- ═══ Scripts ═══ -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- ⚠️ env.js : ne jamais versionner sur GitHub (.gitignore) -->
+    <script src="env.js"></script>
+    <script src="core/theme/theme.js"></script>
+    <script type="module" src="features/auth/login.page.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

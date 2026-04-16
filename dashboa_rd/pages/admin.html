@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration — DASHBOA_RD</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/icon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    <div class="app-shell">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar__header">
+                <img src="../assets/images/logo.svg" alt="" class="sidebar__logo" />
+                <div class="sidebar__brand">DASHBOA_RD<small>RD FORMATION</small></div>
+            </div>
+            <nav class="sidebar__nav">
+                <span class="sidebar__section-label">Navigation</span>
+                <a href="dashboard.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i><span>Tableau de bord</span>
+                </a>
+                <span class="sidebar__section-label">Administration</span>
+                <a href="admin.html" class="nav-item nav-item--active">
+                    <i data-lucide="shield-check"></i><span>Gestion stagiaires</span>
+                </a>
+            </nav>
+            <div class="sidebar__footer">
+                <div class="sidebar__user">
+                    <div class="sidebar__avatar" id="userAvatar">?</div>
+                    <div class="sidebar__user-info">
+                        <div class="sidebar__user-name" id="userName">…</div>
+                        <div class="sidebar__user-role" id="userRole">—</div>
+                    </div>
+                    <button class="btn-icon btn-ghost" id="logoutBtn" aria-label="Déconnexion">
+                        <i data-lucide="log-out"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <header class="topbar">
+            <div class="topbar__left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <i data-lucide="menu"></i>
+                </button>
+                <nav class="topbar__breadcrumb">
+                    <a href="dashboard.html">Accueil</a>
+                    <span class="topbar__breadcrumb-sep"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+                    <span class="topbar__breadcrumb-current">Gestion des stagiaires</span>
+                </nav>
+            </div>
+            <div class="topbar__right">
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <i data-lucide="sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="content__header animate-fade-up">
+                <h1 style="font-family:var(--font-heading);font-size:var(--font-h2-size);font-weight:var(--font-weight-bold);color:var(--text-primary);margin-bottom:var(--space-2);">
+                    Gestion des stagiaires
+                </h1>
+                <p class="content__subtitle">Ajouter (individuel ou CSV), modifier et suivre vos stagiaires, formateurs et admins.</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="admin-stats-row">
+                <div class="stat-card animate-fade-up delay-1">
+                    <span class="stat-card__label">Total stagiaires</span>
+                    <span class="stat-card__value" id="statTotal">—</span>
+                </div>
+                <div class="stat-card animate-fade-up delay-2">
+                    <span class="stat-card__label">Formateurs</span>
+                    <span class="stat-card__value" id="statFormateurs">—</span>
+                </div>
+                <div class="stat-card animate-fade-up delay-3">
+                    <span class="stat-card__label">Comptes activés</span>
+                    <span class="stat-card__value" id="statActivated">—</span>
+                </div>
+                <div class="stat-card animate-fade-up delay-4">
+                    <span class="stat-card__label">Cohortes actives</span>
+                    <span class="stat-card__value" id="statCohortes">—</span>
+                </div>
+            </div>
+
+            <!-- Filtres + Actions -->
+            <div class="filter-bar">
+                <select class="form-input form-select" id="filterCohorte">
+                    <option value="">Toutes les cohortes</option>
+                    <option value="CA">CA — Comptable Assistant</option>
+                    <option value="AC">AC — Assistant Commercial</option>
+                    <option value="SA">SA — Secrétaire Assistant</option>
+                    <option value="SC">SC — Secrétaire Comptable</option>
+                    <option value="ARH">ARH — Assistant RH</option>
+                    <option value="GP">GP — Gestionnaire de Paie</option>
+                    <option value="GCF">GCF — Gestionnaire Comptable et Fiscal</option>
+                    <option value="AD">AD — Assistant de Direction</option>
+                </select>
+                <select class="form-input form-select" id="filterRole">
+                    <option value="">Tous les rôles</option>
+                    <option value="stagiaire">Stagiaire</option>
+                    <option value="formateur">Formateur</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <div style="margin-left:auto;display:flex;gap:var(--space-2);">
+                    <button class="btn btn-outline-cta" id="importCsvBtn">
+                        <i data-lucide="upload"></i> Import CSV
+                    </button>
+                    <button class="btn btn-cta" id="addUserBtn">
+                        <i data-lucide="user-plus"></i> Ajouter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tableau -->
+            <div class="admin-table-wrapper animate-fade-up delay-3">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Civilité</th><th>Nom</th><th>Prénom</th>
+                            <th>Email</th><th>Cohorte</th><th>Rôle</th>
+                            <th>Statut</th><th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <tr><td colspan="8" style="text-align:center;padding:var(--space-10);color:var(--text-muted);">Chargement…</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal : Ajouter/Modifier utilisateur -->
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal" id="userModal">
+        <div class="modal__header">
+            <h3 class="modal__title" id="modalTitle">Ajouter un utilisateur</h3>
+            <button class="modal__close" id="modalClose"><i data-lucide="x"></i></button>
+        </div>
+        <div class="modal__body">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label form-label--required">Civilité</label>
+                    <select class="form-input form-select" id="formCivilite">
+                        <option value="">—</option>
+                        <option value="M">M.</option>
+                        <option value="Mme">Mme</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label form-label--required">Rôle</label>
+                    <select class="form-input form-select" id="formRole">
+                        <option value="stagiaire">Stagiaire</option>
+                        <option value="formateur">Formateur</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label form-label--required">Nom</label>
+                    <input type="text" class="form-input" id="formNom" placeholder="DUPONT" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label form-label--required">Prénom</label>
+                    <input type="text" class="form-input" id="formPrenom" placeholder="Marie" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label form-label--required">Email</label>
+                <input type="email" class="form-input" id="formEmail" placeholder="marie.dupont@email.fr" />
+            </div>
+            <div class="form-group">
+                <label class="form-label form-label--required">Cohorte</label>
+                <select class="form-input form-select" id="formCohorte">
+                    <option value="">—</option>
+                    <option value="CA">CA</option><option value="AC">AC</option>
+                    <option value="SA">SA</option><option value="SC">SC</option>
+                    <option value="ARH">ARH</option><option value="GP">GP</option>
+                    <option value="GCF">GCF</option><option value="AD">AD</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal__footer">
+            <button class="btn btn-ghost" id="modalCancel">Annuler</button>
+            <button class="btn btn-cta" id="modalSubmit">Enregistrer</button>
+        </div>
+    </div>
+
+    <!-- Modal : Import CSV -->
+    <div class="modal" id="csvModal" style="width:min(640px,92vw);">
+        <div class="modal__header">
+            <h3 class="modal__title">Import CSV en masse</h3>
+            <button class="modal__close" id="csvModalClose"><i data-lucide="x"></i></button>
+        </div>
+        <div class="modal__body">
+            <p style="font-size:var(--font-body2-size);color:var(--text-secondary);">
+                Format attendu :
+                <code>civilite,nom,prenom,adresse_mail,cohorte,role</code><br>
+                <span style="font-size:var(--font-caption-size);color:var(--text-muted);">
+                    Les stagiaires activeront leur compte eux-mêmes depuis la page de connexion.
+                </span>
+            </p>
+            <div class="csv-dropzone" id="csvDropzone">
+                <div class="csv-dropzone__icon"><i data-lucide="file-spreadsheet"></i></div>
+                <p class="csv-dropzone__text">Glissez-déposez un fichier CSV ici</p>
+                <p class="csv-dropzone__hint">ou cliquez pour sélectionner</p>
+                <input type="file" accept=".csv,.txt" id="csvFileInput" style="display:none;" />
+            </div>
+            <div class="csv-preview" id="csvPreview" style="display:none;"></div>
+            <div id="csvError" class="form-error" style="display:none;margin-top:var(--space-3);"></div>
+            <div id="csvSuccess" style="display:none;padding:var(--space-3) var(--space-4);background:var(--semantic-success-bg);border:1px solid var(--semantic-success-border);border-radius:var(--radius-lg);font-size:var(--font-body2-size);color:var(--text-success);margin-top:var(--space-3);"></div>
+        </div>
+        <div class="modal__footer">
+            <button class="btn btn-ghost" id="csvModalCancel">Annuler</button>
+            <button class="btn btn-cta" id="csvSubmitBtn" disabled>
+                Importer <span id="csvCount">0</span> utilisateurs
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../env.js"></script>
+    <script src="../core/theme/theme.js"></script>
+    <script type="module" src="../features/admin/admin.page.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

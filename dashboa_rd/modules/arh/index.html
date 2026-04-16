@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation ARH — KPI RH | DASHBOA_RD</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/icons/icon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../../styles/main.css">
+</head>
+<body>
+    <div class="app-shell">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar__header">
+                <img src="../../assets/images/logo.svg" alt="" class="sidebar__logo" />
+                <div class="sidebar__brand">DASHBOA_RD<small>RD FORMATION</small></div>
+            </div>
+            <nav class="sidebar__nav">
+                <span class="sidebar__section-label">Navigation</span>
+                <a href="../../pages/dashboard.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i><span>Tableau de bord</span>
+                </a>
+                <span class="sidebar__section-label">Formation ARH</span>
+                <a href="index.html" class="nav-item nav-item--active">
+                    <i data-lucide="users"></i><span>Vue d'ensemble</span>
+                </a>
+                <a href="diagnostic.html" class="nav-item" id="navDiagnostic">
+                    <i data-lucide="clipboard-check"></i><span>Diagnostic initial</span>
+                </a>
+                <a href="module-1/index.html" class="nav-item">
+                    <i data-lucide="lightbulb"></i><span>M1 — Comprendre les KPI</span>
+                </a>
+                <a href="module-2/index.html" class="nav-item">
+                    <i data-lucide="search"></i><span>M2 — Identifier les KPI</span>
+                </a>
+                <a href="module-3/index.html" class="nav-item">
+                    <i data-lucide="calculator"></i><span>M3 — Calcul des KPI</span>
+                </a>
+                <a href="module-4/index.html" class="nav-item">
+                    <i data-lucide="bar-chart-2"></i><span>M4 — Analyse & Décision</span>
+                </a>
+                <a href="module-5/index.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i><span>M5 — Tableau de bord</span>
+                </a>
+                <a href="module-6/index.html" class="nav-item">
+                    <i data-lucide="table-2"></i><span>M6 — Outils Excel / BI</span>
+                </a>
+                <a href="module-7/index.html" class="nav-item">
+                    <i data-lucide="briefcase"></i><span>M7 — KPI par métier</span>
+                </a>
+                <a href="projet-final/index.html" class="nav-item">
+                    <i data-lucide="trophy"></i><span>Projet final certifiant</span>
+                </a>
+            </nav>
+            <div class="sidebar__footer">
+                <div class="sidebar__user">
+                    <div class="sidebar__avatar" id="userAvatar">?</div>
+                    <div class="sidebar__user-info">
+                        <div class="sidebar__user-name" id="userName">…</div>
+                        <div class="sidebar__user-role" id="userRole">—</div>
+                    </div>
+                    <button class="btn-icon btn-ghost" id="logoutBtn" aria-label="Déconnexion">
+                        <i data-lucide="log-out"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <header class="topbar">
+            <div class="topbar__left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <i data-lucide="menu"></i>
+                </button>
+                <nav class="topbar__breadcrumb">
+                    <a href="../../pages/dashboard.html">Accueil</a>
+                    <span class="topbar__breadcrumb-sep"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+                    <span class="topbar__breadcrumb-current">Formation ARH — KPI RH</span>
+                </nav>
+            </div>
+            <div class="topbar__right">
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <i data-lucide="sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="content">
+            <!-- En-tête formation -->
+            <div class="content__header animate-fade-up">
+                <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3);">
+                    <span class="badge badge--success">ARH</span>
+                    <span class="badge badge--intermediaire">35 heures</span>
+                    <span class="badge badge--neutral">7 modules</span>
+                </div>
+                <h1 style="font-family:var(--font-heading);font-size:var(--font-h2-size);font-weight:var(--font-weight-bold);color:var(--text-primary);margin-bottom:var(--space-3);">
+                    KPI RH & Pilotage par la donnée
+                </h1>
+                <p style="font-size:var(--font-body2-size);color:var(--text-secondary);max-width:600px;margin-bottom:0;">
+                    Formation complète alignée REAC (CP3) pour maîtriser les indicateurs RH et construire des tableaux de bord décisionnels. Fil rouge : entreprise fictive <strong>NeoCorp</strong>.
+                </p>
+            </div>
+
+            <div class="formation-hub">
+
+                <!-- ── Liste des modules ── -->
+                <div>
+                    <!-- Diagnostic -->
+                    <div style="margin-bottom:var(--space-5);">
+                        <div class="section-header">
+                            <h3 class="section-header__title">Étape préalable</h3>
+                        </div>
+                        <a href="diagnostic.html" class="module-row animate-fade-up" style="border-color:var(--color-primary-200);">
+                            <span class="module-row__num">0</span>
+                            <div class="module-row__icon" style="background:var(--action-primary-subtle);color:var(--color-primary-600);">
+                                <i data-lucide="clipboard-check"></i>
+                            </div>
+                            <div class="module-row__content">
+                                <div class="module-row__title">Diagnostic initial adaptatif</div>
+                                <div class="module-row__meta">
+                                    <span><i data-lucide="clock" style="width:12px;height:12px;"></i> 30 min</span>
+                                    <span>10 questions · Positionne votre niveau</span>
+                                </div>
+                            </div>
+                            <span class="badge badge--primary" id="status-diagnostic">À faire</span>
+                        </a>
+                    </div>
+
+                    <!-- Modules -->
+                    <div class="section-header">
+                        <h3 class="section-header__title">Les 7 modules</h3>
+                        <span class="section-header__label" id="globalProgress">0 / 7 complétés</span>
+                    </div>
+
+                    <div class="modules-list" id="modulesList">
+                        <!-- Généré par arh.page.js -->
+                        <div style="text-align:center;padding:var(--space-8);color:var(--text-muted);">
+                            Chargement…
+                        </div>
+                    </div>
+
+                    <!-- Projet final -->
+                    <div style="margin-top:var(--space-5);">
+                        <a href="projet-final/index.html" class="module-row" style="border-color:var(--color-accent-200);background:var(--action-cta-ultra-soft);">
+                            <span class="module-row__num">★</span>
+                            <div class="module-row__icon" style="background:var(--action-cta);color:#fff;">
+                                <i data-lucide="trophy"></i>
+                            </div>
+                            <div class="module-row__content">
+                                <div class="module-row__title">Projet final certifiant — NeoCorp</div>
+                                <div class="module-row__meta">
+                                    <span><i data-lucide="clock" style="width:12px;height:12px;"></i> 4h</span>
+                                    <span>4 livrables · Grille REAC</span>
+                                </div>
+                            </div>
+                            <span class="badge badge--cta" id="status-projet">Disponible après M7</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ── Panneau latéral : progression & badges ── -->
+                <div class="formation-overview animate-fade-up delay-2">
+                    <div class="formation-overview__title">Ma progression</div>
+
+                    <div class="formation-overview__stat">
+                        <span class="formation-overview__stat-label">Modules complétés</span>
+                        <span class="formation-overview__stat-value" id="overviewCompleted">0 / 7</span>
+                    </div>
+                    <div class="formation-overview__stat">
+                        <span class="formation-overview__stat-label">Score moyen</span>
+                        <span class="formation-overview__stat-value" id="overviewScore">—</span>
+                    </div>
+                    <div class="formation-overview__stat">
+                        <span class="formation-overview__stat-label">Temps estimé restant</span>
+                        <span class="formation-overview__stat-value" id="overviewTime">35h</span>
+                    </div>
+                    <div class="formation-overview__stat">
+                        <span class="formation-overview__stat-label">Niveau adaptatif</span>
+                        <span class="formation-overview__stat-value" id="overviewNiveau">—</span>
+                    </div>
+
+                    <div style="margin-top:var(--space-5);padding-top:var(--space-5);border-top:1px solid var(--border-light);">
+                        <div style="font-family:var(--font-mono);font-size:0.6875rem;color:var(--text-muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:var(--space-3);">
+                            Mes badges
+                        </div>
+                        <div class="badges-grid" id="badgesGrid">
+                            <!-- Généré par arh.page.js -->
+                        </div>
+                    </div>
+
+                    <a href="../../pages/dashboard.html" class="btn btn-ghost" style="width:100%;margin-top:var(--space-5);justify-content:center;">
+                        <i data-lucide="arrow-left"></i> Retour au tableau de bord
+                    </a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../env.js"></script>
+    <script src="../../core/theme/theme.js"></script>
+    <script type="module" src="arh.page.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

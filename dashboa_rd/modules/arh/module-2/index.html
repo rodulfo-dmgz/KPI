@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M2 — Identifier les KPI RH | DASHBOA_RD</title>
+    <link rel="icon" type="image/svg+xml" href="../../../assets/icons/icon.svg">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../../../styles/main.css">
+
+     <style>
+        /* ══ BLOCS MEDIA — copiez dans styles/pages/course.css pour réutiliser ══ */
+ 
+        /* Vidéo YouTube / iframe */
+        .video-block { margin: var(--space-6) 0; }
+        .video-block__label { display:flex; align-items:center; gap:var(--space-2); font-family:var(--font-mono); font-size:0.6875rem; color:var(--text-muted); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:var(--space-3); }
+        .video-block__label i { width:14px; height:14px; }
+        .video-block__label--youtube { color:#ef4444; }
+        .video-block__label--local   { color:var(--color-primary-500); }
+        .video-responsive { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:var(--radius-xl); background:#000; box-shadow:var(--shadow-lg); }
+        .video-responsive iframe, .video-responsive video { position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:var(--radius-xl); }
+        .video-block__caption { font-size:var(--font-caption-size); color:var(--text-muted); margin-top:var(--space-2); text-align:center; font-style:italic; }
+ 
+        /* Ressources à télécharger */
+        .resources-block { background:var(--surface-subtle); border:1px solid var(--border-light); border-radius:var(--radius-xl); padding:var(--space-5); margin:var(--space-6) 0; }
+        .resources-block__title { font-family:var(--font-mono); font-size:0.6875rem; font-weight:var(--font-weight-bold); color:var(--text-muted); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:var(--space-4); display:flex; align-items:center; gap:var(--space-2); }
+        .resources-block__title i { width:14px; height:14px; }
+        .resources-list { display:flex; flex-direction:column; gap:var(--space-2); }
+        .resource-item { display:flex; align-items:center; gap:var(--space-3); padding:var(--space-3) var(--space-4); background:var(--surface-base); border:1px solid var(--border-light); border-radius:var(--radius-lg); text-decoration:none; color:var(--text-secondary); transition:all var(--transition-fast); cursor:pointer; }
+        .resource-item:hover { border-color:var(--action-cta-border-soft); background:var(--action-cta-ultra-soft); color:var(--text-primary); transform:translateX(2px); }
+        .resource-item__icon { width:36px; height:36px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.125rem; }
+        .resource-item__icon--csv  { background:rgba(34,197,94,0.12); color:#16a34a; }
+        .resource-item__icon--xlsx { background:rgba(34,197,94,0.12); color:#16a34a; }
+        .resource-item__icon--pdf  { background:rgba(239,68,68,0.12); color:#dc2626; }
+        .resource-item__icon--link { background:rgba(96,165,250,0.12); color:#2563eb; }
+        .resource-item__icon--video{ background:rgba(239,68,68,0.12); color:#dc2626; }
+        .resource-item__info { flex:1; min-width:0; }
+        .resource-item__name { font-size:var(--font-body2-size); font-weight:var(--font-weight-medium); color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .resource-item__meta { font-family:var(--font-mono); font-size:0.625rem; color:var(--text-muted); }
+        .resource-item__arrow { width:16px; height:16px; color:var(--text-muted); flex-shrink:0; transition:transform var(--transition-fast); }
+        .resource-item:hover .resource-item__arrow { transform:translateX(3px); }
+ 
+        /* Lien externe stylé */
+        .external-link-block { display:flex; align-items:center; gap:var(--space-4); padding:var(--space-4) var(--space-5); background:var(--surface-base); border:1px solid var(--border-light); border-left:4px solid var(--color-primary-600); border-radius:var(--radius-xl); text-decoration:none; color:var(--text-secondary); transition:all var(--transition-fast); margin:var(--space-4) 0; }
+        .external-link-block:hover { box-shadow:var(--shadow-md); color:var(--text-primary); border-left-color:var(--action-cta); }
+        .external-link-block__icon { font-size:1.5rem; flex-shrink:0; }
+        .external-link-block__text { flex:1; min-width:0; }
+        .external-link-block__title { font-weight:var(--font-weight-semibold); color:var(--text-primary); font-size:var(--font-body2-size); margin-bottom:2px; }
+        .external-link-block__url { font-family:var(--font-mono); font-size:0.625rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .external-link-block i.arrow { width:16px; height:16px; color:var(--text-muted); flex-shrink:0; }
+ 
+        /* Notes / Conseils */
+        .note-block { display:flex; gap:var(--space-3); padding:var(--space-4) var(--space-5); border-radius:var(--radius-lg); margin:var(--space-4) 0; font-size:var(--font-body2-size); line-height:1.6; }
+        .note-block--info    { background:var(--semantic-info-bg);    border-left:3px solid var(--semantic-info);    color:var(--text-secondary); }
+        .note-block--warning { background:var(--semantic-warning-bg); border-left:3px solid var(--semantic-warning); color:var(--text-secondary); }
+        .note-block--success { background:var(--semantic-success-bg); border-left:3px solid var(--semantic-success); color:var(--text-secondary); }
+        .note-block__icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
+        .note-block strong { color:var(--text-primary); }
+    </style>
+
+</head>
+<body>
+    <div class="app-shell">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar__header">
+                <img src="../../../assets/images/logo.svg" alt="" class="sidebar__logo" />
+                <div class="sidebar__brand">DASHBOA_RD<small>RD FORMATION</small></div>
+            </div>
+            <nav class="sidebar__nav">
+                <span class="sidebar__section-label">Navigation</span>
+                <a href="../../../pages/dashboard.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i><span>Tableau de bord</span>
+                </a>
+                <a href="../index.html" class="nav-item">
+                    <i data-lucide="users"></i><span>Formation ARH</span>
+                </a>
+                <span class="sidebar__section-label">Modules</span>
+                <a href="../module-1/index.html" class="nav-item"><i data-lucide="lightbulb"></i><span>M1 — Comprendre les KPI</span></a>
+                <a href="../module-2/index.html" class="nav-item"><i data-lucide="search"></i><span>M2 — Identifier les KPI</span></a>
+                <a href="../module-3/index.html" class="nav-item"><i data-lucide="calculator"></i><span>M3 — Calcul des KPI</span></a>
+                <a href="../module-4/index.html" class="nav-item"><i data-lucide="bar-chart-2"></i><span>M4 — Analyse</span></a>
+                <a href="../module-5/index.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>M5 — Tableau de bord</span></a>
+                <a href="../module-6/index.html" class="nav-item"><i data-lucide="table-2"></i><span>M6 — Outils</span></a>
+                <a href="../module-7/index.html" class="nav-item"><i data-lucide="briefcase"></i><span>M7 — KPI par métier</span></a>
+            </nav>
+            <div class="sidebar__footer">
+                <div class="sidebar__user">
+                    <div class="sidebar__avatar" id="userAvatar">?</div>
+                    <div class="sidebar__user-info">
+                        <div class="sidebar__user-name" id="userName">…</div>
+                        <div class="sidebar__user-role" id="userRole">ARH</div>
+                    </div>
+                    <button class="btn-icon btn-ghost" id="logoutBtn" aria-label="Déconnexion">
+                        <i data-lucide="log-out"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <header class="topbar">
+            <div class="topbar__left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <i data-lucide="menu"></i>
+                </button>
+                <nav class="topbar__breadcrumb">
+                    <a href="../../../pages/dashboard.html">Accueil</a>
+                    <span class="topbar__breadcrumb-sep"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+                    <a href="../index.html">Formation ARH</a>
+                    <span class="topbar__breadcrumb-sep"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+                    <span class="topbar__breadcrumb-current">M2 — Identifier les KPI RH</span>
+                </nav>
+            </div>
+            <div class="topbar__right">
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <i data-lucide="sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="content">
+
+            <div class="module-header animate-fade-up">
+                <div class="module-header__top">
+                    <span class="module-header__badge">MODULE 2</span>
+                    <span class="badge badge--debutant">Débutant</span>
+                    <span class="module-header__duration">
+                        <i data-lucide="clock"></i> 3 heures
+                    </span>
+                </div>
+                <h1 class="module-header__title">Identifier les KPI RH</h1>
+                <p class="module-header__objective" id="moduleObjective">
+                    Chargement des objectifs…
+                </p>
+                <div class="module-header__progress">
+                    <span class="module-header__progress-label">Progression</span>
+                    <div class="progress-bar" style="flex:1;">
+                        <div class="progress-bar__fill" id="moduleProgressFill" style="width:0%;"></div>
+                    </div>
+                    <span style="font-family:var(--font-mono);font-size:0.6875rem;color:var(--text-muted);"
+                        id="moduleProgressText">0 / 4</span>
+                </div>
+            </div>
+
+            <!-- Contenu généré dynamiquement par module2.page.js -->
+            <div class="course-accordion" id="moduleContent">
+                <div style="text-align:center;padding:var(--space-10);color:var(--text-muted);">
+                    <i data-lucide="loader-2" style="width:32px;height:32px;animation:spin 1s linear infinite;"></i>
+                    <p style="margin-top:var(--space-3);">Chargement du contenu…</p>
+                </div>
+            </div>
+
+            <div class="sequence-nav">
+                <a href="../module-1/index.html" class="sequence-nav__btn">
+                    <i data-lucide="arrow-left"></i> Module précédent
+                </a>
+                <a href="../module-3/index.html" class="sequence-nav__btn sequence-nav__btn--primary" id="nextBtn">
+                    Module 3
+                    <i data-lucide="arrow-right"></i>
+                </a>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../../env.js"></script>
+    <script src="../../../core/theme/theme.js"></script>
+    <script type="module" src="module2.page.js"></script>
+    <script>
+        function toggleAccordion(id) {
+            const section = document.getElementById(id);
+            section.classList.toggle('open');
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        function markComplete(sectionId, statusKey) {
+            const btn = document.querySelector('#' + sectionId + ' .btn-section-complete');
+            const status = document.getElementById('status-' + statusKey);
+            if (btn) { btn.classList.add('completed'); btn.innerHTML = '<i data-lucide="check-circle"></i> Fait !'; }
+            if (status) { status.className = 'accordion-header__status accordion-header__status--done'; status.innerHTML = '<i data-lucide="check-circle"></i> Fait'; }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            const done = document.querySelectorAll('.accordion-header__status--done').length;
+            const fill = document.getElementById('moduleProgressFill');
+            const text = document.getElementById('moduleProgressText');
+            if (fill) fill.style.width = (done / 4 * 100) + '%';
+            if (text) text.textContent = done + ' / 4';
+            if (window.moduleController) window.moduleController.onSectionComplete(sectionId);
+        }
+    </script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

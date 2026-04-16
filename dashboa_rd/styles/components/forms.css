@@ -1,0 +1,124 @@
+/**
+ * DASHBOA_RD — Forms
+ */
+
+@layer components {
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1-5);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .form-label {
+    font-size: var(--font-body2-size);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .form-label--required::after {
+    content: ' *';
+    color: var(--semantic-danger);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: var(--space-2-5) var(--space-4);
+    background: var(--surface-raised);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-body);
+    font-size: var(--font-body2-size);
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-input::placeholder { color: var(--text-muted); }
+
+  .form-input:focus {
+    border-color: var(--border-focus);
+    box-shadow: var(--shadow-focus);
+    background: var(--surface-base);
+  }
+
+  .form-input:focus-visible { outline: none; }
+
+  .form-input.error {
+    border-color: var(--border-danger);
+    box-shadow: var(--shadow-focus-danger);
+  }
+
+  .form-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    padding-right: var(--space-10);
+    cursor: pointer;
+  }
+
+  .password-wrapper {
+    position: relative;
+  }
+
+  .password-wrapper .form-input {
+    padding-right: var(--space-12);
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: var(--space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    border-radius: var(--radius-md);
+    transition: color var(--transition-fast);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .password-toggle:hover { color: var(--text-primary); }
+  .password-toggle svg, .password-toggle i { width: 16px; height: 16px; }
+
+  .form-error {
+    font-size: var(--font-caption-size);
+    color: var(--text-danger);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    animation: fadeInUp 0.2s var(--ease-out);
+  }
+
+  .form-hint {
+    font-size: var(--font-caption-size);
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── Textarea ── */
+  textarea.form-input {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+}

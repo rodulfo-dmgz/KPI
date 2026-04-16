@@ -1,0 +1,18 @@
+/**
+ * DASHBOA_RD — Dashboard page
+ */
+@layer pages {
+  .welcome-banner { background:linear-gradient(135deg,var(--color-primary-800),var(--color-primary-600),var(--color-secondary-700)); border-radius:var(--radius-2xl); padding:var(--space-8) var(--space-10); color:#fff; position:relative; overflow:hidden; margin-bottom:var(--space-8); animation:fadeInUp 0.5s var(--ease-out) both; }
+  .welcome-banner::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 20% 80%,rgba(28,160,152,0.25) 0%,transparent 50%),radial-gradient(circle at 85% 15%,rgba(255,87,10,0.15) 0%,transparent 50%); pointer-events:none; }
+  .welcome-banner__content { position:relative; z-index:1; }
+  .welcome-banner__greeting { font-family:var(--font-mono); font-size:var(--font-caption-size); color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:var(--space-2); }
+  .welcome-banner__message { font-family:var(--font-heading); font-size:var(--font-h3-size); font-weight:var(--font-weight-bold); line-height:1.3; margin-bottom:var(--space-3); color:#fff; }
+  .welcome-banner__sub { font-size:var(--font-body2-size); color:rgba(255,255,255,0.7); max-width:500px; margin-bottom:0; }
+  .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:var(--space-4); margin-bottom:var(--space-8); }
+  .modules-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--space-5); }
+  .section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--space-5); }
+  .section-header__title { font-family:var(--font-heading); font-size:var(--font-h4-size); font-weight:var(--font-weight-semibold); color:var(--text-primary); }
+  .section-header__label { font-family:var(--font-mono); font-size:0.6875rem; color:var(--text-muted); letter-spacing:0.06em; text-transform:uppercase; }
+  @media (max-width:768px) { .welcome-banner { padding:var(--space-6); } .stats-grid { grid-template-columns:repeat(2,1fr); } .modules-grid { grid-template-columns:1fr; } }
+  @media (max-width:480px) { .stats-grid { grid-template-columns:1fr; } }
+}
