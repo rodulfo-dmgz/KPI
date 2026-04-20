@@ -23,45 +23,57 @@ function clearProfile() {
   sessionStorage.removeItem(SESSION_KEY);
 }
 
-// ── Retourne le chemin relatif vers la racine du projet (dossier contenant index.html) ──
-function getRootPrefix() {
-  const path = window.location.pathname;
-  const segments = path.split('/').filter(s => s);  // ["KPI","DASHBOA_RD","index.html"]
-
-  // Trouver l'index du segment contenant index.html (ou toute page de login)
-  let baseIndex = -1;
-  for (let i = 0; i < segments.length; i++) {
-    if (segments[i].includes('.html')) {
-      // On suppose que la racine du projet est le répertoire parent de ce fichier
-      baseIndex = i;
+// ── Détection de la racine du projet (dossier contenant index.html) ──
+function getProjectRoot() {
+  // Méthode fiable : récupérer le chemin du script en cours d'exécution
+  const scripts = document.getElementsByTagName('script');
+  let scriptPath = '';
+  for (let script of scripts) {
+    if (script.src && script.src.includes('auth.js')) {
+      scriptPath = script.src;
       break;
     }
   }
-  // Si aucun fichier .html trouvé, on prend le dernier segment comme dossier racine
-  if (baseIndex === -1) baseIndex = segments.length;
 
-  // Profondeur du fichier courant (par exemple admin/dashboard.html => depth = 2)
-  const currentDepth = segments.length - 1; // index du dernier segment
-  const depthDiff = currentDepth - baseIndex;
+  if (scriptPath) {
+    // Exemple : https://rodulfo-dmgz.github.io/KPI/DASHBOA_RD/js/auth.js
+    const url = new URL(scriptPath);
+    const pathParts = url.pathname.split('/');
+    // Supprimer le dernier segment ('js/auth.js') → deux niveaux
+    pathParts.pop(); // auth.js
+    pathParts.pop(); // js
+    const base = pathParts.join('/'); // /KPI/DASHBOA_RD
+    return base === '' ? '/' : base;
+  }
 
-  return depthDiff > 0 ? '../'.repeat(depthDiff) : '';
+  // Fallback : utiliser le chemin de la page courante (moins fiable)
+  const path = window.location.pathname;
+  const segments = path.split('/').filter(s => s);
+  // On suppose que la racine est le dossier contenant index.html
+  for (let i = 0; i < segments.length; i++) {
+    if (segments[i].includes('.html')) {
+      return '/' + segments.slice(0, i).join('/');
+    }
+  }
+  return '';
 }
 
 // ── Chemin de redirection selon rôle ─────────────────────────────
 export function getRedirectPath(profile) {
-  const root = getRootPrefix();
+  const root = getProjectRoot();
+  // Construire l'URL absolue à partir de la racine du projet
+  const base = root.endsWith('/') ? root : root + '/';
 
-  if (profile.role === 'admin')     return root + 'admin/dashboard.html';
-  if (profile.role === 'formateur') return root + 'formateur/dashboard.html';
+  if (profile.role === 'admin')     return base + 'admin/dashboard.html';
+  if (profile.role === 'formateur') return base + 'formateur/dashboard.html';
 
-  // Stagiaire → cohorte en minuscule
   const c = (profile.cohorte || 'arh').toLowerCase();
-  return root + `stagiaire/${c}/dashboard.html`;
+  return base + `stagiaire/${c}/dashboard.html`;
 }
 
-// ── Redirection vers login (utilise aussi getRootPrefix) ──────────
+// ── Redirection vers login ───────────────────────────────────────
 function redirectToLogin() {
-  window.location.href = getRootPrefix() + 'index.html';
+  window.location.href = getProjectRoot() + '/index.html';
 }
 
 // ── CONNEXION ─────────────────────────────────────────────────────
@@ -115,16 +127,10 @@ export async function handleLogin(email, password, uiRefs = {}) {
 export async function handleLogout() {
   try { await signOut(); } catch {}
   clearProfile();
-  window.location.href = getRootPrefix() + 'index.html';  // ✅ corrigé
+  window.location.href = getProjectRoot() + '/index.html';
 }
 
 // ── GARDE DE ROUTE ────────────────────────────────────────────────
-/**
- * Vérifie la session et le profil. Redirige si non autorisé.
- * @param {string[]} roles   - Rôles autorisés (ex: ['stagiaire'])
- * @param {string[]} cohortes - Cohortes autorisées (ex: ['ARH'])
- * @returns {Object|null} profil si autorisé
- */
 export async function requireAuth({ roles = [], cohortes = [] } = {}) {
   const session = await getSession();
   if (!session) { redirectToLogin(); return null; }
@@ -170,7 +176,6 @@ export function initLoginPage() {
   const emailErrorEl    = document.getElementById('email-error');
   const passwordErrorEl = document.getElementById('password-error');
 
-  // Toggle mot de passe
   passwordToggle?.addEventListener('click', () => {
     const isVisible = passwordInput.type === 'text';
     passwordInput.type = isVisible ? 'password' : 'text';
@@ -182,14 +187,12 @@ export function initLoginPage() {
     }
   });
 
-  // Soumission
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     await handleLogin(emailInput.value, passwordInput.value,
       { submitBtn, errorEl, emailErrorEl, passwordErrorEl });
   });
 
-  // Modale mot de passe oublié
   const forgotLink  = document.getElementById('forgotPasswordLink');
   const modal       = document.getElementById('forgotPasswordModal');
   const closeBtn    = document.getElementById('forgotModalCloseBtn');
