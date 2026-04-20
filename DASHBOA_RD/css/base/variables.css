@@ -1,0 +1,528 @@
+/**
+ * RD WORKFLOW — Design Tokens & Variables CSS
+ * ═══════════════════════════════════════════════════════════════
+ * Fichier unique consolidé de toutes les variables du système
+ * 
+ * PALETTE :
+ *   • Primary   : Bleu Profond  #1f4590  (RD)
+ *   • Secondary : Émeraude      #1ca098  (Validations)
+ *   • Accent    : Orange Vif    #ff570a  (CTA, Flow)
+ * 
+ * ARCHITECTURE :
+ *   @layer tokens — Définitions de base uniquement
+ *   Pas de classes, pas de sélecteurs complexes
+ * 
+ * VERSION : 2.0 · Février 2026
+ */
+
+/* ─────────────────────────────────────────────────
+   IMPORT POLICES
+   Chargement avant @layer pour éviter FOUT
+───────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+
+@layer tokens {
+
+  :root {
+    
+    /* ═════════════════════════════════════════════
+       TYPOGRAPHIE — Familles
+    ═════════════════════════════════════════════ */
+    
+    --font-heading: 'Space Grotesk', -apple-system, system-ui, sans-serif;
+    --font-subtitle: 'JetBrains Mono', 'Courier New', monospace;
+    --font-body: 'Plus Jakarta Sans', -apple-system, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    
+    
+    /* ═════════════════════════════════════════════
+       TYPOGRAPHIE — Tailles & Poids
+    ═════════════════════════════════════════════ */
+    
+    /* Headers */
+    --font-h1-size: 2.5rem;       /* 40px */
+    --font-h1-weight: 700;
+    --font-h1-line: 1.2;
+    --font-h1-spacing: -0.02em;
+    
+    --font-h2-size: 2rem;         /* 32px */
+    --font-h2-weight: 700;
+    --font-h2-line: 1.25;
+    --font-h2-spacing: -0.015em;
+    
+    --font-h3-size: 1.5rem;       /* 24px */
+    --font-h3-weight: 600;
+    --font-h3-line: 1.3;
+    --font-h3-spacing: -0.01em;
+    
+    --font-h4-size: 1.25rem;      /* 20px */
+    --font-h4-weight: 600;
+    --font-h4-line: 1.4;
+    --font-h4-spacing: 0;
+    
+    --font-h5-size: 1.125rem;     /* 18px */
+    --font-h5-weight: 600;
+    --font-h5-line: 1.4;
+    
+    --font-h6-size: 1rem;         /* 16px */
+    --font-h6-weight: 600;
+    --font-h6-line: 1.4;
+    
+    /* Subtitles */
+    --font-subtitle1-size: 1.125rem;  /* 18px */
+    --font-subtitle1-weight: 500;
+    --font-subtitle1-line: 1.5;
+    
+    --font-subtitle2-size: 1rem;      /* 16px */
+    --font-subtitle2-weight: 500;
+    --font-subtitle2-line: 1.5;
+    
+    /* Body */
+    --font-body1-size: 1rem;          /* 16px */
+    --font-body1-weight: 400;
+    --font-body1-line: 1.6;
+    
+    --font-body2-size: 0.875rem;      /* 14px */
+    --font-body2-weight: 400;
+    --font-body2-line: 1.5;
+    
+    /* Caption & Label */
+    --font-caption-size: 0.75rem;     /* 12px */
+    --font-caption-weight: 400;
+    --font-caption-line: 1.4;
+    
+    --font-label-size: 0.875rem;      /* 14px */
+    --font-label-weight: 500;
+    --font-label-line: 1.4;
+    
+    /* Data (KPI, grands chiffres) */
+    --font-data-xl-size: 2.5rem;      /* 40px */
+    --font-data-lg-size: 2.25rem;     /* 36px */
+    --font-data-md-size: 1.5rem;      /* 24px */
+    --font-data-weight: 600;
+    --font-data-line: 1.2;
+    
+    /* Graisses */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    
+    /* ═════════════════════════════════════════════
+       COULEURS — Palette Brute
+    ═════════════════════════════════════════════ */
+    
+    /* Primary — Bleu Profond (#1f4590) */
+    --color-primary-950: #060f21;
+    --color-primary-900: #0d1f42;
+    --color-primary-800: #152d5c;
+    --color-primary-700: #1a3670;
+    --color-primary-600: #1f4590;     /* BASE */
+    --color-primary-500: #3d6bb8;
+    --color-primary-400: #5c8fdf;
+    --color-primary-300: #8db3f0;
+    --color-primary-200: #bdd5f9;
+    --color-primary-100: #e6effd;
+    --color-primary-50: #f5f8fe;
+    
+    /* Secondary — Émeraude (#1ca098) */
+    --color-secondary-950: #041f1d;
+    --color-secondary-900: #0a4640;
+    --color-secondary-800: #105e56;
+    --color-secondary-700: #16766c;
+    --color-secondary-600: #1ca098;   /* BASE */
+    --color-secondary-500: #2bc4b8;
+    --color-secondary-400: #5fd9d0;
+    --color-secondary-300: #8ee6df;
+    --color-secondary-200: #bef0eb;
+    --color-secondary-100: #e6f9f7;
+    --color-secondary-50: #f5fcfc;
+    
+    /* Accent — Orange Vif (#ff570a) */
+    --color-accent-950: #3d1000;
+    --color-accent-900: #7a2400;
+    --color-accent-800: #a33100;
+    --color-accent-700: #cc3e00;
+    --color-accent-600: #ff570a;      /* BASE */
+    --color-accent-500: #ff6b24;
+    --color-accent-400: #ff8349;
+    --color-accent-300: #ffaa82;
+    --color-accent-200: #ffd0b8;
+    --color-accent-100: #ffece2;
+    --color-accent-50: #fff6f1;
+    
+    /* Neutral — Grays */
+    --color-neutral-950: #020617;
+    --color-neutral-900: #0f172a;
+    --color-neutral-800: #1e293b;
+    --color-neutral-700: #334155;
+    --color-neutral-600: #475569;
+    --color-neutral-500: #64748b;
+    --color-neutral-400: #94a3b8;
+    --color-neutral-300: #cbd5e1;
+    --color-neutral-200: #e2e8f0;
+    --color-neutral-100: #f1f5f9;
+    --color-neutral-50: #f8fafc;
+    
+    /* Success */
+    --color-success-900: #0a4640;
+    --color-success-800: #105e56;
+    --color-success-700: #15803d;
+    --color-success-600: #16a34a;
+    --color-success-500: #22c55e;
+    --color-success-400: #4ade80;
+    --color-success-300: #86efac;
+    --color-success-200: #bbf7d0;
+    --color-success-100: #dcfce7;
+    --color-success-50: #f0fdf4;
+    
+    /* Warning */
+    --color-warning-900: #78350f;
+    --color-warning-800: #92400e;
+    --color-warning-700: #b45309;
+    --color-warning-600: #d97706;
+    --color-warning-500: #f59e0b;
+    --color-warning-400: #fbbf24;
+    --color-warning-300: #fde68a;
+    --color-warning-200: #fef3c7;
+    --color-warning-100: #fffbeb;
+    --color-warning-50: #fefce8;
+    
+    /* Danger */
+    --color-danger-900: #7f1d1d;
+    --color-danger-800: #991b1b;
+    --color-danger-700: #b91c1c;
+    --color-danger-600: #dc2626;
+    --color-danger-500: #ef4444;
+    --color-danger-400: #f87171;
+    --color-danger-300: #fca5a5;
+    --color-danger-200: #fecaca;
+    --color-danger-100: #fee2e2;
+    --color-danger-50: #fef2f2;
+    
+    /* Info */
+    --color-info-900: #1e3a8a;
+    --color-info-800: #1e40af;
+    --color-info-700: #1d4ed8;
+    --color-info-600: #2563eb;
+    --color-info-500: #3b82f6;
+    --color-info-400: #60a5fa;
+    --color-info-300: #93c5fd;
+    --color-info-200: #bfdbfe;
+    --color-info-100: #dbeafe;
+    --color-info-50: #eff6ff;
+    
+    
+    /* ═════════════════════════════════════════════
+       TOKENS SÉMANTIQUES — Actions
+    ═════════════════════════════════════════════ */
+    
+    /* Actions Primary */
+    --action-primary: var(--color-primary-600);
+    --action-primary-hover: var(--color-primary-700);
+    --action-primary-active: var(--color-primary-800);
+    --action-primary-subtle: var(--color-primary-50);
+    
+    /* Actions Secondary */
+    --action-secondary: var(--color-secondary-600);
+    --action-secondary-hover: var(--color-secondary-700);
+    --action-secondary-active: var(--color-secondary-800);
+    --action-secondary-subtle: var(--color-secondary-50);
+    
+    /* Actions CTA (Orange) */
+    --action-cta: var(--color-accent-600);
+    --action-cta-hover: var(--color-accent-700);
+    --action-cta-active: var(--color-accent-800);
+    --action-cta-soft: var(--color-accent-100);
+    --action-cta-ultra-soft: rgba(255, 87, 10, 0.06);
+    --action-cta-border-soft: rgba(255, 87, 10, 0.15);
+    
+    /* États Sémantiques */
+    --semantic-success: var(--color-success-600);
+    --semantic-warning: var(--color-warning-600);
+    --semantic-danger: var(--color-danger-600);
+    --semantic-info: var(--color-info-600);
+    
+    --semantic-success-bg: var(--color-success-50);
+    --semantic-warning-bg: var(--color-warning-50);
+    --semantic-danger-bg: var(--color-danger-50);
+    --semantic-info-bg: var(--color-info-50);
+    
+    --semantic-success-border: var(--color-success-200);
+    --semantic-warning-border: var(--color-warning-200);
+    --semantic-danger-border: var(--color-danger-200);
+    --semantic-info-border: var(--color-info-200);
+    
+    
+    /* ═════════════════════════════════════════════
+       SURFACES & BACKGROUNDS — Mode Clair
+    ═════════════════════════════════════════════ */
+    
+    --surface-app: #f8fafc;
+    --surface-base: #ffffff;
+    --surface-raised: #f9fafb;
+    --surface-overlay: #ffffff;
+    --surface-subtle: #f3f4f6;
+    --surface-disabled: #e5e7eb;
+    --surface-inverse: var(--color-primary-900);
+    --surface: var(--surface-base);
+    
+    
+    /* ═════════════════════════════════════════════
+       TEXTE — Mode Clair
+    ═════════════════════════════════════════════ */
+    
+    --text-primary: #12355b;
+    --text-secondary: rgba(18, 53, 91, 0.72);
+    --text-tertiary: #6b7280;
+    --text-muted: rgba(18, 53, 91, 0.45);
+    --text-disabled: rgba(18, 53, 91, 0.38);
+    --text-inverse: #ffffff;
+    --text-on-accent: #ffffff;
+    
+    /* Liens */
+    --text-link: var(--color-primary-600);
+    --text-link-hover: var(--color-primary-700);
+    --text-link-visited: var(--color-primary-800);
+    
+    /* États colorés */
+    --text-danger: var(--color-danger-700);
+    --text-success: var(--color-success-700);
+    --text-warning: var(--color-warning-700);
+    
+    
+    /* ═════════════════════════════════════════════
+       BORDURES — Mode Clair
+    ═════════════════════════════════════════════ */
+    
+    --border-light: rgba(18, 53, 91, 0.08);
+    --border-default: #d1d5db;
+    --border-strong: #9ca3af;
+    --border-focus: var(--color-primary-600);
+    --border-focus-cta: var(--color-accent-600);
+    --border-danger: var(--color-danger-500);
+    --border-success: var(--color-secondary-500);
+    
+    /* Largeurs */
+    --border-width-0: 0;
+    --border-width-1: 1px;
+    --border-width-2: 2px;
+    --border-width-4: 4px;
+    --border-width-8: 8px;
+    
+    
+    /* ═════════════════════════════════════════════
+       OMBRES — Mode Clair
+    ═════════════════════════════════════════════ */
+    
+    --shadow-xs: 0 1px 2px rgba(18, 53, 91, 0.04);
+    --shadow-sm: 0 1px 3px rgba(18, 53, 91, 0.06), 0 1px 2px rgba(18, 53, 91, 0.04);
+    --shadow-md: 0 4px 12px rgba(18, 53, 91, 0.08), 0 2px 4px rgba(18, 53, 91, 0.04);
+    --shadow-lg: 0 8px 24px rgba(18, 53, 91, 0.10), 0 4px 8px rgba(18, 53, 91, 0.06);
+    --shadow-xl: 0 16px 48px rgba(18, 53, 91, 0.12), 0 8px 16px rgba(18, 53, 91, 0.08);
+    --shadow-2xl: 0 32px 96px rgba(18, 53, 91, 0.16);
+    --shadow-inner: inset 0 2px 4px rgba(18, 53, 91, 0.06);
+    
+    /* Ombres Focus */
+    --shadow-focus: 0 0 0 3px rgba(31, 69, 144, 0.18);
+    --shadow-focus-cta: 0 0 0 3px rgba(255, 87, 10, 0.22);
+    --shadow-focus-danger: 0 0 0 3px rgba(220, 38, 38, 0.18);
+    
+    /* Ombres Accent (Orange) */
+    --shadow-accent: 0 2px 8px rgba(255, 87, 10, 0.22), 0 4px 18px rgba(255, 87, 10, 0.18);
+    --shadow-accent-hover: 0 4px 16px rgba(255, 87, 10, 0.32), 0 8px 28px rgba(255, 87, 10, 0.22);
+    
+    
+    /* ═════════════════════════════════════════════
+       ESPACEMENTS
+    ═════════════════════════════════════════════ */
+    
+    --space-0: 0;
+    --space-px: 1px;
+    --space-0-5: 0.125rem;   /* 2px */
+    --space-1: 0.25rem;      /* 4px */
+    --space-1-5: 0.375rem;   /* 6px */
+    --space-2: 0.5rem;       /* 8px */
+    --space-2-5: 0.625rem;   /* 10px */
+    --space-3: 0.75rem;      /* 12px */
+    --space-3-5: 0.875rem;   /* 14px */
+    --space-4: 1rem;         /* 16px */
+    --space-5: 1.25rem;      /* 20px */
+    --space-6: 1.5rem;       /* 24px */
+    --space-7: 1.75rem;      /* 28px */
+    --space-8: 2rem;         /* 32px */
+    --space-9: 2.25rem;      /* 36px */
+    --space-10: 2.5rem;      /* 40px */
+    --space-11: 2.75rem;     /* 44px */
+    --space-12: 3rem;        /* 48px */
+    --space-13: 3.25rem;     /* 52px */
+    --space-14: 3.5rem;      /* 56px */
+    --space-16: 4rem;        /* 64px */
+    --space-20: 5rem;        /* 80px */
+    --space-24: 6rem;        /* 96px */
+    --space-32: 8rem;        /* 128px */
+    --space-40: 10rem;       /* 160px */
+    
+    /* Aliases sémantiques */
+    --space-2xl: var(--space-12);
+    --space-3xl: var(--space-16);
+    
+    
+    /* ═════════════════════════════════════════════
+       RAYONS (Border Radius)
+    ═════════════════════════════════════════════ */
+    
+    --radius-none: 0;
+    --radius-xs: 0.125rem;   /* 2px */
+    --radius-sm: 0.25rem;    /* 4px */
+    --radius-md: 0.5rem;     /* 8px */
+    --radius-lg: 0.75rem;    /* 12px */
+    --radius-xl: 1rem;       /* 16px */
+    --radius-2xl: 1.5rem;    /* 24px */
+    --radius-3xl: 2rem;      /* 32px */
+    --radius-full: 9999px;
+    
+    
+    /* ═════════════════════════════════════════════
+       TRANSITIONS & ANIMATIONS
+    ═════════════════════════════════════════════ */
+    
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    /* Easing curves */
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    
+    /* ═════════════════════════════════════════════
+       Z-INDEX
+    ═════════════════════════════════════════════ */
+    
+    --z-below: -1;
+    --z-base: 0;
+    --z-raised: 10;
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    --z-notification: 1080;
+    --z-top: 9999;
+    
+    
+    /* ═════════════════════════════════════════════
+       LAYOUT — Dimensions Structurelles
+    ═════════════════════════════════════════════ */
+    
+    --sidebar-width: 260px;
+    --sidebar-width-collapsed: 72px;
+    --topbar-height: 72px;
+    --content-max-width: 1400px;
+    
+    
+    /* ═════════════════════════════════════════════
+       BREAKPOINTS (référence pour JS)
+    ═════════════════════════════════════════════ */
+    
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+    
+    
+    /* ═════════════════════════════════════════════
+       ÉTATS INTERACTIFS
+    ═════════════════════════════════════════════ */
+    
+    --state-hover-overlay: rgba(31, 69, 144, 0.04);
+    --state-active-overlay: rgba(31, 69, 144, 0.08);
+    --state-disabled-opacity: 0.5;
+  }
+  
+  
+  /* ═══════════════════════════════════════════════════
+     THÈME SOMBRE (classe .dark)
+  ═══════════════════════════════════════════════════ */
+  
+  html.dark {
+    
+    /* Surfaces */
+    --surface-app: #0f172a;
+    --surface-base: var(--color-primary-950);
+    --surface-raised: #2d3a4f;
+    --surface-overlay: #334155;
+    --surface-subtle: #334155;
+    --surface-disabled: #475569;
+    --surface-inverse: #f8fafc;
+    
+    /* Texte */
+    --text-primary: #e2e8f0;
+    --text-secondary: rgba(226, 232, 240, 0.75);
+    --text-tertiary: rgba(226, 232, 240, 0.55);
+    --text-muted: rgba(226, 232, 240, 0.40);
+    --text-disabled: rgba(226, 232, 240, 0.30);
+    --text-inverse: #ffffff;
+    --text-link: var(--color-accent-400);
+    --text-link-hover: var(--color-accent-300);
+    
+    /* Bordures */
+    --border-light: rgba(255, 255, 255, 0.06);
+    --border-default: rgba(255, 255, 255, 0.12);
+    --border-strong: rgba(255, 255, 255, 0.20);
+    
+    /* Ombres */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.7);
+    --shadow-2xl: 0 32px 96px rgba(0, 0, 0, 0.8);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    
+    /* Ajustements pour badges et alertes */
+    --action-primary-subtle: #1e3a5f;
+    --action-secondary-subtle: #134e4a;
+    --action-cta-ultra-soft: rgba(255, 87, 10, 0.15);
+    
+    --semantic-success-bg: rgba(34, 197, 94, 0.1);
+    --semantic-warning-bg: rgba(245, 158, 11, 0.1);
+    --semantic-danger-bg: rgba(239, 68, 68, 0.1);
+    --semantic-info-bg: rgba(59, 130, 246, 0.1);
+  }
+  
+  
+  /* ═══════════════════════════════════════════════════
+     RESPONSIVE TYPOGRAPHY — Ajustements Mobile/Tablet
+  ═══════════════════════════════════════════════════ */
+  
+  /* Mobile (< 640px) */
+  @media (max-width: 640px) {
+    :root {
+      --font-h1-size: 1.875rem;      /* 30px */
+      --font-h2-size: 1.5rem;        /* 24px */
+      --font-h3-size: 1.25rem;       /* 20px */
+      --font-h4-size: 1.125rem;      /* 18px */
+      --font-body1-size: 0.875rem;   /* 14px */
+    }
+  }
+  
+  /* Tablet (641px - 1024px) */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    :root {
+      --font-h1-size: 2.25rem;       /* 36px */
+      --font-h2-size: 1.875rem;      /* 30px */
+      --font-h3-size: 1.375rem;      /* 22px */
+      --font-body1-size: 0.9375rem;  /* 15px */
+    }
+  }
+  
+}

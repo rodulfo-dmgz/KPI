@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard ARH — DASHBOA_RD</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/icons/icon.svg">
+  <script>
+    (function(){
+      const t = localStorage.getItem('rd-theme');
+      const s = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      if ((t || s) === 'dark') document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body>
+
+<div class="app-shell" id="appShell">
+
+  <!-- ══════════════════════════════════════════════════════════
+       SIDEBAR
+  ══════════════════════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Navigation principale">
+
+    <!-- Brand -->
+    <a href="../../index.html" class="sidebar__brand" aria-label="Retour à l'accueil">
+      <img src="../../assets/icons/icon.svg" alt="" class="sidebar__brand-logo" aria-hidden="true">
+      <div class="sidebar__brand-text">
+        <span class="sidebar__brand-name">DASHBOA_RD</span>
+        <span class="sidebar__brand-sub" data-profile="specialisation">ARH</span>
+      </div>
+    </a>
+
+    <!-- User -->
+    <div class="sidebar__user" aria-label="Profil utilisateur">
+      <div class="sidebar__user-avatar" aria-hidden="true" data-profile="initiales">??</div>
+      <div class="sidebar__user-info">
+        <span class="sidebar__user-name" data-profile="nom">Chargement…</span>
+        <span class="sidebar__user-role" data-profile="specialisation">ARH</span>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="sidebar__nav" aria-label="Menu de formation">
+
+      <div class="sidebar__section">
+        <span class="sidebar__section-label">Mon parcours</span>
+
+        <a href="dashboard.html" class="sidebar__link" data-page="dashboard.html">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i>
+          <span>Tableau de bord</span>
+        </a>
+
+        <a href="test-positionnement.html" class="sidebar__link" data-page="test-positionnement.html">
+          <i data-lucide="clipboard-check" aria-hidden="true"></i><span>Test de positionnement</span>
+        </a>
+        <a href="consignes.html" class="sidebar__link" data-page="consignes.html">
+          <i data-lucide="clipboard-list" aria-hidden="true"></i>
+          <span>Consignes &amp; REAC</span>
+        </a>
+
+        <a href="introduction.html" class="sidebar__link" data-page="introduction.html">
+          <i data-lucide="book-open" aria-hidden="true"></i>
+          <span>Introduction KPI RH</span>
+        </a>
+      </div>
+
+      <div class="sidebar__section">
+        <span class="sidebar__section-label">Modules</span>
+
+        <a href="module1.html" class="sidebar__link" data-page="module1.html">
+          <i data-lucide="circle-1" aria-hidden="true"></i>
+          <span>Module 1 — Comprendre</span>
+        </a>
+
+        <a href="module2.html" class="sidebar__link" data-page="module2.html">
+          <i data-lucide="circle-2" aria-hidden="true"></i>
+          <span>Module 2 — Identifier</span>
+        </a>
+
+        <a href="module3.html" class="sidebar__link" data-page="module3.html">
+          <i data-lucide="circle-3" aria-hidden="true"></i>
+          <span>Module 3 — Calculer</span>
+        </a>
+
+        <a href="module4.html" class="sidebar__link" data-page="module4.html">
+          <i data-lucide="circle-4" aria-hidden="true"></i>
+          <span>Module 4 — Analyser</span>
+        </a>
+
+        <a href="module5.html" class="sidebar__link" data-page="module5.html">
+          <i data-lucide="circle-5" aria-hidden="true"></i>
+          <span>Module 5 — Dashboard</span>
+        </a>
+
+        <a href="module6.html" class="sidebar__link" data-page="module6.html">
+          <i data-lucide="circle-6" aria-hidden="true"></i>
+          <span>Module 6 — Outils</span>
+        </a>
+
+        <a href="module7.html" class="sidebar__link" data-page="module7.html">
+          <i data-lucide="circle-7" aria-hidden="true"></i>
+          <span>Module 7 — Spécialisation</span>
+        </a>
+      </div>
+
+      <div class="sidebar__section">
+        <span class="sidebar__section-label">Évaluation</span>
+
+        <a href="progression.html" class="sidebar__link" data-page="progression.html">
+          <i data-lucide="trending-up" aria-hidden="true"></i>
+          <span>Ma progression</span>
+        </a>
+
+        <a href="catalogue.html" class="sidebar__link" data-page="catalogue.html">
+          <i data-lucide="layers" aria-hidden="true"></i>
+          <span>Catalogue complet</span>
+        </a>
+
+        <a href="certificats.html" class="sidebar__link" data-page="certificats.html">
+          <i data-lucide="award" aria-hidden="true"></i>
+          <span>Mes certificats</span>
+        </a>
+      </div>
+
+    </nav>
+
+    <!-- Footer déconnexion -->
+    <div class="sidebar__footer">
+      <button class="sidebar__logout" type="button" data-action="logout" aria-label="Se déconnecter">
+        <i data-lucide="log-out" aria-hidden="true"></i>
+        <span>Déconnexion</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ══════════════════════════════════════════════════════════
+       CONTENU PRINCIPAL
+  ══════════════════════════════════════════════════════════ -->
+  <div class="main-content">
+
+    <!-- Topbar -->
+    <header class="topbar" role="banner">
+      <div class="topbar__left">
+        <button class="btn btn-ghost btn-icon topbar__menu-toggle" id="sidebarToggle"
+          aria-label="Ouvrir/fermer le menu" aria-expanded="false" aria-controls="sidebar">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+        <nav class="topbar__breadcrumb" aria-label="Fil d'Ariane">
+          <span>Formation KPI</span>
+          <i data-lucide="chevron-right" aria-hidden="true"></i>
+          <span>ARH</span>
+          <i data-lucide="chevron-right" aria-hidden="true"></i>
+          <span aria-current="page">Tableau de bord</span>
+        </nav>
+      </div>
+      <div class="topbar__right">
+        <button type="button" class="theme-toggle" id="themeToggle"
+          aria-label="Basculer le thème" aria-pressed="false">
+          <i data-lucide="sun" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <main class="page-content" id="mainContent" role="main">
+
+      <!-- ── BANNIÈRE BIENVENUE ── -->
+      <div class="welcome-banner animate-fade-up" id="welcomeBanner">
+        <div class="welcome-banner__tag">
+          <i data-lucide="users" aria-hidden="true"></i>
+          <span data-profile="specialisation">Assistant Ressources Humaines</span>
+        </div>
+        <h1 class="welcome-banner__title" id="welcomeTitle">
+          Bonjour <span data-profile="prenom">…</span> 👋
+        </h1>
+        <p class="welcome-banner__message" id="welcomeMessage">
+          Bienvenue dans votre espace de formation KPI RH.
+        </p>
+        <div class="welcome-banner__actions">
+          <a href="module1.html" class="btn btn-cta" id="cta-continuer">
+            <i data-lucide="play-circle" aria-hidden="true"></i>
+            Commencer la formation
+          </a>
+          <a href="progression.html" class="btn">
+            <i data-lucide="bar-chart-2" aria-hidden="true"></i>
+            Ma progression
+          </a>
+        </div>
+      </div>
+
+      <!-- ── PARCOURS D'APPRENTISSAGE ── -->
+      <section class="section" aria-labelledby="parcoursTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="parcoursTitle">
+            <i data-lucide="map" aria-hidden="true"></i>
+            Parcours d'apprentissage — 35h
+          </h2>
+          <span class="badge badge--cohorte" id="parcoursProgress">0 / 7 modules</span>
+        </div>
+
+        <div class="parcours" role="list" aria-label="Étapes du parcours">
+          <div class="parcours__step" role="listitem" id="step-0">
+            <div class="parcours__icon"><i data-lucide="clipboard-list" aria-hidden="true"></i></div>
+            <span class="parcours__label">Consignes<br>&amp; REAC</span>
+          </div>
+          <div class="parcours__step" role="listitem" id="step-1">
+            <div class="parcours__icon"><i data-lucide="lightbulb" aria-hidden="true"></i></div>
+            <span class="parcours__label">M1<br>Comprendre</span>
+          </div>
+          <div class="parcours__step" role="listitem" id="step-2">
+            <div class="parcours__icon"><i data-lucide="search" aria-hidden="true"></i></div>
+            <span class="parcours__label">M2<br>Identifier</span>
+          </div>
+          <div class="parcours__step" role="listitem" id="step-3">
+            <div class="parcours__icon"><i data-lucide="calculator" aria-hidden="true"></i></div>
+            <span class="parcours__label">M3<br>Calculer</span>
+          </div>
+          <div class="parcours__step" role="listitem" id="step-4">
+            <div class="parcours__icon"><i data-lucide="brain" aria-hidden="true"></i></div>
+            <span class="parcours__label">M4<br>Analyser</span>
+          </div>
+          <div class="parcours__step" role="listitem" id="step-5">
+            <div class="parcours__icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></div>
+            <span class="parcours__label">M5<br>Dashboard</span>
+          </div>
+          <div class="parcours__step" role="listitem" id="step-6">
+            <div class="parcours__icon"><i data-lucide="wrench" aria-hidden="true"></i></div>
+            <span class="parcours__label">M6<br>Outils</span>
+          </div>
+          <div class="parcours__step" role="listitem" id="step-7">
+            <div class="parcours__icon"><i data-lucide="user-check" aria-hidden="true"></i></div>
+            <span class="parcours__label">M7<br>Spécialisation</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── KPI MA PROGRESSION ── -->
+      <section class="section" aria-labelledby="kpiTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="kpiTitle">
+            <i data-lucide="bar-chart-2" aria-hidden="true"></i>
+            Mon tableau de bord de progression
+          </h2>
+        </div>
+
+        <div class="kpi-grid kpi-grid--4">
+
+          <article class="kpi-card animate-fade-up delay-1" aria-label="Score global">
+            <div class="kpi-card__icon"><i data-lucide="trophy" aria-hidden="true"></i></div>
+            <span class="kpi-card__label">Score global</span>
+            <span class="kpi-card__value" id="scoreGlobal">—</span>
+            <span class="kpi-card__delta kpi-card__delta--neutral" id="scoreEvolution">En cours</span>
+            <span class="kpi-card__desc">Sur l'ensemble des modules</span>
+          </article>
+
+          <article class="kpi-card animate-fade-up delay-2" aria-label="Modules complétés">
+            <div class="kpi-card__icon"><i data-lucide="check-circle" aria-hidden="true"></i></div>
+            <span class="kpi-card__label">Modules complétés</span>
+            <span class="kpi-card__value" id="modulesCompletes">0 / 7</span>
+            <div class="progress progress--sm" style="margin-top:var(--space-2);" role="progressbar"
+              aria-valuenow="0" aria-valuemin="0" aria-valuemax="7" id="progressBar">
+              <div class="progress__fill" id="progressFill" style="width:0%;"></div>
+            </div>
+            <span class="kpi-card__desc" style="margin-top:var(--space-1-5);">Progression du parcours</span>
+          </article>
+
+          <article class="kpi-card animate-fade-up delay-3" aria-label="Quiz réussis">
+            <div class="kpi-card__icon"><i data-lucide="help-circle" aria-hidden="true"></i></div>
+            <span class="kpi-card__label">Quiz réussis</span>
+            <span class="kpi-card__value" id="quizReussis">—</span>
+            <span class="kpi-card__delta kpi-card__delta--neutral">Score moyen</span>
+            <span class="kpi-card__desc">Taux de réussite des évaluations</span>
+          </article>
+
+          <article class="kpi-card animate-fade-up delay-4" aria-label="Badges obtenus">
+            <div class="kpi-card__icon"><i data-lucide="award" aria-hidden="true"></i></div>
+            <span class="kpi-card__label">Badges obtenus</span>
+            <span class="kpi-card__value" id="badgesObtenus">0 / 5</span>
+            <span class="kpi-card__delta kpi-card__delta--neutral" id="prochainBadge">Prochain : M1</span>
+            <span class="kpi-card__desc">Compétences REAC validées</span>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ── MODULES ── -->
+      <section class="section" aria-labelledby="modulesTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="modulesTitle">
+            <i data-lucide="layers" aria-hidden="true"></i>
+            Mes modules de formation
+          </h2>
+          <a href="catalogue.html" class="btn btn-ghost btn-sm">Voir tout</a>
+        </div>
+
+        <div class="kpi-grid kpi-grid--3" id="modulesGrid">
+
+          <!-- Module 1 -->
+          <article class="module-card animate-fade-up delay-1">
+            <div class="module-card__header">
+              <i data-lucide="lightbulb" aria-hidden="true"></i>
+              <div>
+                <span class="module-card__num">Module 1 · 3h30</span>
+                <h3 class="module-card__title">Comprendre les KPI RH</h3>
+              </div>
+            </div>
+            <div class="module-card__body">
+              <p class="module-card__desc">
+                Définition des KPI, différence donnée/indicateur/KPI, typologies RH.
+                <em>NeoCorp : "On a des données partout mais aucune vision claire."</em>
+              </p>
+              <div class="module-card__progress-wrap">
+                <div class="module-card__progress-bar" role="progressbar"
+                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                  <div class="module-card__progress-fill" style="width:0%;" id="prog-m1"></div>
+                </div>
+                <span class="module-card__status" id="status-m1">Non démarré</span>
+              </div>
+            </div>
+            <div class="module-card__footer">
+              <span class="badge badge--neutral" id="badge-m1">À faire</span>
+              <a href="module1.html" class="btn btn-primary btn-sm">
+                <i data-lucide="play" aria-hidden="true"></i> Démarrer
+              </a>
+            </div>
+          </article>
+
+          <!-- Module 2 -->
+          <article class="module-card animate-fade-up delay-2">
+            <div class="module-card__header">
+              <i data-lucide="search" aria-hidden="true"></i>
+              <div>
+                <span class="module-card__num">Module 2 · 5h</span>
+                <h3 class="module-card__title">Identifier les KPI RH</h3>
+              </div>
+            </div>
+            <div class="module-card__body">
+              <p class="module-card__desc">
+                Sources de données RH, SIRH, effectifs, recrutement, turnover.
+                <em>NeoCorp : "On a un SIRH, mais personne ne sait quoi regarder."</em>
+              </p>
+              <div class="module-card__progress-wrap">
+                <div class="module-card__progress-bar" role="progressbar"
+                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                  <div class="module-card__progress-fill" style="width:0%;" id="prog-m2"></div>
+                </div>
+                <span class="module-card__status" id="status-m2">Verrouillé</span>
+              </div>
+            </div>
+            <div class="module-card__footer">
+              <span class="badge badge--neutral" id="badge-m2">Verrouillé</span>
+              <button class="btn btn-ghost btn-sm" disabled aria-disabled="true">
+                <i data-lucide="lock" aria-hidden="true"></i> Bientôt
+              </button>
+            </div>
+          </article>
+
+          <!-- Module 3 -->
+          <article class="module-card animate-fade-up delay-3">
+            <div class="module-card__header">
+              <i data-lucide="calculator" aria-hidden="true"></i>
+              <div>
+                <span class="module-card__num">Module 3 · 3h30</span>
+                <h3 class="module-card__title">Calcul &amp; Interprétation</h3>
+              </div>
+            </div>
+            <div class="module-card__body">
+              <p class="module-card__desc">
+                Formules KPI RH : taux de turnover, ancienneté, absentéisme.
+                <em>NeoCorp : "Le turnover explose mais personne ne comprend pourquoi."</em>
+              </p>
+              <div class="module-card__progress-wrap">
+                <div class="module-card__progress-bar" role="progressbar"
+                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                  <div class="module-card__progress-fill" style="width:0%;" id="prog-m3"></div>
+                </div>
+                <span class="module-card__status" id="status-m3">Verrouillé</span>
+              </div>
+            </div>
+            <div class="module-card__footer">
+              <span class="badge badge--neutral" id="badge-m3">Verrouillé</span>
+              <button class="btn btn-ghost btn-sm" disabled aria-disabled="true">
+                <i data-lucide="lock" aria-hidden="true"></i> Bientôt
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ── SCÉNARIO NEOCORP ── -->
+      <section class="section" aria-labelledby="neoTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="neoTitle">
+            <i data-lucide="building-2" aria-hidden="true"></i>
+            Contexte fil rouge — NeoCorp
+          </h2>
+        </div>
+
+        <div class="card card--elevated"
+          style="border-left: 4px solid var(--cohorte-color, var(--semantic-success));">
+          <div style="display:flex; gap:var(--space-5); align-items:flex-start; flex-wrap:wrap;">
+            <div style="width:64px; height:64px; border-radius:var(--radius-xl);
+              flex-shrink:0;
+              background:color-mix(in srgb, var(--cohorte-color, var(--semantic-success)) 12%, transparent);
+              display:flex; align-items:center; justify-content:center;
+              color:var(--cohorte-color, var(--semantic-success));" aria-hidden="true">
+              <i data-lucide="users" style="width:30px; height:30px;"></i>
+            </div>
+            <div style="flex:1; min-width:240px;">
+              <p style="font-size:var(--font-caption-size); color:var(--text-muted);
+                text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-1);">
+                Entreprise fictive · Fil rouge de formation
+              </p>
+              <h3 style="font-size:var(--font-h5-size); font-weight:600;
+                color:var(--text-primary); margin-bottom:var(--space-3);">
+                NeoCorp — 450 salariés, secteur services
+              </h3>
+              <p style="font-size:var(--font-body2-size); color:var(--text-secondary);
+                line-height:1.7; margin-bottom:var(--space-4);">
+                <strong>Contexte :</strong> NeoCorp est une entreprise de services en pleine croissance.
+                Le DG constate des problèmes RH croissants : turnover élevé, absentéisme non suivi,
+                recrutements coûteux et peu efficaces. Il vous confie la mission de
+                <strong>mettre en place un système de pilotage RH par les indicateurs</strong>.
+              </p>
+              <p style="font-size:var(--font-body2-size); color:var(--text-secondary);
+                margin-bottom:var(--space-4);">
+                <strong>Votre mission :</strong> À travers chaque module, vous construirez
+                progressivement le tableau de bord RH complet de NeoCorp.
+              </p>
+              <a href="consignes.html" class="btn btn-primary btn-sm">
+                <i data-lucide="file-text" aria-hidden="true"></i>
+                Lire les consignes complètes
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── BADGES COMPÉTENCES ── -->
+      <section class="section" aria-labelledby="badgesTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="badgesTitle">
+            <i data-lucide="award" aria-hidden="true"></i>
+            Badges de compétences REAC
+          </h2>
+        </div>
+
+        <div class="kpi-grid kpi-grid--3" style="gap:var(--space-4);">
+
+          <a href="module1.html" class="badge-niveau" aria-label="Badge Fondamentaux KPI RH">
+            <div class="badge-niveau__icon">🔵</div>
+            <div>
+              <div class="badge-niveau__name">Fondamentaux KPI RH</div>
+              <div class="badge-niveau__status">🔒 Non obtenu · Module 1</div>
+            </div>
+          </a>
+
+          <a href="module3.html" class="badge-niveau" aria-label="Badge Analyse des données RH">
+            <div class="badge-niveau__icon">📊</div>
+            <div>
+              <div class="badge-niveau__name">Analyse des données RH</div>
+              <div class="badge-niveau__status">🔒 Non obtenu · Module 3</div>
+            </div>
+          </a>
+
+          <a href="module4.html" class="badge-niveau" aria-label="Badge Pilotage RH par les données">
+            <div class="badge-niveau__icon">🚀</div>
+            <div>
+              <div class="badge-niveau__name">Pilotage RH par les données</div>
+              <div class="badge-niveau__status">🔒 Non obtenu · Module 4</div>
+            </div>
+          </a>
+
+          <a href="module5.html" class="badge-niveau" aria-label="Badge Création de tableaux de bord">
+            <div class="badge-niveau__icon">📈</div>
+            <div>
+              <div class="badge-niveau__name">Création de tableaux de bord</div>
+              <div class="badge-niveau__status">🔒 Non obtenu · Module 5</div>
+            </div>
+          </a>
+
+          <a href="module7.html" class="badge-niveau" aria-label="Badge Conformité & fiabilité RH">
+            <div class="badge-niveau__icon">🔐</div>
+            <div>
+              <div class="badge-niveau__name">Conformité &amp; fiabilité RH</div>
+              <div class="badge-niveau__status">🔒 Non obtenu · Module 7</div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+    </main>
+  </div><!-- /.main-content -->
+</div><!-- /.app-shell -->
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Thème (non-module, chargé immédiatement) -->
+<script src="../../js/theme.js"></script>
+
+<script type="module">
+  import { initShell }        from '../../js/shell.js';
+  import { getRandomMessage } from '../../js/messages.js';
+  import { getProgression, getProgressionByCohorte }   from '../../js/supabase.js';
+
+  document.addEventListener('DOMContentLoaded', async () => {
+
+    // 1. Init shell (auth + sidebar + déconnexion + thème + profil)
+    const profile = await initShell({
+      roles:    ['stagiaire'],
+      cohortes: ['ARH'],
+
+      onReady: async (p) => {
+
+        // Message personnalisé prénom + civilité + spécialisation
+        const msg = getRandomMessage(p);
+        const msgEl = document.getElementById('welcomeMessage');
+        if (msgEl) msgEl.textContent = msg;
+
+        // Titre de bienvenue
+        const titleEl = document.getElementById('welcomeTitle');
+        if (titleEl) {
+          const civ = p.civilite === 'Mme' ? 'Madame' : p.civilite === 'M' ? 'Monsieur' : '';
+          titleEl.innerHTML = `Bonjour <strong>${p.prenom}</strong> 👋`;
+        }
+
+        // Charger la progression depuis Supabase
+        try {
+          const { data: progs } = await getProgressionByCohorte(p.id, 'ARH');
+          updateProgressionUI(progs || []);
+        } catch {
+          // Mode démo si pas de connexion Supabase
+          updateProgressionUI([]);
+        }
+      }
+    });
+
+    if (!profile) return;
+  });
+
+  function updateProgressionUI(progs) {
+    // Compter modules complétés (score ≥ 70)
+    const completedModules = new Set();
+    let totalScore = 0;
+    let scoreCount = 0;
+
+    progs.forEach(p => {
+      if (p.score !== null) {
+        totalScore += p.score;
+        scoreCount++;
+        if ((p.score_pct ?? 0) >= 70) completedModules.add(p.module_code);
+      }
+    });
+
+    const nbCompleted = completedModules.size;
+    const avgScore    = scoreCount > 0 ? Math.round(totalScore / scoreCount) : null;
+    const pct         = Math.round((nbCompleted / 7) * 100);
+
+    // KPI cards
+    const scoreEl = document.getElementById('scoreGlobal');
+    if (scoreEl) scoreEl.textContent = avgScore !== null ? `${avgScore}%` : '—';
+
+    const modulesEl = document.getElementById('modulesCompletes');
+    if (modulesEl) modulesEl.textContent = `${nbCompleted} / 7`;
+
+    const fillEl = document.getElementById('progressFill');
+    if (fillEl) fillEl.style.width = `${pct}%`;
+
+    const barEl = document.getElementById('progressBar');
+    if (barEl) barEl.setAttribute('aria-valuenow', nbCompleted);
+
+    document.getElementById('parcoursProgress').textContent = `${nbCompleted} / 7 modules`;
+
+    // Badges
+    const badgesEl = document.getElementById('badgesObtenus');
+    if (badgesEl) badgesEl.textContent = `${Math.floor(nbCompleted / 1.4)} / 5`;
+
+    // Évolution score
+    const evoEl = document.getElementById('scoreEvolution');
+    if (evoEl && avgScore !== null) {
+      if (avgScore >= 80) { evoEl.className = 'kpi-card__delta kpi-card__delta--up'; evoEl.textContent = '🔥 Excellent'; }
+      else if (avgScore >= 60) { evoEl.className = 'kpi-card__delta kpi-card__delta--neutral'; evoEl.textContent = '👍 En progrès'; }
+      else { evoEl.className = 'kpi-card__delta kpi-card__delta--down'; evoEl.textContent = '💪 À consolider'; }
+    }
+
+    // Parcours steps
+    ['0','1','2','3','4','5','6','7'].forEach((i) => {
+      const stepEl = document.getElementById(`step-${i}`);
+      if (!stepEl) return;
+      const mid = `ARH_M${i}`;
+      if (completedModules.has(mid)) {
+        stepEl.className = 'parcours__step parcours__step--done';
+      } else if (i === '0' || completedModules.has(`ARH_M${parseInt(i)-1}`)) {
+        if (!stepEl.classList.contains('parcours__step--done'))
+          stepEl.className = 'parcours__step parcours__step--active';
+      }
+    });
+
+    // Déverrouiller modules successifs
+    const order = ['m1','m2','m3','m4','m5','m6','m7'];
+    order.forEach((mid, idx) => {
+      const progEl   = document.getElementById(`prog-${mid}`);
+      const statusEl = document.getElementById(`status-${mid}`);
+      const badgeEl  = document.getElementById(`badge-${mid}`);
+      const modId = `ARH_M${idx+1}`;
+
+      if (completedModules.has(modId)) {
+        if (progEl)   { progEl.style.width = '100%'; progEl.style.background = 'var(--semantic-success)'; }
+        if (statusEl) statusEl.textContent = '✓ Complété';
+        if (badgeEl)  { badgeEl.className = 'badge badge--success'; badgeEl.textContent = 'Validé'; }
+      } else if (idx === 0 || completedModules.has(`ARH_M${idx}`)) {
+        if (progEl)   progEl.style.width = '0%';
+        if (statusEl) statusEl.textContent = 'Non démarré';
+        if (badgeEl)  { badgeEl.className = 'badge badge--warning'; badgeEl.textContent = 'Disponible'; }
+      }
+    });
+
+    // Bouton CTA → reprendre ou commencer
+    const ctaEl = document.getElementById('cta-continuer');
+    if (ctaEl && nbCompleted > 0 && nbCompleted < 7) {
+      const nextIdx = nbCompleted + 1;
+      ctaEl.href = `module${nextIdx}.html`;
+      ctaEl.innerHTML = `<i data-lucide="play-circle" aria-hidden="true"></i> Reprendre (Module ${nextIdx})`;
+      if (typeof lucide !== 'undefined') lucide.createIcons({ root: ctaEl });
+    }
+  }
+</script>
+
+</body>
+</html>

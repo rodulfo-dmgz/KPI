@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 7 — KPI par domaine métier : ADV, Supply Chain, Relation client · AC · DASHBOA_RD</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/icons/icon.svg">
+  <script>
+    (function(){
+      var t=localStorage.getItem('rd-theme');
+      var s=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+      if((t||s)==='dark')document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body>
+<div class="app-shell" id="appShell">
+
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Navigation principale">
+    <a href="../../index.html" class="sidebar__brand">
+      <img src="../../assets/icons/icon.svg" alt="" class="sidebar__brand-logo" aria-hidden="true">
+      <div class="sidebar__brand-text">
+        <span class="sidebar__brand-name">DASHBOA_RD</span>
+        <span class="sidebar__brand-sub">Assistant Commercial</span>
+      </div>
+    </a>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar" data-profile="initiales">??</div>
+      <div class="sidebar__user-info">
+        <span class="sidebar__user-name" data-profile="nom">Chargement…</span>
+        <span class="sidebar__user-role">Assistant Commercial</span>
+      </div>
+    </div>
+    
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">
+        <span class="sidebar__section-label">Mon parcours</span>
+        <a href="dashboard.html" class="sidebar__link" data-page="dashboard.html"><i data-lucide="layout-dashboard"></i><span>Tableau de bord</span></a>
+        <a href="test-positionnement.html" class="sidebar__link" data-page="test-positionnement.html">
+          <i data-lucide="clipboard-check" aria-hidden="true"></i><span>Test de positionnement</span>
+        </a>
+        <a href="consignes.html" class="sidebar__link" data-page="consignes.html"><i data-lucide="clipboard-list"></i><span>Consignes &amp; REAC</span></a>
+        <a href="introduction.html" class="sidebar__link" data-page="introduction.html"><i data-lucide="book-open"></i><span>Introduction KPI AC</span></a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__section-label">Modules</span>
+        <a href="module1.html" class="sidebar__link" data-page="module1.html"><i data-lucide="lightbulb"></i><span>M1 — Comprendre</span></a>
+        <a href="module2.html" class="sidebar__link" data-page="module2.html"><i data-lucide="search"></i><span>M2 — KPI ADV &amp; Client</span></a>
+        <a href="module3.html" class="sidebar__link" data-page="module3.html"><i data-lucide="calculator"></i><span>M3 — Calculer</span></a>
+        <a href="module4.html" class="sidebar__link" data-page="module4.html"><i data-lucide="brain"></i><span>M4 — Analyser &amp; Décider</span></a>
+        <a href="module5.html" class="sidebar__link" data-page="module5.html"><i data-lucide="layout-dashboard"></i><span>M5 — Dashboard</span></a>
+        <a href="module6.html" class="sidebar__link" data-page="module6.html"><i data-lucide="table-2"></i><span>M6 — Excel &amp; BI</span></a>
+        <a href="module7.html" class="sidebar__link" data-page="module7.html"><i data-lucide="user-check"></i><span>M7 — Domaines métier</span></a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__section-label">Évaluation</span>
+        <a href="progression.html" class="sidebar__link" data-page="progression.html"><i data-lucide="trending-up"></i><span>Ma progression</span></a>
+        <a href="catalogue.html" class="sidebar__link" data-page="catalogue.html"><i data-lucide="layers"></i><span>Catalogue</span></a>
+        <a href="certificats.html" class="sidebar__link" data-page="certificats.html"><i data-lucide="award"></i><span>Mes certificats</span></a>
+      </div>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__logout" type="button" data-action="logout">
+        <i data-lucide="log-out"></i><span>Déconnexion</span>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <div class="topbar__left">
+        <button class="btn btn-ghost btn-icon topbar__menu-toggle" id="sidebarToggle"
+          aria-label="Menu" aria-expanded="false" aria-controls="sidebar">
+          <i data-lucide="menu"></i>
+        </button>
+        <nav class="topbar__breadcrumb">
+          <span>AC — NeoCorp</span>
+          <i data-lucide="chevron-right"></i>
+          <span aria-current="page">Module 7</span>
+        </nav>
+      </div>
+      <div class="topbar__right">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Thème" aria-pressed="false">
+          <i data-lucide="sun"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="page-content" id="mainContent" role="main">
+
+      <div class="page-header animate-fade-up">
+        <div>
+          <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3);">
+            <span class="badge badge--cohorte">Module 7</span>
+            <span class="badge badge--neutral">
+              <i data-lucide="clock" style="width:12px;height:12px;"></i> 4h
+            </span>
+            <span class="badge badge--neutral">Avancé</span>
+          </div>
+          <h1 class="page-header__title">KPI par domaine métier : ADV, Supply Chain, Relation client</h1>
+          <p class="page-header__subtitle" style="font-family:var(--font-subtitle);font-size:var(--font-body2-size);">
+            CP « Suivre les opérations de la supply chain » (p.17) · CP « Réaliser des actions de fidélisation » (p.23) · CP « Gérer les impayés » (p.21) · KPI RSE REAC 2025 (p.5)
+          </p>
+        </div>
+        <div class="page-header__actions">
+          <a href="dashboard.html" class="btn btn-ghost btn-sm"><i data-lucide="arrow-left"></i> Retour</a>
+        </div>
+      </div>
+
+      <!-- OBJECTIFS -->
+      <section class="section" aria-labelledby="objTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="objTitle"><i data-lucide="target"></i> Objectifs du module</h2>
+        </div>
+        <div class="card"><ul style="list-style:none;padding:0;">
+          <li style="display:flex;align-items:flex-start;gap:var(--space-3);
+            margin-bottom:var(--space-2);">
+            <i data-lucide="check-circle" style="width:18px;height:18px;
+              color:var(--cohorte-color,var(--action-cta));flex-shrink:0;
+              margin-top:2px;" aria-hidden="true"></i>
+            <span style="font-size:var(--font-body2-size);color:var(--text-secondary);">Distinguer les KPI spécifiques à chaque domaine&nbsp;: ADV, supply chain, relation client, RSE</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:var(--space-3);
+            margin-bottom:var(--space-2);">
+            <i data-lucide="check-circle" style="width:18px;height:18px;
+              color:var(--cohorte-color,var(--action-cta));flex-shrink:0;
+              margin-top:2px;" aria-hidden="true"></i>
+            <span style="font-size:var(--font-body2-size);color:var(--text-secondary);">Proposer un KPI avancé pour un contexte donné (e-commerce, international, RSE)</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:var(--space-3);
+            margin-bottom:var(--space-2);">
+            <i data-lucide="check-circle" style="width:18px;height:18px;
+              color:var(--cohorte-color,var(--action-cta));flex-shrink:0;
+              margin-top:2px;" aria-hidden="true"></i>
+            <span style="font-size:var(--font-body2-size);color:var(--text-secondary);">Construire un dashboard croisé intégrant des KPI de différents services</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:var(--space-3);
+            margin-bottom:var(--space-2);">
+            <i data-lucide="check-circle" style="width:18px;height:18px;
+              color:var(--cohorte-color,var(--action-cta));flex-shrink:0;
+              margin-top:2px;" aria-hidden="true"></i>
+            <span style="font-size:var(--font-body2-size);color:var(--text-secondary);">Valider les compétences REAC par le projet final certifiant</span>
+          </li></ul></div>
+      </section>
+
+      <!-- STORYTELLING -->
+      
+      <!-- ╔══════════════════════════════════════════════════════════╗
+           ║  VIDÉO PÉDAGOGIQUE — À COMPLÉTER PAR LE FORMATEUR       ║
+           ║  Remplacez VIDEO_ID par l'ID YouTube de votre vidéo     ║
+           ║  Ex : youtube.com/watch?v=XXXXXXXXX → VIDEO_ID=XXXXXXXXX║
+           ╚══════════════════════════════════════════════════════════╝ -->
+      <section class="section" aria-labelledby="videoTitle-7" style="margin-top:var(--space-2);">
+        <div class="section__header">
+          <h2 class="section__title" id="videoTitle-7">
+            <i data-lucide="play-circle" aria-hidden="true"></i>
+            Vidéo du module
+          </h2>
+          <span class="badge badge--cohorte" id="videoDuree-7">— min</span>
+        </div>
+
+        <!-- Placeholder vidéo — remplacer VIDEO_ID par l'identifiant YouTube -->
+        <div id="videoWrap-7"
+          style="position:relative;width:100%;padding-bottom:56.25%;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);
+            border-radius:var(--radius-2xl);overflow:hidden;box-shadow:var(--shadow-xl);cursor:pointer;"
+          onclick="loadVideo_7()"
+          role="button" tabindex="0" aria-label="Lancer la vidéo du module"
+          onkeydown="if(event.key==='Enter'||event.key===' ')loadVideo_7()">
+          <!-- Miniature YouTube (automatique dès que VIDEO_ID est renseigné) -->
+          <img id="videoThumb-7" src="" alt=""
+            style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55;border-radius:var(--radius-2xl);"
+            onerror="this.style.display='none'">
+          <!-- Overlay -->
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;
+            align-items:center;justify-content:center;gap:var(--space-4);">
+            <div style="width:72px;height:72px;border-radius:50%;background:rgba(255,0,0,0.92);
+              display:flex;align-items:center;justify-content:center;
+              box-shadow:0 8px 32px rgba(255,0,0,0.4);transition:transform 0.2s;"
+              onmouseenter="this.style.transform='scale(1.1)'"
+              onmouseleave="this.style.transform='scale(1)'">
+              <svg viewBox="0 0 24 24" fill="white" style="width:30px;height:30px;margin-left:4px;">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <p id="videoTitle-7-text"
+              style="color:white;font-family:var(--font-heading);font-size:var(--font-h5-size);
+                font-weight:600;text-align:center;padding:0 var(--space-6);
+                text-shadow:0 2px 8px rgba(0,0,0,0.7);">
+              ▶ Cliquer pour lancer la vidéo
+            </p>
+            <span id="videoDureeOverlay-7"
+              style="background:rgba(0,0,0,0.65);color:white;font-size:var(--font-caption-size);
+                font-weight:700;padding:4px 12px;border-radius:var(--radius-full);">
+              Durée : à renseigner
+            </span>
+          </div>
+        </div>
+
+        <!-- Méta sous le player -->
+        <div style="display:flex;align-items:center;justify-content:space-between;
+          margin-top:var(--space-3);padding:var(--space-3) var(--space-4);
+          background:var(--surface-subtle);border-radius:var(--radius-xl);flex-wrap:wrap;gap:var(--space-2);">
+          <span style="font-size:var(--font-body2-size);color:var(--text-muted);">
+            <i data-lucide="info" style="width:14px;height:14px;display:inline;" aria-hidden="true"></i>
+            La vidéo s'ouvre dans la page — restez dans votre espace de formation.
+          </span>
+          <a id="videoYTLink-7" href="#" target="_blank" rel="noopener"
+            class="btn btn-ghost btn-sm" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:15px;height:15px;color:#ff0000;">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            Ouvrir sur YouTube
+          </a>
+        </div>
+      </section>
+      <!-- ═══ FIN VIDÉO ═══ -->
+
+<section class="section" aria-labelledby="storyTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="storyTitle">
+            <i data-lucide="building-2"></i> Contexte NeoCorp — Immersion métier
+          </h2>
+        </div>
+        <div class="card" style="border-left:4px solid var(--cohorte-color,var(--action-cta));
+          background:color-mix(in srgb,var(--cohorte-color,var(--action-cta)) 5%,var(--surface-base));">
+          <div style="display:flex;gap:var(--space-4);align-items:flex-start;">
+            <div style="font-size:36px;flex-shrink:0;">🏥</div>
+            <div>
+              <p style="font-size:var(--font-body1-size);color:var(--text-primary);
+                line-height:1.8;margin-bottom:var(--space-3);">«&nbsp;NeoCorp s'engage dans une démarche RSE et veut communiquer sur ses progrès. Votre direction vous demande de suivre de nouveaux KPI "verts" en plus des indicateurs commerciaux classiques. Vous allez devenir l'expert KPI 360° de l'entreprise, capable de parler à la fois chiffre d'affaires et empreinte carbone.&nbsp;»</p>
+              <span class="badge badge--cohorte">Mission NeoCorp — Module 7</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- THÉORIE -->
+      <section class="section" aria-labelledby="theorieTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="theorieTitle">
+            <i data-lucide="book-open"></i> Apport théorique
+          </h2>
+          <span class="badge badge--neutral">Capsule 10 min</span>
+        </div>
+        
+          <div class="card" style="margin-bottom:var(--space-4);">
+            <h4 style="font-family:var(--font-heading);font-size:var(--font-h5-size);
+              font-weight:600;color:var(--cohorte-color,var(--action-cta));
+              margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-2);">
+              <span style="font-family:var(--font-subtitle);font-size:var(--font-caption-size);
+                background:var(--cohorte-color,var(--action-cta));color:white;
+                width:24px;height:24px;border-radius:var(--radius-full);
+                display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">1</span>
+              KPI ADV & Finance (consolidation)
+            </h4>
+            <p style="font-size:var(--font-body2-size);color:var(--text-secondary);line-height:1.8;">
+              DSO, taux d'impayés, délai moyen d'encaissement, taux d'erreur de facturation. <strong>Nouveauté REAC 2025&nbsp;:</strong> e-invoicing obligatoire → KPI&nbsp;: taux de factures électroniques émises / total factures. Objectif&nbsp;: 100% d'ici 2026 pour les PME.
+            </p>
+          </div>
+          <div class="card" style="margin-bottom:var(--space-4);">
+            <h4 style="font-family:var(--font-heading);font-size:var(--font-h5-size);
+              font-weight:600;color:var(--cohorte-color,var(--action-cta));
+              margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-2);">
+              <span style="font-family:var(--font-subtitle);font-size:var(--font-caption-size);
+                background:var(--cohorte-color,var(--action-cta));color:white;
+                width:24px;height:24px;border-radius:var(--radius-full);
+                display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">2</span>
+              KPI Supply Chain
+            </h4>
+            <p style="font-size:var(--font-body2-size);color:var(--text-secondary);line-height:1.8;">
+              Taux de rupture de stock (Nb jours rupture / total jours × 100). Taux de service OTD. Délai moyen de réapprovisionnement. Coût logistique / CA. <strong>RSE Supply Chain (REAC p.17, loi AGEC)&nbsp;:</strong> part de transport décarboné, taux de réduction emballages, nb fournisseurs éco-certifiés.
+            </p>
+          </div>
+          <div class="card" style="margin-bottom:var(--space-4);">
+            <h4 style="font-family:var(--font-heading);font-size:var(--font-h5-size);
+              font-weight:600;color:var(--cohorte-color,var(--action-cta));
+              margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-2);">
+              <span style="font-family:var(--font-subtitle);font-size:var(--font-caption-size);
+                background:var(--cohorte-color,var(--action-cta));color:white;
+                width:24px;height:24px;border-radius:var(--radius-full);
+                display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">3</span>
+              KPI Relation client & Fidélisation
+            </h4>
+            <p style="font-size:var(--font-body2-size);color:var(--text-secondary);line-height:1.8;">
+              CSAT (Customer Satisfaction Score)&nbsp;: satisfaction immédiate post-interaction. NPS&nbsp;: fidélité et recommandation à long terme. Taux de résolution au premier contact (FRT). Taux de réclamation. <strong>RGPD (REAC p.23)&nbsp;:</strong> taux de consentement des contacts commerciaux, délai de traitement des demandes de suppression.
+            </p>
+          </div>
+          <div class="card" style="margin-bottom:var(--space-4);">
+            <h4 style="font-family:var(--font-heading);font-size:var(--font-h5-size);
+              font-weight:600;color:var(--cohorte-color,var(--action-cta));
+              margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-2);">
+              <span style="font-family:var(--font-subtitle);font-size:var(--font-caption-size);
+                background:var(--cohorte-color,var(--action-cta));color:white;
+                width:24px;height:24px;border-radius:var(--radius-full);
+                display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">4</span>
+              KPI E-commerce & International
+            </h4>
+            <p style="font-size:var(--font-body2-size);color:var(--text-secondary);line-height:1.8;">
+              <strong>E-commerce&nbsp;:</strong> taux de conversion visiteur/acheteur, panier moyen web, taux de retour produit, taux d'abandon de panier. <strong>International&nbsp;:</strong> délai moyen d'expédition export, taux de litiges douane, coût de transport / CA export. Pour NeoCorp export médical&nbsp;: compliance réglementaire par pays (certifications CE, FDA pour les USA).
+            </p>
+          </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" aria-labelledby="quizTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="quizTitle">
+            <i data-lucide="help-circle"></i> Quiz d'entraînement
+          </h2>
+          <span class="badge badge--neutral">3 questions</span>
+        </div>
+        <div class="card">
+          <form id="quizForm" novalidate>
+            
+          <div class="quiz-question" id="q0" style="margin-bottom:var(--space-6);">
+            <p style="font-size:var(--font-body1-size);font-weight:600;
+              color:var(--text-primary);margin-bottom:var(--space-3);">
+              <span style="color:var(--cohorte-color,var(--action-cta));
+                font-family:var(--font-subtitle);">Q1.</span> NeoCorp exporte du matériel médical aux États-Unis. Quel KPI international est le plus critique&nbsp;?
+            </p>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2);" role="radiogroup">
+              
+              <button class="quiz-option" data-q="0" data-o="0" type="button"
+                onclick="selectOption(this, 0, 0, 1)">
+                <span class="quiz-option__letter">A</span>
+                <span class="quiz-option__text">Panier moyen web</span>
+              </button>
+              <button class="quiz-option" data-q="0" data-o="1" type="button"
+                onclick="selectOption(this, 0, 1, 1)">
+                <span class="quiz-option__letter">B</span>
+                <span class="quiz-option__text">Taux de conformité réglementaire (certifications FDA) par envoi</span>
+              </button>
+              <button class="quiz-option" data-q="0" data-o="2" type="button"
+                onclick="selectOption(this, 0, 2, 1)">
+                <span class="quiz-option__letter">C</span>
+                <span class="quiz-option__text">Taux de transformation devis/commande</span>
+              </button>
+              <button class="quiz-option" data-q="0" data-o="3" type="button"
+                onclick="selectOption(this, 0, 3, 1)">
+                <span class="quiz-option__letter">D</span>
+                <span class="quiz-option__text">Taux de satisfaction interne</span>
+              </button>
+            </div>
+            <div class="quiz-feedback" id="feedback-0" style="display:none;
+              margin-top:var(--space-3);padding:var(--space-3) var(--space-4);
+              border-radius:var(--radius-lg);font-size:var(--font-body2-size);"></div>
+          </div>
+          <div class="quiz-question" id="q1" style="margin-bottom:var(--space-6);">
+            <p style="font-size:var(--font-body1-size);font-weight:600;
+              color:var(--text-primary);margin-bottom:var(--space-3);">
+              <span style="color:var(--cohorte-color,var(--action-cta));
+                font-family:var(--font-subtitle);">Q2.</span> NeoCorp s'engage RSE. Quel KPI supply chain intégrer en priorité dans le dashboard direction&nbsp;?
+            </p>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2);" role="radiogroup">
+              
+              <button class="quiz-option" data-q="1" data-o="0" type="button"
+                onclick="selectOption(this, 1, 0, 1)">
+                <span class="quiz-option__letter">A</span>
+                <span class="quiz-option__text">Nombre de réunions RSE organisées</span>
+              </button>
+              <button class="quiz-option" data-q="1" data-o="1" type="button"
+                onclick="selectOption(this, 1, 1, 1)">
+                <span class="quiz-option__letter">B</span>
+                <span class="quiz-option__text">Part de transport décarboné dans les livraisons (% des kilomètres parcourus en véhicules à faible émission)</span>
+              </button>
+              <button class="quiz-option" data-q="1" data-o="2" type="button"
+                onclick="selectOption(this, 1, 2, 1)">
+                <span class="quiz-option__letter">C</span>
+                <span class="quiz-option__text">Budget RSE annuel</span>
+              </button>
+              <button class="quiz-option" data-q="1" data-o="3" type="button"
+                onclick="selectOption(this, 1, 3, 1)">
+                <span class="quiz-option__letter">D</span>
+                <span class="quiz-option__text">Taux de satisfaction des salariés</span>
+              </button>
+            </div>
+            <div class="quiz-feedback" id="feedback-1" style="display:none;
+              margin-top:var(--space-3);padding:var(--space-3) var(--space-4);
+              border-radius:var(--radius-lg);font-size:var(--font-body2-size);"></div>
+          </div>
+          <div class="quiz-question" id="q2" style="margin-bottom:var(--space-6);">
+            <p style="font-size:var(--font-body1-size);font-weight:600;
+              color:var(--text-primary);margin-bottom:var(--space-3);">
+              <span style="color:var(--cohorte-color,var(--action-cta));
+                font-family:var(--font-subtitle);">Q3.</span> Dashboard direction NeoCorp&nbsp;: 1 KPI financier + 1 KPI supply chain + 1 KPI client + 1 KPI RSE. Quel ensemble est le plus pertinent&nbsp;?
+            </p>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2);" role="radiogroup">
+              
+              <button class="quiz-option" data-q="2" data-o="0" type="button"
+                onclick="selectOption(this, 2, 0, 1)">
+                <span class="quiz-option__letter">A</span>
+                <span class="quiz-option__text">CA annuel + nb de commandes + nb clients + budget RSE</span>
+              </button>
+              <button class="quiz-option" data-q="2" data-o="1" type="button"
+                onclick="selectOption(this, 2, 1, 1)">
+                <span class="quiz-option__letter">B</span>
+                <span class="quiz-option__text">DSO + OTD + Taux de réclamation + Part de transport décarboné</span>
+              </button>
+              <button class="quiz-option" data-q="2" data-o="2" type="button"
+                onclick="selectOption(this, 2, 2, 1)">
+                <span class="quiz-option__letter">C</span>
+                <span class="quiz-option__text">Taux de marge + Stock disponible + NPS + Nb d'arbres plantés</span>
+              </button>
+              <button class="quiz-option" data-q="2" data-o="3" type="button"
+                onclick="selectOption(this, 2, 3, 1)">
+                <span class="quiz-option__letter">D</span>
+                <span class="quiz-option__text">Budget marketing + Délai livraison + Satisfaction RH + CO2 absolu</span>
+              </button>
+            </div>
+            <div class="quiz-feedback" id="feedback-2" style="display:none;
+              margin-top:var(--space-3);padding:var(--space-3) var(--space-4);
+              border-radius:var(--radius-lg);font-size:var(--font-body2-size);"></div>
+          </div>
+            <div style="border-top:1px solid var(--border-light);padding-top:var(--space-5);
+              margin-top:var(--space-4);display:flex;align-items:center;
+              justify-content:space-between;flex-wrap:wrap;gap:var(--space-3);">
+              <div id="quizScore" style="font-size:var(--font-body2-size);
+                color:var(--text-muted);font-weight:500;"></div>
+              <button type="button" class="btn btn-primary" onclick="submitQuiz()" id="submitQuizBtn">
+                <i data-lucide="check-circle"></i> Valider mes réponses
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- CAS PRATIQUE -->
+      <section class="section" aria-labelledby="casTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="casTitle">
+            <i data-lucide="briefcase"></i> Cas pratique — Dashboard 360° NeoCorp — Projet final certifiant
+          </h2>
+          <span class="badge badge--cohorte">NeoCorp</span>
+        </div>
+        <div class="card" style="margin-bottom:var(--space-4);">
+          <p style="font-size:var(--font-body2-size);color:var(--text-secondary);
+            line-height:1.7;">Intégrez les 4 dimensions dans le tableau de bord final de NeoCorp&nbsp;: ADV/Finance, Supply Chain, Relation client, RSE. Pour chaque dimension, positionnez le KPI, sa valeur, sa couleur RAG et la décision associée.</p>
+        </div>
+        
+          <div style="border:1px solid var(--border-light);border-radius:var(--radius-lg);
+            overflow:hidden;margin-bottom:var(--space-3);">
+            <div style="padding:var(--space-3) var(--space-4);
+              background:var(--surface-subtle);border-bottom:1px solid var(--border-light);">
+              <span style="font-size:var(--font-caption-size);font-weight:700;
+                color:var(--cohorte-color,var(--action-cta));font-family:var(--font-subtitle);">
+                Situation 1</span>
+              <p style="font-size:var(--font-body2-size);color:var(--text-primary);
+                margin:var(--space-1) 0 0;font-weight:500;">Finance / ADV</p>
+            </div>
+            <div style="padding:var(--space-3) var(--space-4);background:var(--surface-base);">
+              <p style="font-size:var(--font-body2-size);color:var(--text-secondary);
+                line-height:1.6;">DSO&nbsp;: 85j 🔴 (obj 45j) → Activation plan de relance + revue des conditions de paiement | Taux d'impayés&nbsp;: 3,2% 🟡 (obj 2%)</p>
+            </div>
+          </div>
+          <div style="border:1px solid var(--border-light);border-radius:var(--radius-lg);
+            overflow:hidden;margin-bottom:var(--space-3);">
+            <div style="padding:var(--space-3) var(--space-4);
+              background:var(--surface-subtle);border-bottom:1px solid var(--border-light);">
+              <span style="font-size:var(--font-caption-size);font-weight:700;
+                color:var(--cohorte-color,var(--action-cta));font-family:var(--font-subtitle);">
+                Situation 2</span>
+              <p style="font-size:var(--font-body2-size);color:var(--text-primary);
+                margin:var(--space-1) 0 0;font-weight:500;">Supply Chain</p>
+            </div>
+            <div style="padding:var(--space-3) var(--space-4);background:var(--surface-base);">
+              <p style="font-size:var(--font-body2-size);color:var(--text-secondary);
+                line-height:1.6;">OTD&nbsp;: 78% 🔴 (obj 95%) → Réunion SpeedLog + activation transporteur secours | Taux de rupture&nbsp;: 2% ✅ | Part transport décarboné&nbsp;: 18% 🔴 (obj 30% d'ici 2026)</p>
+            </div>
+          </div>
+          <div style="border:1px solid var(--border-light);border-radius:var(--radius-lg);
+            overflow:hidden;margin-bottom:var(--space-3);">
+            <div style="padding:var(--space-3) var(--space-4);
+              background:var(--surface-subtle);border-bottom:1px solid var(--border-light);">
+              <span style="font-size:var(--font-caption-size);font-weight:700;
+                color:var(--cohorte-color,var(--action-cta));font-family:var(--font-subtitle);">
+                Situation 3</span>
+              <p style="font-size:var(--font-body2-size);color:var(--text-primary);
+                margin:var(--space-1) 0 0;font-weight:500;">Relation client</p>
+            </div>
+            <div style="padding:var(--space-3) var(--space-4);background:var(--surface-base);">
+              <p style="font-size:var(--font-body2-size);color:var(--text-secondary);
+                line-height:1.6;">Taux de réclamation&nbsp;: 5% 🔴 (obj 2%) → Revue qualité urgente | NPS&nbsp;: +12 🟡 (obj +25) | FRT&nbsp;: 4,2h 🟡 (obj 2h)</p>
+            </div>
+          </div>
+          <div style="border:1px solid var(--border-light);border-radius:var(--radius-lg);
+            overflow:hidden;margin-bottom:var(--space-3);">
+            <div style="padding:var(--space-3) var(--space-4);
+              background:var(--surface-subtle);border-bottom:1px solid var(--border-light);">
+              <span style="font-size:var(--font-caption-size);font-weight:700;
+                color:var(--cohorte-color,var(--action-cta));font-family:var(--font-subtitle);">
+                Situation 4</span>
+              <p style="font-size:var(--font-body2-size);color:var(--text-primary);
+                margin:var(--space-1) 0 0;font-weight:500;">RSE (REAC 2025)</p>
+            </div>
+            <div style="padding:var(--space-3) var(--space-4);background:var(--surface-base);">
+              <p style="font-size:var(--font-body2-size);color:var(--text-secondary);
+                line-height:1.6;">Part transport décarboné&nbsp;: 18% 🔴 → Plan de bascule vers transporteurs verts | Taux e-invoicing&nbsp;: 67% 🟡 → Déploiement en cours | Fournisseurs éco-certifiés&nbsp;: 8/25 🔴</p>
+            </div>
+          </div>
+      </section>
+
+      <!-- LIVRABLE -->
+      <section class="section" aria-labelledby="livrableTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="livrableTitle">
+            <i data-lucide="file-check"></i> Livrable attendu
+          </h2>
+        </div>
+        <div class="card" style="border:2px solid var(--cohorte-color,var(--action-cta));
+          background:color-mix(in srgb,var(--cohorte-color,var(--action-cta)) 4%,var(--surface-base));">
+          <div style="display:flex;gap:var(--space-4);align-items:flex-start;">
+            <i data-lucide="upload" style="width:28px;height:28px;
+              color:var(--cohorte-color,var(--action-cta));flex-shrink:0;margin-top:2px;"></i>
+            <div>
+              <h4 style="font-family:var(--font-heading);font-size:var(--font-h5-size);
+                color:var(--text-primary);margin-bottom:var(--space-3);">
+                Mission — Dashboard 360° NeoCorp — Projet final certifiant
+              </h4>
+              <p style="font-size:var(--font-body2-size);color:var(--text-secondary);
+                line-height:1.7;margin-bottom:var(--space-4);">Projet final certifiant NeoCorp (score min 9/12 pour le badge 🏆)&nbsp;: Fichier Excel complet (4 onglets), dashboard 360° (4 dimensions), commentaire d'analyse C-A-P (2 pages max), 3 propositions d'action chiffrées.</p>
+              <div style="display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;">
+                <span class="badge badge--competence">CP ADV (p.15) + CP Client (p.23) + CP Supply Chain (p.17) + RSE REAC 2025</span>
+                <span class="badge badge--neutral">À déposer auprès du formateur</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BADGE -->
+      <section class="section" aria-labelledby="badgeTitle">
+        <div class="section__header">
+          <h2 class="section__title" id="badgeTitle"><i data-lucide="award"></i> Badge de compétence</h2>
+        </div>
+        <div class="card" style="text-align:center;padding:var(--space-8);">
+          <div style="font-size:48px;margin-bottom:var(--space-4);">🏆 Certification</div>
+          <h4 style="font-family:var(--font-heading);font-size:var(--font-h4-size);
+            color:var(--text-primary);margin-bottom:var(--space-2);">Pilotage de l'activité commerciale</h4>
+          <p style="font-size:var(--font-body2-size);color:var(--text-muted);margin-bottom:var(--space-6);">
+            Validez le quiz (≥ 70%) et déposez votre livrable pour obtenir ce badge.
+          </p>
+          <div style="display:inline-flex;gap:var(--space-2);flex-wrap:wrap;">
+            <span class="badge badge--bronze">🥉 Bronze · Compréhension</span>
+            <span class="badge badge--silver">🥈 Argent · Application</span>
+            <span class="badge badge--gold">🥇 Or · Maîtrise métier</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION -->
+      <div style="display:flex;justify-content:space-between;align-items:center;
+        padding:var(--space-6) 0;border-top:1px solid var(--border-light);flex-wrap:wrap;gap:var(--space-3);">
+        <a href="module6.html" class="btn btn-ghost"><i data-lucide="arrow-left"></i> Module 6</a>
+        <a href="progression.html" class="btn btn-cta">
+          Voir ma progression & certificats <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../js/theme.js"></script>
+<script type="module">
+  import { initShell }        from '../../js/shell.js';
+  import { upsertProgression } from '../../js/supabase.js';
+
+  let currentProfile = null;
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    currentProfile = await initShell({ roles: ['stagiaire'], cohortes: ['AC'] });
+  });
+
+  const answers = {};
+
+  window.selectOption = function(btn, qi, oi, correct) {
+    document.querySelectorAll(`[data-q="${qi}"]`).forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    answers[qi] = oi;
+  };
+
+  window.submitQuiz = async function() {
+    const questions = [{'q': 'NeoCorp exporte du matériel médical aux États-Unis. Quel KPI international est le plus critique&nbsp;?', 'opts': ['Panier moyen web', 'Taux de conformité réglementaire (certifications FDA) par envoi', 'Taux de transformation devis/commande', 'Taux de satisfaction interne'], 'correct': 1, 'explication': "L'export de matériel médical aux USA est soumis à la réglementation FDA. Un taux de non-conformité = blocage douanier + pénalités. C'est le KPI critique qui conditionne tous les autres pour ce marché."}, {'q': "NeoCorp s'engage RSE. Quel KPI supply chain intégrer en priorité dans le dashboard direction&nbsp;?", 'opts': ['Nombre de réunions RSE organisées', 'Part de transport décarboné dans les livraisons (% des kilomètres parcourus en véhicules à faible émission)', 'Budget RSE annuel', 'Taux de satisfaction des salariés'], 'correct': 1, 'explication': "La part de transport décarboné est un KPI mesurable, directement lié à l'activité commerciale et pertinent pour les rapports RSE obligatoires (CSRD pour les entreprises > 250 salariés, en cours d'extension)."}, {'q': 'Dashboard direction NeoCorp&nbsp;: 1 KPI financier + 1 KPI supply chain + 1 KPI client + 1 KPI RSE. Quel ensemble est le plus pertinent&nbsp;?', 'opts': ['CA annuel + nb de commandes + nb clients + budget RSE', 'DSO + OTD + Taux de réclamation + Part de transport décarboné', "Taux de marge + Stock disponible + NPS + Nb d'arbres plantés", 'Budget marketing + Délai livraison + Satisfaction RH + CO2 absolu'], 'correct': 1, 'explication': "DSO (finance), OTD (supply chain), Taux de réclamation (client), Part transport décarboné (RSE)&nbsp;: 4 KPI mesurables, actionnables et alignés sur les 4 dimensions de la performance NeoCorp. Chaque indicateur a une formule, une source et un seuil d'alerte définis."}];
+    let score = 0;
+
+    questions.forEach((q, qi) => {
+      const feedbackEl = document.getElementById(`feedback-${qi}`);
+      const userAnswer = answers[qi];
+
+      if (userAnswer === undefined) {
+        if (feedbackEl) {
+          feedbackEl.style.display = 'block';
+          feedbackEl.style.background = 'var(--color-warning-50)';
+          feedbackEl.style.border = '1px solid var(--color-warning-200)';
+          feedbackEl.textContent = '⚠️ Question sans réponse';
+        }
+        return;
+      }
+
+      const isCorrect = userAnswer === q.correct;
+      if (isCorrect) score++;
+
+      document.querySelectorAll(`[data-q="${qi}"]`).forEach(b => {
+        b.classList.remove('selected');
+        const bOi = parseInt(b.dataset.o);
+        if (bOi === q.correct) b.classList.add('correct');
+        else if (bOi === userAnswer && !isCorrect) b.classList.add('wrong');
+      });
+
+      if (feedbackEl) {
+        feedbackEl.style.display = 'block';
+        feedbackEl.style.background = isCorrect ? 'var(--color-success-50)' : 'var(--color-danger-50)';
+        feedbackEl.style.border = `1px solid ${isCorrect ? 'var(--color-success-200)' : 'var(--color-danger-200)'}`;
+        feedbackEl.innerHTML = `<strong>${isCorrect ? '✅ Correct&nbsp;!' : '❌ Incorrect.'}</strong> ${q.explication}`;
+      }
+    });
+
+    const pct = Math.round((score / questions.length) * 100);
+    const scoreEl = document.getElementById('quizScore');
+    if (scoreEl) {
+      scoreEl.innerHTML = `Score&nbsp;: <strong style="color:${pct >= 70 ? 'var(--semantic-success)' : 'var(--semantic-danger)'}">${score}/${questions.length} (${pct}%)</strong>
+        ${pct >= 70 ? ' 🎉 Validé&nbsp;!' : ' — Révisez la théorie et réessayez.'}`;
+    }
+
+    document.getElementById('submitQuizBtn').disabled = true;
+
+    if (currentProfile) {
+      try {
+        await upsertProgression(currentProfile.id, 'AC', 7, pct);
+      } catch(e) { console.warn('Progression non sauvegardée&nbsp;:', e); }
+    }
+  };
+</script>
+</body>
+</html>

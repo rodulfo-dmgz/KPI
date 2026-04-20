@@ -1,0 +1,79 @@
+/**
+ * DASHBOA_RD — Modals
+ */
+
+@layer components {
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: var(--z-modal-backdrop);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    animation: fadeIn 0.2s var(--ease-out);
+  }
+
+  .modal {
+    background: var(--surface-base);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-8);
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-2xl);
+    animation: fadeInScale 0.25s var(--ease-out);
+    position: relative;
+  }
+
+  .modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .modal__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-h5-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .modal__close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    transition: background var(--transition-fast), color var(--transition-fast);
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .modal__close:hover { background: var(--state-hover-overlay); color: var(--text-primary); }
+  .modal__close svg { width: 18px; height: 18px; }
+
+  .modal__body { margin-bottom: var(--space-6); }
+
+  .modal__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-light);
+    flex-wrap: wrap;
+  }
+}

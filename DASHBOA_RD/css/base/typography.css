@@ -1,0 +1,170 @@
+/**
+ * RD WORKFLOW — Typography Base
+ * ═══════════════════════════════════════════════════════════════
+ * Couche : @layer base
+ * 
+ * APPLICATION des tokens typographiques définis dans variables.css
+ * Ce fichier NE CONTIENT PAS de Custom Properties, uniquement des
+ * règles de style appliquées aux éléments HTML.
+ */
+
+@layer base {
+  
+  /* ═════════════════════════════════════════════
+     RÈGLES DE BASE DOCUMENT
+  ═════════════════════════════════════════════ */
+  
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+    font-family: var(--font-body);
+    font-size: var(--font-body1-size);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--font-body1-line);
+    color: var(--text-primary);
+    background-color: var(--surface-app);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color var(--transition-base), color var(--transition-base);
+  }
+  
+  
+  /* ═════════════════════════════════════════════
+     HEADERS
+  ═════════════════════════════════════════════ */
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+  
+  h1 {
+    font-size: var(--font-h1-size);
+    font-weight: var(--font-h1-weight);
+    line-height: var(--font-h1-line);
+    letter-spacing: var(--font-h1-spacing);
+  }
+  
+  h2 {
+    font-size: var(--font-h2-size);
+    font-weight: var(--font-h2-weight);
+    line-height: var(--font-h2-line);
+    letter-spacing: var(--font-h2-spacing);
+  }
+  
+  h3 {
+    font-size: var(--font-h3-size);
+    font-weight: var(--font-h3-weight);
+    line-height: var(--font-h3-line);
+    letter-spacing: var(--font-h3-spacing);
+  }
+  
+  h4 {
+    font-size: var(--font-h4-size);
+    font-weight: var(--font-h4-weight);
+    line-height: var(--font-h4-line);
+    letter-spacing: var(--font-h4-spacing);
+  }
+  
+  h5 {
+    font-size: var(--font-h5-size);
+    font-weight: var(--font-h5-weight);
+    line-height: var(--font-h5-line);
+  }
+  
+  h6 {
+    font-size: var(--font-h6-size);
+    font-weight: var(--font-h6-weight);
+    line-height: var(--font-h6-line);
+  }
+  
+  
+  /* ═════════════════════════════════════════════
+     BODY TEXT
+  ═════════════════════════════════════════════ */
+  
+  p {
+    margin-bottom: var(--space-4);
+  }
+  
+  
+  /* ═════════════════════════════════════════════
+     LIENS
+  ═════════════════════════════════════════════ */
+  
+  a {
+    color: var(--text-link);
+    transition: color var(--transition-fast);
+  }
+  
+  a:hover {
+    color: var(--text-link-hover);
+  }
+  
+  
+  /* ═════════════════════════════════════════════
+     INLINE TEXT FORMATTING
+  ═════════════════════════════════════════════ */
+  
+  strong, b {
+    font-weight: var(--font-weight-semibold);
+  }
+  
+  em, i {
+    font-style: italic;
+  }
+  
+  small {
+    font-size: var(--font-caption-size);
+  }
+  
+  
+  /* ═════════════════════════════════════════════
+     CODE & PRE
+  ═════════════════════════════════════════════ */
+  
+  code, kbd, pre, samp {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+  
+  code {
+    padding: 0.125rem 0.25rem;
+    background-color: var(--surface-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+  }
+  
+  pre {
+    padding: var(--space-4);
+    background-color: var(--surface-subtle);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+  }
+  
+  pre code {
+    padding: 0;
+    background-color: transparent;
+  }
+  
+  
+  /* ═════════════════════════════════════════════
+     RESPONSIVE TYPOGRAPHY — Ajustements d'échelle
+  ═════════════════════════════════════════════ */
+  
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px;
+    }
+  }
+  
+  @media (min-width: 641px) and (max-width: 1024px) {
+    html {
+      font-size: 15px;
+    }
+  }
+  
+}
