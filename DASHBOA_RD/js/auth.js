@@ -28,12 +28,12 @@ export function getRedirectPath(profile) {
   const depth = window.location.pathname.split('/').filter(p => p && !p.endsWith('.html')).length;
   const root  = depth > 0 ? '../'.repeat(depth) : '';
 
-  if (profile.role === 'admin')     return root + 'admin/dashboard.html';
-  if (profile.role === 'formateur') return root + 'formateur/dashboard.html';
+  if (profile.role === 'admin')     return root + '../../admin/dashboard.html';
+  if (profile.role === 'formateur') return root + '../../formateur/dashboard.html';
 
   // Stagiaire → cohorte en minuscule
   const c = (profile.cohorte || 'arh').toLowerCase();
-  return root + `stagiaire/${c}/dashboard.html`;
+  return root + `../../stagiaire/${c}/dashboard.html`;
 }
 
 // ── Calcul du préfixe racine (pour redirect login) ────────────────
