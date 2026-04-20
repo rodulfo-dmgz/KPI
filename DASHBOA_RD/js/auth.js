@@ -23,10 +23,33 @@ function clearProfile() {
   sessionStorage.removeItem(SESSION_KEY);
 }
 
+// ── Retourne le chemin relatif vers la racine du projet (dossier contenant index.html) ──
+function getRootPrefix() {
+  const path = window.location.pathname;
+  const segments = path.split('/').filter(s => s);  // ["KPI","DASHBOA_RD","index.html"]
+
+  // Trouver l'index du segment contenant index.html (ou toute page de login)
+  let baseIndex = -1;
+  for (let i = 0; i < segments.length; i++) {
+    if (segments[i].includes('.html')) {
+      // On suppose que la racine du projet est le répertoire parent de ce fichier
+      baseIndex = i;
+      break;
+    }
+  }
+  // Si aucun fichier .html trouvé, on prend le dernier segment comme dossier racine
+  if (baseIndex === -1) baseIndex = segments.length;
+
+  // Profondeur du fichier courant (par exemple admin/dashboard.html => depth = 2)
+  const currentDepth = segments.length - 1; // index du dernier segment
+  const depthDiff = currentDepth - baseIndex;
+
+  return depthDiff > 0 ? '../'.repeat(depthDiff) : '';
+}
+
 // ── Chemin de redirection selon rôle ─────────────────────────────
 export function getRedirectPath(profile) {
-  const depth = window.location.pathname.split('/').filter(p => p && !p.endsWith('.html')).length;
-  const root  = depth > 0 ? '../'.repeat(depth) : '';
+  const root = getRootPrefix();
 
   if (profile.role === 'admin')     return root + 'admin/dashboard.html';
   if (profile.role === 'formateur') return root + 'formateur/dashboard.html';
@@ -36,12 +59,7 @@ export function getRedirectPath(profile) {
   return root + `stagiaire/${c}/dashboard.html`;
 }
 
-// ── Calcul du préfixe racine (pour redirect login) ────────────────
-function getRootPrefix() {
-  const depth = window.location.pathname.split('/').filter(p => p && !p.endsWith('.html')).length;
-  return depth > 0 ? '../'.repeat(depth) : '';
-}
-
+// ── Redirection vers login (utilise aussi getRootPrefix) ──────────
 function redirectToLogin() {
   window.location.href = getRootPrefix() + 'index.html';
 }
@@ -97,7 +115,7 @@ export async function handleLogin(email, password, uiRefs = {}) {
 export async function handleLogout() {
   try { await signOut(); } catch {}
   clearProfile();
-  window.location.href = getRootPrefix() + 'index.html';
+  window.location.href = getRootPrefix() + 'index.html';  // ✅ corrigé
 }
 
 // ── GARDE DE ROUTE ────────────────────────────────────────────────
