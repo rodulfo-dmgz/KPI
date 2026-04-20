@@ -64,11 +64,11 @@ export function getRedirectPath(profile) {
   // Construire l'URL absolue à partir de la racine du projet
   const base = root.endsWith('/') ? root : root + '/';
 
-  if (profile.role === 'admin')     return base + 'admin/dashboard.html';
-  if (profile.role === 'formateur') return base + 'formateur/dashboard.html';
+  if (profile.role === 'admin')     return base + '../../admin/dashboard.html';
+  if (profile.role === 'formateur') return base + '../../formateur/dashboard.html';
 
   const c = (profile.cohorte || 'arh').toLowerCase();
-  return base + `stagiaire/${c}/dashboard.html`;
+  return base + `../../stagiaire/${c}/dashboard.html`;
 }
 
 // ── Redirection vers login ───────────────────────────────────────
