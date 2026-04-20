@@ -7,6 +7,24 @@ import { signIn, signOut, getSession, getUserProfile, updateLastLogin } from './
 
 const SESSION_KEY = 'dashboard_profile';
 
+// ── BASE PATH — détecté automatiquement depuis l'URL ─────────────
+// Fonctionne en local (127.0.0.1:5500) ET sur GitHub Pages (/KPI/DASHBOA_RD/)
+// On cherche "DASHBOA_RD" dans le pathname et on garde tout jusqu'à lui (inclus)
+function getBasePath() {
+  const path  = window.location.pathname;          // ex: /KPI/DASHBOA_RD/stagiaire/sa/dashboard.html
+  const marker = '/DASHBOA_RD/';
+  const idx    = path.indexOf(marker);
+
+  if (idx !== -1) {
+    // Retourne ex: /KPI/DASHBOA_RD/
+    return path.slice(0, idx + marker.length);
+  }
+
+  // Fallback : on est peut-être servi depuis la racine (dev local)
+  // Chercher si index.html est à la racine
+  return '/';
+}
+
 // ── Profil en mémoire (sessionStorage) ───────────────────────────
 export function saveProfile(profile) {
   try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(profile)); } catch {}
@@ -23,57 +41,25 @@ function clearProfile() {
   sessionStorage.removeItem(SESSION_KEY);
 }
 
-// ── Détection de la racine du projet (dossier contenant index.html) ──
-function getProjectRoot() {
-  // Méthode fiable : récupérer le chemin du script en cours d'exécution
-  const scripts = document.getElementsByTagName('script');
-  let scriptPath = '';
-  for (let script of scripts) {
-    if (script.src && script.src.includes('auth.js')) {
-      scriptPath = script.src;
-      break;
-    }
-  }
-
-  if (scriptPath) {
-    // Exemple : https://rodulfo-dmgz.github.io/KPI/DASHBOA_RD/js/auth.js
-    const url = new URL(scriptPath);
-    const pathParts = url.pathname.split('/');
-    // Supprimer le dernier segment ('js/auth.js') → deux niveaux
-    pathParts.pop(); // auth.js
-    pathParts.pop(); // js
-    const base = pathParts.join('/'); // /KPI/DASHBOA_RD
-    return base === '' ? '/' : base;
-  }
-
-  // Fallback : utiliser le chemin de la page courante (moins fiable)
-  const path = window.location.pathname;
-  const segments = path.split('/').filter(s => s);
-  // On suppose que la racine est le dossier contenant index.html
-  for (let i = 0; i < segments.length; i++) {
-    if (segments[i].includes('.html')) {
-      return '/' + segments.slice(0, i).join('/');
-    }
-  }
-  return '';
-}
-
 // ── Chemin de redirection selon rôle ─────────────────────────────
 export function getRedirectPath(profile) {
-  const root = getProjectRoot();
-  // Construire l'URL absolue à partir de la racine du projet
-  const base = root.endsWith('/') ? root : root + '/';
+  const base = getBasePath();   // ex: /KPI/DASHBOA_RD/  ou  /
 
-  if (profile.role === 'admin')     return base + '../../admin/dashboard.html';
-  if (profile.role === 'formateur') return base + '../../formateur/dashboard.html';
+  if (profile.role === 'admin')     return base + 'admin/dashboard.html';
+  if (profile.role === 'formateur') return base + 'formateur/dashboard.html';
 
+  // Stagiaire → cohorte en minuscule
   const c = (profile.cohorte || 'arh').toLowerCase();
-  return base + `../../stagiaire/${c}/dashboard.html`;
+  return base + 'stagiaire/' + c + '/dashboard.html';
 }
 
-// ── Redirection vers login ───────────────────────────────────────
+// ── Chemin vers index.html (page de login) ────────────────────────
+function getLoginPath() {
+  return getBasePath() + 'index.html';
+}
+
 function redirectToLogin() {
-  window.location.href = getProjectRoot() + '/index.html';
+  window.location.href = getLoginPath();
 }
 
 // ── CONNEXION ─────────────────────────────────────────────────────
@@ -127,10 +113,16 @@ export async function handleLogin(email, password, uiRefs = {}) {
 export async function handleLogout() {
   try { await signOut(); } catch {}
   clearProfile();
-  window.location.href = getProjectRoot() + '/index.html';
+  window.location.href = getLoginPath();
 }
 
 // ── GARDE DE ROUTE ────────────────────────────────────────────────
+/**
+ * Vérifie la session et le profil. Redirige si non autorisé.
+ * @param {string[]} roles    - Rôles autorisés (ex: ['stagiaire'])
+ * @param {string[]} cohortes - Cohortes autorisées (ex: ['ARH'])
+ * @returns {Object|null} profil si autorisé
+ */
 export async function requireAuth({ roles = [], cohortes = [] } = {}) {
   const session = await getSession();
   if (!session) { redirectToLogin(); return null; }
@@ -176,6 +168,7 @@ export function initLoginPage() {
   const emailErrorEl    = document.getElementById('email-error');
   const passwordErrorEl = document.getElementById('password-error');
 
+  // Toggle mot de passe
   passwordToggle?.addEventListener('click', () => {
     const isVisible = passwordInput.type === 'text';
     passwordInput.type = isVisible ? 'password' : 'text';
@@ -187,12 +180,14 @@ export function initLoginPage() {
     }
   });
 
+  // Soumission
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     await handleLogin(emailInput.value, passwordInput.value,
       { submitBtn, errorEl, emailErrorEl, passwordErrorEl });
   });
 
+  // Modale mot de passe oublié
   const forgotLink  = document.getElementById('forgotPasswordLink');
   const modal       = document.getElementById('forgotPasswordModal');
   const closeBtn    = document.getElementById('forgotModalCloseBtn');
@@ -238,11 +233,11 @@ function setLoading(btn, isLoading) {
 
 function translateError(msg) {
   const map = {
-    'Invalid login credentials':       'Email ou mot de passe incorrect.',
-    'Email not confirmed':              'Email non confirmé. Contactez votre formateur.',
-    'Too many requests':                'Trop de tentatives. Patientez quelques minutes.',
-    'User not found':                   'Aucun compte trouvé avec cet email.',
-    'JWT expired':                      'Session expirée. Reconnectez-vous.',
+    'Invalid login credentials':  'Email ou mot de passe incorrect.',
+    'Email not confirmed':         'Email non confirmé. Contactez votre formateur.',
+    'Too many requests':           'Trop de tentatives. Patientez quelques minutes.',
+    'User not found':              'Aucun compte trouvé avec cet email.',
+    'JWT expired':                 'Session expirée. Reconnectez-vous.',
   };
   return map[msg] || 'Connexion échouée. Vérifiez vos identifiants.';
 }
