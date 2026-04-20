@@ -1,0 +1,264 @@
+/**
+ * DASHBOA_RD — Cards
+ */
+
+@layer components {
+
+  /* ── Card de base ─────────────────────────────────────────── */
+  .card {
+    background: var(--surface-base);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .card:hover { box-shadow: var(--shadow-md); }
+  .card--elevated { box-shadow: var(--shadow-md); }
+  .card--flat { box-shadow: none; border-color: var(--border-default); }
+  .card--interactive { cursor: pointer; }
+  .card--interactive:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+  /* ── KPI Card ─────────────────────────────────────────────── */
+  .kpi-card {
+    background: var(--surface-base);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-5) var(--space-6);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+  }
+
+  /* Trait coloré en haut */
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--kpi-color, var(--cohorte-color, var(--action-primary)));
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+
+  .kpi-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .kpi-card__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--kpi-color, var(--cohorte-color, var(--action-primary))) 12%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-4);
+    color: var(--kpi-color, var(--cohorte-color, var(--action-primary)));
+    flex-shrink: 0;
+  }
+
+  .kpi-card__icon svg { width: 22px; height: 22px; }
+
+  .kpi-card__label {
+    font-size: var(--font-caption-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-2);
+    display: block;
+  }
+
+  .kpi-card__value {
+    font-family: var(--font-heading);
+    font-size: var(--font-data-md-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+    display: block;
+  }
+
+  .kpi-card__delta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--font-caption-size);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--space-0-5) var(--space-2);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-2);
+  }
+
+  .kpi-card__delta--up    { color: var(--semantic-success); background: var(--color-success-50); }
+  .kpi-card__delta--down  { color: var(--semantic-danger);  background: var(--color-danger-50); }
+  .kpi-card__delta--neutral { color: var(--text-muted); background: var(--surface-subtle); }
+
+  .kpi-card__delta svg { width: 12px; height: 12px; }
+
+  .kpi-card__desc {
+    font-size: var(--font-caption-size);
+    color: var(--text-muted);
+    line-height: 1.4;
+    display: block;
+  }
+
+  /* Variantes couleur */
+  .kpi-card--primary  { --kpi-color: var(--action-primary); }
+  .kpi-card--success  { --kpi-color: var(--semantic-success); }
+  .kpi-card--warning  { --kpi-color: var(--semantic-warning); }
+  .kpi-card--danger   { --kpi-color: var(--semantic-danger); }
+  .kpi-card--accent   { --kpi-color: var(--action-cta); }
+
+  /* ── Module Card (formation) ──────────────────────────────── */
+  .module-card {
+    background: var(--surface-base);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow var(--transition-base), transform var(--transition-base), border-color var(--transition-fast);
+  }
+
+  .module-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    border-color: var(--cohorte-color, var(--action-primary));
+  }
+
+  .module-card__header {
+    padding: var(--space-5) var(--space-6);
+    background: linear-gradient(135deg, var(--cohorte-color, var(--action-primary)), color-mix(in srgb, var(--cohorte-color, var(--action-primary)) 70%, var(--color-secondary-500)));
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .module-card__header svg { width: 26px; height: 26px; flex-shrink: 0; opacity: 0.9; }
+
+  .module-card__num {
+    font-size: var(--font-caption-size);
+    font-weight: var(--font-weight-bold);
+    opacity: 0.75;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: var(--space-0-5);
+  }
+
+  .module-card__title {
+    font-family: var(--font-heading);
+    font-size: var(--font-h5-size);
+    font-weight: var(--font-weight-semibold);
+    color: white;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .module-card__body {
+    padding: var(--space-5) var(--space-6);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .module-card__desc {
+    font-size: var(--font-body2-size);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .module-card__duration {
+    font-size: var(--font-caption-size);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .module-card__duration svg { width: 14px; height: 14px; }
+
+  .module-card__progress-wrap { display: flex; flex-direction: column; gap: var(--space-1-5); }
+
+  .module-card__progress-bar {
+    height: 6px;
+    background: var(--surface-subtle);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  .module-card__progress-fill {
+    height: 100%;
+    background: var(--cohorte-color, var(--action-primary));
+    border-radius: var(--radius-full);
+    transition: width 0.6s var(--ease-out);
+  }
+
+  .module-card__status {
+    font-size: var(--font-caption-size);
+    color: var(--text-muted);
+  }
+
+  .module-card__footer {
+    padding: var(--space-4) var(--space-6);
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  /* ── Carte quiz ───────────────────────────────────────────── */
+  .quiz-option {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 2px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+    background: var(--surface-base);
+    width: 100%;
+    text-align: left;
+  }
+
+  .quiz-option:hover { border-color: var(--cohorte-color, var(--action-primary)); background: var(--state-hover-overlay); }
+  .quiz-option.selected { border-color: var(--cohorte-color, var(--action-primary)); background: color-mix(in srgb, var(--cohorte-color, var(--action-primary)) 8%, transparent); }
+  .quiz-option.correct  { border-color: var(--semantic-success); background: var(--color-success-50); }
+  .quiz-option.wrong    { border-color: var(--semantic-danger);  background: var(--color-danger-50); }
+
+  .quiz-option__letter {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--surface-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-caption-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+
+  .quiz-option.selected .quiz-option__letter { background: var(--cohorte-color, var(--action-primary)); color: white; }
+  .quiz-option.correct  .quiz-option__letter { background: var(--semantic-success); color: white; }
+  .quiz-option.wrong    .quiz-option__letter { background: var(--semantic-danger);  color: white; }
+
+  .quiz-option__text {
+    font-size: var(--font-body2-size);
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+}

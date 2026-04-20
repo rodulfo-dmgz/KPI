@@ -1,0 +1,59 @@
+/**
+ * DASHBOA_RD — Toasts
+ */
+
+@layer components {
+
+  .toast-container {
+    position: fixed;
+    bottom: var(--space-6);
+    right: var(--space-6);
+    z-index: var(--z-notification);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    pointer-events: none;
+  }
+
+  .toast {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface-raised);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-light);
+    min-width: 280px;
+    max-width: 400px;
+    pointer-events: auto;
+    animation: toastIn 0.3s var(--ease-out) both;
+  }
+
+  .toast--out { animation: toastOut 0.3s var(--ease-in) both; }
+
+  .toast__message {
+    flex: 1;
+    font-size: var(--font-body2-size);
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .toast__close {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: color var(--transition-fast);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .toast__close:hover { color: var(--text-primary); }
+  .toast__close svg { width: 14px; height: 14px; }
+}

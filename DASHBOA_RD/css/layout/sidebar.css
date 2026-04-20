@@ -1,0 +1,337 @@
+/**
+ * DASHBOA_RD — Sidebar
+ * ═══════════════════════════════════════════════════════════════
+ * Sidebar fixe gauche : brand, user, nav, footer
+ * Couleur de cohorte : --cohorte-color (injectée par le JS)
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+@layer layout {
+
+  /* ── Conteneur principal ────────────────────────────────────── */
+  .sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+
+    background: var(--surface-base);
+    border-right: 1px solid var(--border-light);
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    transition: width var(--transition-base), transform var(--transition-base);
+    z-index: var(--z-sticky);
+  }
+
+  /* ── BRAND (logo + titre) ───────────────────────────────────── */
+  .sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    min-height: var(--topbar-height);
+    border-bottom: 1px solid var(--border-light);
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .sidebar__brand-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .sidebar__brand-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .sidebar__brand-name {
+    font-family: var(--font-heading);
+    font-size: var(--font-subtitle2-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sidebar__brand-sub {
+    font-family: var(--font-subtitle);
+    font-size: var(--font-caption-size);
+    font-weight: var(--font-weight-medium);
+    color: var(--cohorte-color, var(--action-primary));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── USER CARD ──────────────────────────────────────────────── */
+  .sidebar__user {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--border-light);
+    flex-shrink: 0;
+    background: var(--surface-raised);
+  }
+
+  .sidebar__user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--cohorte-color, var(--action-primary));
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: var(--font-body2-size);
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+    letter-spacing: 0.03em;
+  }
+
+  .sidebar__user-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: var(--space-0-5);
+  }
+
+  .sidebar__user-name {
+    font-size: var(--font-body2-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+  }
+
+  .sidebar__user-role {
+    font-size: var(--font-caption-size);
+    color: var(--cohorte-color, var(--action-primary));
+    font-weight: var(--font-weight-medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── NAVIGATION ─────────────────────────────────────────────── */
+  .sidebar__nav {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: var(--space-4) var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-default) transparent;
+  }
+
+  .sidebar__nav::-webkit-scrollbar {
+    width: 4px;
+  }
+  .sidebar__nav::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .sidebar__nav::-webkit-scrollbar-thumb {
+    background: var(--border-default);
+    border-radius: var(--radius-full);
+  }
+
+  /* ── Section label ──────────────────────────────────────────── */
+  .sidebar__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .sidebar__section-label {
+    font-size: var(--font-caption-size);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0 var(--space-3);
+    margin-bottom: var(--space-1);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Lien de navigation ─────────────────────────────────────── */
+  .sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2-5) var(--space-3);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-body2-size);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: background var(--transition-fast), color var(--transition-fast);
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 0;
+    position: relative;
+  }
+
+  .sidebar__link svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: opacity var(--transition-fast);
+  }
+
+  .sidebar__link span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sidebar__link:hover {
+    background: var(--state-hover-overlay);
+    color: var(--text-primary);
+  }
+
+  .sidebar__link:hover svg {
+    opacity: 1;
+  }
+
+  /* ── Lien ACTIF ─────────────────────────────────────────────── */
+  .sidebar__link.active {
+    background: color-mix(in srgb, var(--cohorte-color, var(--action-primary)) 12%, transparent);
+    color: var(--cohorte-color, var(--action-primary));
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .sidebar__link.active svg {
+    opacity: 1;
+  }
+
+  /* Trait coloré à gauche pour le lien actif */
+  .sidebar__link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 25%;
+    bottom: 25%;
+    width: 3px;
+    background: var(--cohorte-color, var(--action-primary));
+    border-radius: 0 var(--radius-full) var(--radius-full) 0;
+  }
+
+  /* ── Badge compteur dans un lien ───────────────────────────── */
+  .sidebar__link-badge {
+    margin-left: auto;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 var(--space-1-5);
+    background: var(--cohorte-color, var(--action-primary));
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER (déconnexion) ───────────────────────────────────── */
+  .sidebar__footer {
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--border-light);
+    flex-shrink: 0;
+  }
+
+  .sidebar__logout {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    padding: var(--space-2-5) var(--space-3);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-body2-size);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast);
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .sidebar__logout svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  .sidebar__logout:hover {
+    background: var(--color-danger-50);
+    color: var(--semantic-danger);
+  }
+
+  html.dark .sidebar__logout:hover {
+    background: rgba(239, 68, 68, 0.1);
+  }
+
+  /* ── Overlay mobile (fond semi-transparent) ─────────────────── */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: calc(var(--z-sticky) - 1);
+    backdrop-filter: blur(2px);
+  }
+
+  .sidebar-overlay.is-visible {
+    display: block;
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      transform: translateX(-100%);
+      box-shadow: var(--shadow-2xl);
+    }
+
+    .sidebar.is-open {
+      transform: translateX(0);
+    }
+
+    /* L'app-shell passe en 1 colonne sur mobile */
+    .app-shell {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sidebar {
+      width: min(var(--sidebar-width), 85vw);
+    }
+  }
+}

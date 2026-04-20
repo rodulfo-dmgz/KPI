@@ -1,0 +1,145 @@
+/** DASHBOA_RD — Dashboard module */
+@layer modules {
+  /* Welcome banner */
+  .welcome-banner {
+    background: linear-gradient(135deg, var(--cohorte-color, var(--action-primary)), color-mix(in srgb, var(--cohorte-color, var(--action-primary)) 65%, var(--color-secondary-600)));
+    border-radius: var(--radius-2xl);
+    padding: var(--space-8) var(--space-10);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: var(--space-8);
+    animation: fadeInUp 0.5s var(--ease-out) both;
+  }
+  .welcome-banner::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .welcome-banner__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-caption-size);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-3);
+  }
+  .welcome-banner__tag svg { width: 14px; height: 14px; }
+  .welcome-banner__title {
+    font-size: var(--font-h3-size);
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin: 0 0 var(--space-2);
+  }
+  .welcome-banner__message {
+    font-size: var(--font-body2-size);
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0;
+  }
+  .welcome-banner__actions {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    flex-wrap: wrap;
+  }
+  .welcome-banner .btn {
+    background: rgba(255,255,255,0.18);
+    color: white;
+    border-color: rgba(255,255,255,0.3);
+    backdrop-filter: blur(4px);
+  }
+  .welcome-banner .btn:hover { background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.5); }
+  .welcome-banner .btn-cta { background: white; color: var(--cohorte-color, var(--action-primary)); border-color: white; box-shadow: none; }
+  .welcome-banner .btn-cta:hover { background: rgba(255,255,255,0.9); }
+
+  /* Parcours steps */
+  .parcours {
+    display: flex;
+    gap: 0;
+    margin-bottom: var(--space-8);
+    overflow-x: auto;
+    padding-bottom: var(--space-2);
+  }
+  .parcours__step {
+    flex: 1;
+    min-width: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-4) var(--space-3);
+    position: relative;
+  }
+  .parcours__step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 28px;
+    right: -1px;
+    width: 2px;
+    height: calc(100% - 56px);
+    background: var(--border-light);
+  }
+  .parcours__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-3);
+    border: 2px solid var(--border-default);
+    background: var(--surface-base);
+    position: relative;
+    z-index: 1;
+    transition: all var(--transition-base);
+  }
+  .parcours__icon svg { width: 24px; height: 24px; color: var(--text-muted); }
+  .parcours__step--done .parcours__icon { background: var(--color-success-50); border-color: var(--semantic-success); }
+  .parcours__step--done .parcours__icon svg { color: var(--semantic-success); }
+  .parcours__step--active .parcours__icon {
+    background: var(--cohorte-color, var(--action-primary));
+    border-color: var(--cohorte-color, var(--action-primary));
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--cohorte-color, var(--action-primary)) 20%, transparent);
+  }
+  .parcours__step--active .parcours__icon svg { color: white; }
+  .parcours__label { font-size: var(--font-caption-size); font-weight: var(--font-weight-semibold); color: var(--text-muted); line-height: 1.3; }
+  .parcours__step--active .parcours__label { color: var(--cohorte-color, var(--action-primary)); }
+  .parcours__step--done .parcours__label { color: var(--semantic-success); }
+
+  /* Badge niveau */
+  .badge-niveau {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--border-light);
+    background: var(--surface-base);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .badge-niveau:hover { border-color: var(--cohorte-color, var(--action-primary)); box-shadow: var(--shadow-md); }
+  .badge-niveau__icon { font-size: 28px; flex-shrink: 0; }
+  .badge-niveau__name { font-size: var(--font-body2-size); font-weight: var(--font-weight-semibold); color: var(--text-primary); }
+  .badge-niveau__status { font-size: var(--font-caption-size); color: var(--text-muted); }
+
+  @media (max-width: 768px) {
+    .welcome-banner { padding: var(--space-6); }
+    .welcome-banner__title { font-size: var(--font-h4-size); }
+  }
+}

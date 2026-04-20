@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma progression — AC — DASHBOA_RD</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/icons/icon.svg">
+  <script>
+    (function(){
+      var t=localStorage.getItem('rd-theme');
+      var s=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+      if((t||s)==='dark')document.documentElement.classList.add('dark');
+    })();
+    </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body>
+<div class="app-shell" id="appShell">
+  
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Navigation">
+    <a href="../../index.html" class="sidebar__brand" aria-label="Accueil DASHBOA_RD">
+      <img src="../../assets/icons/icon.svg" alt="" class="sidebar__brand-logo" aria-hidden="true">
+      <div class="sidebar__brand-text">
+        <span class="sidebar__brand-name">DASHBOA_RD</span>
+        <span class="sidebar__brand-sub" data-profile="specialisation">Assistant Commercial</span>
+      </div>
+    </a>
+    <div class="sidebar__user">
+      <div class="sidebar__user-avatar" data-profile="initiales">??</div>
+      <div class="sidebar__user-info">
+        <span class="sidebar__user-name" data-profile="nom">Chargement…</span>
+        <span class="sidebar__user-role" data-profile="specialisation">Assistant Commercial</span>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">
+        <span class="sidebar__section-label">Mon parcours</span>
+        <a href="dashboard.html" class="sidebar__link" data-page="dashboard.html">
+          <i data-lucide="layout-dashboard" aria-hidden="true"></i><span>Tableau de bord</span>
+        </a>
+        <a href="test-positionnement.html" class="sidebar__link" data-page="test-positionnement.html">
+          <i data-lucide="clipboard-check" aria-hidden="true"></i><span>Test de positionnement</span>
+        </a>
+        <a href="consignes.html" class="sidebar__link" data-page="consignes.html">
+          <i data-lucide="clipboard-list" aria-hidden="true"></i><span>Consignes &amp; REAC</span>
+        </a>
+        <a href="introduction.html" class="sidebar__link" data-page="introduction.html">
+          <i data-lucide="book-open" aria-hidden="true"></i><span>Introduction KPI</span>
+        </a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__section-label">Modules</span>
+                <a href="module1.html" class="sidebar__link" data-page="module1.html"><i data-lucide="circle-1" aria-hidden="true"></i><span>M1 — Comprendre les KPI commercia…</span></a>
+        <a href="module2.html" class="sidebar__link" data-page="module2.html"><i data-lucide="circle-2" aria-hidden="true"></i><span>M2 — Identifier les KPI de l'acti…</span></a>
+        <a href="module3.html" class="sidebar__link" data-page="module3.html"><i data-lucide="circle-3" aria-hidden="true"></i><span>M3 — Calculer les KPI de vente et…</span></a>
+        <a href="module4.html" class="sidebar__link" data-page="module4.html"><i data-lucide="circle-4" aria-hidden="true"></i><span>M4 — Analyser les données commerc…</span></a>
+        <a href="module5.html" class="sidebar__link" data-page="module5.html"><i data-lucide="circle-5" aria-hidden="true"></i><span>M5 — Construire un tableau de bor…</span></a>
+        <a href="module6.html" class="sidebar__link" data-page="module6.html"><i data-lucide="circle-6" aria-hidden="true"></i><span>M6 — Outils : Excel, CRM et initi…</span></a>
+        <a href="module7.html" class="sidebar__link" data-page="module7.html"><i data-lucide="circle-7" aria-hidden="true"></i><span>M7 — KPI par profil commercial — …</span></a>
+      </div>
+      <div class="sidebar__section">
+        <span class="sidebar__section-label">Évaluation</span>
+        <a href="progression.html" class="sidebar__link" data-page="progression.html">
+          <i data-lucide="trending-up" aria-hidden="true"></i><span>Ma progression</span>
+        </a>
+        <a href="catalogue.html" class="sidebar__link" data-page="catalogue.html">
+          <i data-lucide="layers" aria-hidden="true"></i><span>Catalogue</span>
+        </a>
+        <a href="certificats.html" class="sidebar__link" data-page="certificats.html">
+          <i data-lucide="award" aria-hidden="true"></i><span>Mes certificats</span>
+        </a>
+      </div>
+    </nav>
+    <div class="sidebar__footer">
+      <button class="sidebar__logout" type="button" data-action="logout">
+        <i data-lucide="log-out" aria-hidden="true"></i><span>Déconnexion</span>
+      </button>
+    </div>
+  </aside>
+  <div class="main-content">
+    
+    <header class="topbar">
+      <div class="topbar__left">
+        <button class="btn btn-ghost btn-icon topbar__menu-toggle" id="sidebarToggle"
+          aria-label="Menu" aria-expanded="false" aria-controls="sidebar">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+        <nav class="topbar__breadcrumb" aria-label="Fil d'Ariane">
+          <span>Assistant Commercial</span><i data-lucide="chevron-right"></i><span aria-current="page">Ma progression</span>
+        </nav>
+      </div>
+      <div class="topbar__right">
+        <button type="button" class="theme-toggle" id="themeToggle"
+          aria-label="Basculer le thème" aria-pressed="false">
+          <i data-lucide="sun" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+    <main class="page-content" role="main">
+      <div class="page-header animate-fade-up">
+        <h1 class="page-header__title">Ma progression — Assistant Commercial</h1>
+        <p class="page-header__subtitle">Suivi de votre parcours et de vos compétences REAC</p>
+      </div>
+      <section class="section">
+        <div class="section__header">
+          <h2 class="section__title"><i data-lucide="bar-chart-2"></i> Progression par module</h2>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+          <div class="card" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap;">
+          <div style="width:44px;height:44px;border-radius:var(--radius-lg);
+            background:var(--surface-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">⬜</div>
+          <div style="flex:1;min-width:200px;">
+            <p style="font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">M1 — Comprendre les KPI commerciaux</p>
+            <div class="progress-labeled">
+              <div class="progress-labeled__header">
+                <span>Non démarré</span><span class="progress-labeled__pct">0%</span>
+              </div>
+              <div class="progress"><div class="progress__fill" style="width:0%"></div></div>
+            </div>
+          </div>
+          <a href="module1.html" class="btn btn-primary btn-sm" style="flex-shrink:0;">Démarrer</a>
+        </div>
+<div class="card" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap;">
+          <div style="width:44px;height:44px;border-radius:var(--radius-lg);
+            background:var(--surface-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">⬜</div>
+          <div style="flex:1;min-width:200px;">
+            <p style="font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">M2 — Identifier les KPI de l'activité commerciale</p>
+            <div class="progress-labeled">
+              <div class="progress-labeled__header">
+                <span>Non démarré</span><span class="progress-labeled__pct">0%</span>
+              </div>
+              <div class="progress"><div class="progress__fill" style="width:0%"></div></div>
+            </div>
+          </div>
+          <a href="module2.html" class="btn btn-primary btn-sm" style="flex-shrink:0;">Démarrer</a>
+        </div>
+<div class="card" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap;">
+          <div style="width:44px;height:44px;border-radius:var(--radius-lg);
+            background:var(--surface-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">⬜</div>
+          <div style="flex:1;min-width:200px;">
+            <p style="font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">M3 — Calculer les KPI de vente et de performance</p>
+            <div class="progress-labeled">
+              <div class="progress-labeled__header">
+                <span>Non démarré</span><span class="progress-labeled__pct">0%</span>
+              </div>
+              <div class="progress"><div class="progress__fill" style="width:0%"></div></div>
+            </div>
+          </div>
+          <a href="module3.html" class="btn btn-primary btn-sm" style="flex-shrink:0;">Démarrer</a>
+        </div>
+<div class="card" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap;">
+          <div style="width:44px;height:44px;border-radius:var(--radius-lg);
+            background:var(--surface-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">⬜</div>
+          <div style="flex:1;min-width:200px;">
+            <p style="font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">M4 — Analyser les données commerciales pour décider</p>
+            <div class="progress-labeled">
+              <div class="progress-labeled__header">
+                <span>Non démarré</span><span class="progress-labeled__pct">0%</span>
+              </div>
+              <div class="progress"><div class="progress__fill" style="width:0%"></div></div>
+            </div>
+          </div>
+          <a href="module4.html" class="btn btn-primary btn-sm" style="flex-shrink:0;">Démarrer</a>
+        </div>
+<div class="card" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap;">
+          <div style="width:44px;height:44px;border-radius:var(--radius-lg);
+            background:var(--surface-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">⬜</div>
+          <div style="flex:1;min-width:200px;">
+            <p style="font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">M5 — Construire un tableau de bord commercial</p>
+            <div class="progress-labeled">
+              <div class="progress-labeled__header">
+                <span>Non démarré</span><span class="progress-labeled__pct">0%</span>
+              </div>
+              <div class="progress"><div class="progress__fill" style="width:0%"></div></div>
+            </div>
+          </div>
+          <a href="module5.html" class="btn btn-primary btn-sm" style="flex-shrink:0;">Démarrer</a>
+        </div>
+<div class="card" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap;">
+          <div style="width:44px;height:44px;border-radius:var(--radius-lg);
+            background:var(--surface-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">⬜</div>
+          <div style="flex:1;min-width:200px;">
+            <p style="font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">M6 — Outils : Excel, CRM et initiation BI commercial</p>
+            <div class="progress-labeled">
+              <div class="progress-labeled__header">
+                <span>Non démarré</span><span class="progress-labeled__pct">0%</span>
+              </div>
+              <div class="progress"><div class="progress__fill" style="width:0%"></div></div>
+            </div>
+          </div>
+          <a href="module6.html" class="btn btn-primary btn-sm" style="flex-shrink:0;">Démarrer</a>
+        </div>
+<div class="card" style="display:flex;align-items:center;gap:var(--space-5);flex-wrap:wrap;">
+          <div style="width:44px;height:44px;border-radius:var(--radius-lg);
+            background:var(--surface-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">⬜</div>
+          <div style="flex:1;min-width:200px;">
+            <p style="font-weight:600;color:var(--text-primary);margin-bottom:var(--space-2);">M7 — KPI par profil commercial — Spécialisation</p>
+            <div class="progress-labeled">
+              <div class="progress-labeled__header">
+                <span>Non démarré</span><span class="progress-labeled__pct">0%</span>
+              </div>
+              <div class="progress"><div class="progress__fill" style="width:0%"></div></div>
+            </div>
+          </div>
+          <a href="module7.html" class="btn btn-primary btn-sm" style="flex-shrink:0;">Démarrer</a>
+        </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section__header">
+          <h2 class="section__title"><i data-lucide="award"></i> Badges obtenus</h2>
+        </div>
+        <div class="kpi-grid kpi-grid--3"><div class="badge-niveau">
+          <div class="badge-niveau__icon">📈</div>
+          <div>
+            <div class="badge-niveau__name">Fondamentaux KPI commerciaux</div>
+            <div class="badge-niveau__status">🔒 Non obtenu · M1 & M2 ≥ 70%</div>
+          </div>
+        </div>
+<div class="badge-niveau">
+          <div class="badge-niveau__icon">📊</div>
+          <div>
+            <div class="badge-niveau__name">Analyse des données commerciales</div>
+            <div class="badge-niveau__status">🔒 Non obtenu · M3 ≥ 70%</div>
+          </div>
+        </div>
+<div class="badge-niveau">
+          <div class="badge-niveau__icon">🚀</div>
+          <div>
+            <div class="badge-niveau__name">Pilotage commercial par les données</div>
+            <div class="badge-niveau__status">🔒 Non obtenu · M4 ≥ 70%</div>
+          </div>
+        </div>
+<div class="badge-niveau">
+          <div class="badge-niveau__icon">📈</div>
+          <div>
+            <div class="badge-niveau__name">Tableaux de bord commerciaux</div>
+            <div class="badge-niveau__status">🔒 Non obtenu · M5 & M6 ≥ 70%</div>
+          </div>
+        </div>
+<div class="badge-niveau">
+          <div class="badge-niveau__icon">🏆</div>
+          <div>
+            <div class="badge-niveau__name">Expert KPI commercial</div>
+            <div class="badge-niveau__status">🔒 Non obtenu · M7 + projet final validé</div>
+          </div>
+        </div></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../../js/theme.js"></script>
+<script type="module">
+  import { initShell } from '../../js/shell.js';
+  document.addEventListener('DOMContentLoaded', async () => {
+    await initShell({ roles: ['stagiaire'], cohortes: ['AC'] });
+  });
+</script>
+</body>
+</html>
